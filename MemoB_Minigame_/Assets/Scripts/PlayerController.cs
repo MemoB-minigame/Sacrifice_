@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
             {
                 isLife = false;
                 Dead();
+                Debug.Log("AngConflictTest");
             }
         }
     }
