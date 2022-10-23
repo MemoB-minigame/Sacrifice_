@@ -1,0 +1,4 @@
+repository "MemoB_Minigame@MemoB@cloud"
+  path "/"
+    br "/main"
+    co "/main"

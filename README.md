@@ -1,2 +1,1 @@
-# Sacrifice_
-new sacrifice repository
+# Sacrifice
