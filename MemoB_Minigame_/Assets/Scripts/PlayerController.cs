@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+//AngTest
 public class PlayerController : MonoBehaviour
 {
     //Components
@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
             {
                 isLife = false;
                 Dead();
-                Debug.Log("AngConflictTest");
             }
         }
     }
