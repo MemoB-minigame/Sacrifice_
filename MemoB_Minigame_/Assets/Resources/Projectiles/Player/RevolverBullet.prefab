@@ -148,4 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Transform: {fileID: 3672548359611836849}
   speed: 0
-  absorbedRadius: 1
+  absorbedRadius: 1.5

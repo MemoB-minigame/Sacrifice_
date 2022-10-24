@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float revolverBulletSpeed;
 
     //HP
-    private int hp = 12;
+    private int hp = 24;
     private bool isLife = true;
 
     //Prefab

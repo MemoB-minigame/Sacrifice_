@@ -26,14 +26,24 @@ public class RevolverBullet : MonoBehaviour
 
     void Update()
     {
-        if (Vector2.Distance(player_Transform.position, m_Transform.position) < absorbedRadius && !isAbsorbed)
+        if (player_Transform != null)
         {
-            isAbsorbed = true;
+            if (Vector2.Distance(player_Transform.position, m_Transform.position) < absorbedRadius && isStickBorder && !isAbsorbed)
+            {
+                isAbsorbed = true;
+            }
         }
+        
 
         if (isAbsorbed)
         {
-            m_Transform.position = Vector2.MoveTowards(m_Transform.position, player_Transform.position, 0.1f);
+            m_Transform.position = Vector2.MoveTowards(m_Transform.position, player_Transform.position, 0.05f);
+
+            if (m_Transform.position == player_Transform.position)
+            {
+                Destroy(gameObject);
+                player_Transform.gameObject.GetComponent<PlayerController>().HP++;
+            }
         }
     }
 
