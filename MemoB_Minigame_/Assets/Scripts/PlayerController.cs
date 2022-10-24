@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private float revolverBulletSpeed; ≈≤∂ØµΩŒ‰∆˜¿Ô
 
     //HP
-    private int hp = 12;
+    private int hp = 24;
     public bool isLife = true;
 
     //Prefab
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         xMoveInputDirection = Input.GetAxis("Horizontal");
         yMoveInputDirection = Input.GetAxis("Vertical");
 
-        m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection , yMoveInputDirection ).normalized*speed;
+        m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection, yMoveInputDirection).normalized * speed;
 
         
     }
@@ -78,6 +78,6 @@ public class PlayerController : MonoBehaviour
 
     private void Dead()
     {
-        Destroy(gameObject);
+        GameObject.Destroy(gameObject);
     }
 }
