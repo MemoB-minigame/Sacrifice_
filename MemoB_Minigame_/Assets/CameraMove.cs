@@ -23,7 +23,7 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         //Debug.Log(Input.mousePosition);
-       offset = post.transform.position - middle.transform.position;
+        offset = post.transform.position - middle.transform.position;
         transposer.m_FollowOffset = new Vector3(offset.x, offset.y, -10*10)/10;
         
     }
