@@ -13,8 +13,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float xMoveInputDirection;
     [SerializeField] private float yMoveInputDirection;
+    [SerializeField] private float attack;
 
     //[SerializeField] private float revolverBulletSpeed; ≈≤∂ØµΩŒ‰∆˜¿Ô
+
+    private bool canSkill = false;
 
     //HP
     private int hp = 24;
@@ -33,7 +36,19 @@ public class PlayerController : MonoBehaviour
         { 
             hp = value;
             hpNum.text = string.Format("{0:D2}", hp);
-            if (hp < 0)
+            if (hp <= 18 && hp > 12)
+            {
+                Debug.Log("hi");
+            }
+            else if (hp <= 12 && hp > 6)
+            {
+                canSkill = false;
+            }
+            else if (hp <= 6 && hp >= 0)
+            {
+                canSkill = true;
+            }
+            else if (hp < 0)
             {
                 isLife = false;
                 Dead();
