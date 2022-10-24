@@ -14,11 +14,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float xMoveInputDirection;
     [SerializeField] private float yMoveInputDirection;
 
-    [SerializeField] private float revolverBulletSpeed;
+    //[SerializeField] private float revolverBulletSpeed; ≈≤∂ØµΩŒ‰∆˜¿Ô
 
     //HP
     private int hp = 12;
-    private bool isLife = true;
+    public bool isLife = true;
 
     //Prefab
     private GameObject revolverBullet_Prefab;
@@ -68,16 +68,7 @@ public class PlayerController : MonoBehaviour
 
         m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection * speed, yMoveInputDirection * speed);
 
-        if (Input.GetMouseButtonDown(0) && isLife)
-        {
-            RevolverBullet revolverBullet = Instantiate<GameObject>(revolverBullet_Prefab, m_Transform.position, Quaternion.identity).GetComponent<RevolverBullet>();
-
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
-            revolverBullet.SetBullet(revolverBulletSpeed, mousePos - m_Transform.position);
-
-            HP--;
-        }
+        
     }
 
     private void FixedUpdate()

@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 81
+  controlID: 86
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 96
+  controlID: 87
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 58
+  controlID: 64
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -335,8 +335,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: -98.66669, y: -26}
+      snapOffset: {x: -101, y: -26}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -549,9 +549,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 9.776992, y: 10.287693, z: -0.06364918}
+    m_Target: {x: 8.982967, y: 10.9923, z: 0.003478815}
     speed: 2
-    m_Value: {x: 9.776992, y: 10.287693, z: -0.06364918}
+    m_Value: {x: 8.982967, y: 10.9923, z: 0.003478815}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -602,9 +602,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 11.615041
+    m_Target: 3.2206728
     speed: 2
-    m_Value: 11.615041
+    m_Value: 3.2206728
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -818,7 +818,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2ad1ffff72d1ffff34d3ffff0efbffff6e610000
+      m_ExpandedIDs: bcf5ffff02f7ffff0efbffff6a610000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -882,7 +882,8 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders: []
+    m_Folders:
+    - Assets/Resources/Images/Weapons
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 0
@@ -896,7 +897,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: e6640000
     m_LastClickedID: 25830
-    m_ExpandedIDs: 00000000a8620000aa620000ac620000ae620000b0620000b2620000b4620000b6620000b8620000ba620000bc620000
+    m_ExpandedIDs: 00000000ac620000ae620000b0620000b2620000b4620000b6620000b8620000ba620000bc620000be620000c0620000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -924,7 +925,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000a8620000aa620000ac620000ae620000b0620000b2620000b4620000b6620000b8620000ba620000bc620000
+    m_ExpandedIDs: ffffffff000000000e620000ac620000ae620000b0620000b4620000b6620000ba620000bc620000be620000c0620000d0620000f66200008c6b0000bc6c0000106d0000a6730000227400005c790000927a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
