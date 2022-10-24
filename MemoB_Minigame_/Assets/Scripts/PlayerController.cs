@@ -63,8 +63,8 @@ public class PlayerController : MonoBehaviour
 
     private void CheckInput()
     {
-        xMoveInputDirection = Input.GetAxis("Horizontal");
-        yMoveInputDirection = Input.GetAxis("Vertical");
+        xMoveInputDirection = Input.GetAxisRaw("Horizontal");
+        yMoveInputDirection = Input.GetAxisRaw("Vertical");
 
         m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection, yMoveInputDirection).normalized * speed;
 
