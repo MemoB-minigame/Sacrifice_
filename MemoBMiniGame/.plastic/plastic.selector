@@ -1,4 +1,0 @@
-repository "MemoBMiniGame@memo_minigame_b@cloud.cn"
-  path "/"
-    br "/main"
-    co "/main"
