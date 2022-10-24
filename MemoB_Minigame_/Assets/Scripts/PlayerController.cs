@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         xMoveInputDirection = Input.GetAxis("Horizontal");
         yMoveInputDirection = Input.GetAxis("Vertical");
 
-        m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection * speed, yMoveInputDirection * speed);
+        m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection , yMoveInputDirection ).normalized*speed;
 
         
     }

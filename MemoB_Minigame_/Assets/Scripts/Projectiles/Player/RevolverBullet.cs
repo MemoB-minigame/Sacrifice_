@@ -5,14 +5,15 @@ using UnityEngine;
 public class RevolverBullet : MonoBehaviour
 {
     //Components
-    [SerializeField] private Transform m_Transform;
+    
     private Rigidbody2D m_Rigidbody2D;
-
-    [SerializeField] private float speed;
-
     private bool isStickBorder = false;
     private bool isAbsorbed = false;
+    private float timer;
     [SerializeField] private float absorbedRadius;
+    [SerializeField] private float speed;
+    [SerializeField] private Transform m_Transform;
+    [SerializeField] private float interval=1f;
 
     private Transform player_Transform;
 
@@ -26,7 +27,8 @@ public class RevolverBullet : MonoBehaviour
 
     void Update()
     {
-        if (Vector2.Distance(player_Transform.position, m_Transform.position) < absorbedRadius && !isAbsorbed)
+        timer += Time.deltaTime;
+        if (Vector2.Distance(player_Transform.position, m_Transform.position) < absorbedRadius && !isAbsorbed&&timer>interval)
         {
             isAbsorbed = true;
         }
@@ -34,6 +36,11 @@ public class RevolverBullet : MonoBehaviour
         if (isAbsorbed)
         {
             m_Transform.position = Vector2.MoveTowards(m_Transform.position, player_Transform.position, 0.1f);
+            if (Vector3.Distance(m_Transform.position, player_Transform.position) < 0.2f)
+            {
+                player_Transform.gameObject.GetComponent<PlayerController>().HP++;
+                Destroy(gameObject);
+            }
         }
     }
 
