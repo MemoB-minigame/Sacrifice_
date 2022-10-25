@@ -99,12 +99,23 @@ public class PlayerController : MonoBehaviour
         if ((xMoveInputDirection != 0 || yMoveInputDirection != 0) && !isMove) 
         {
             isMove = true;
-            m_Animator.Play("PlayerRun");
         }
         else if (xMoveInputDirection == 0 && yMoveInputDirection == 0 && isMove)
         {
             isMove = false;
             m_Animator.Play("PlayerIdle");
+        }
+
+        if (isMove)
+        {
+            if ((facingDirection == -1 && xMoveInputDirection > 0) || (facingDirection == 1 && xMoveInputDirection < 0))
+            {
+                m_Animator.Play("PlayerRunBack");
+            }
+            else
+            {
+                m_Animator.Play("PlayerRun");
+            }
         }
     }
 
