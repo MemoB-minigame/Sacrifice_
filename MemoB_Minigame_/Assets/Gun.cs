@@ -7,23 +7,23 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    Transform muzzle;
-    [SerializeField]GameObject Player;
-    PlayerController Controller;
-    [SerializeField]GameObject revolverBullet_Prefab;
-    [SerializeField]float revolverBulletSpeed;
-    [SerializeField] float hardRecoilForce=1;
-    [SerializeField] float smoothRecoilForce=1;
-    [SerializeField] float jump;
-    [SerializeField] float interval=0.384f;
-    CinemachineImpulseSource impulse;
+    protected float timer=0;//计时器
+    protected Vector2 direction;//发射方向
+    protected PlayerController  Controller;
+    protected Transform muzzle;
+    [SerializeField]protected GameObject Player;
+    [SerializeField]protected GameObject bullet_Prefab;
+    [SerializeField]protected float bulletSpeed;//子弹速度
+    [SerializeField] protected float hardRecoilForce=1;//前半段较为快速的后座力
+    [SerializeField] protected float smoothRecoilForce=1;//后半段较为缓和的后坐力
+    [SerializeField] protected float jump;//后坐力人物上移
+    [SerializeField] protected float interval=0.384f;//发射间隔
+    CinemachineImpulseSource impulse;//屏幕震动
 
+    Vector2 mousePos;//鼠标位置
+    
 
-    Vector2 direction;
-    Vector2 mousePos;
-    float timer=0;
-
-    float flipY,flipX;
+    float flipY,flipX;//枪支上下翻转
     void Start()
     {
         flipX=transform.localScale.x;
@@ -33,7 +33,6 @@ public class Gun : MonoBehaviour
         impulse=GetComponent<CinemachineImpulseSource>();   
     }
 
-    // Update is called once per frame
     void Update()
     {
         Shoot();
@@ -57,23 +56,23 @@ public class Gun : MonoBehaviour
     }
     protected virtual void Fire()
     {
-        if (Input.GetMouseButtonDown(0) && Controller.isLife&&timer>=interval)
+        if (Input.GetMouseButtonDown(0) && Controller.isLife&&timer>=interval&&Controller.HP-1>=0)
         {
             timer=0;
-            RevolverBullet revolverBullet = Instantiate<GameObject>(revolverBullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<RevolverBullet>();
+            RevolverBullet revolverBullet = Instantiate<GameObject>(bullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<RevolverBullet>();
 
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            revolverBullet.SetBullet(revolverBulletSpeed, direction);
-
+            revolverBullet.SetBullet(bulletSpeed, direction);
             Controller.HP--;
-            impulse.GenerateImpulse();
-            StartCoroutine(Recoil(hardRecoilForce,smoothRecoilForce));
+            RecoilForce();
+
+
         }
     }
     protected virtual void RecoilForce()
     {
-
+            impulse.GenerateImpulse();
+            StartCoroutine(Recoil(hardRecoilForce,smoothRecoilForce));
     }
     IEnumerator Recoil(float hard,float smooth)
     {
