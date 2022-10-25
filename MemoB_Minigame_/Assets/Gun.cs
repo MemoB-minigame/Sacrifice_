@@ -18,13 +18,14 @@ public class Gun : MonoBehaviour
     [SerializeField] protected float smoothRecoilForce=1;//后半段较为缓和的后坐力
     [SerializeField] protected float jump;//后坐力人物上移
     [SerializeField] protected float interval=0.384f;//发射间隔
+    [SerializeField] protected int hpCost = 1;
     CinemachineImpulseSource impulse;//屏幕震动
 
     Vector2 mousePos;//鼠标位置
     
 
     float flipY,flipX;//枪支上下翻转
-    void Start()
+    protected virtual void Start()
     {
         flipX=transform.localScale.x;
         flipY = transform.localScale.y;
@@ -33,7 +34,7 @@ public class Gun : MonoBehaviour
         impulse=GetComponent<CinemachineImpulseSource>();   
     }
 
-    void Update()
+    protected virtual void Update()
     {
         Shoot();
         Fire();
@@ -56,14 +57,15 @@ public class Gun : MonoBehaviour
     }
     protected virtual void Fire()
     {
-        if (Input.GetMouseButtonDown(0) && Controller.isLife&&timer>=interval&&Controller.HP-1>=0)
+        if (Input.GetMouseButtonDown(0) && Controller.isLife&&timer>=interval&&Controller.HP-hpCost>=0)
         {
             timer=0;
+            Controller.HP-=hpCost;
             RevolverBullet revolverBullet = Instantiate<GameObject>(bullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<RevolverBullet>();
 
 
-            revolverBullet.SetBullet(bulletSpeed, direction);
-            Controller.HP--;
+            revolverBullet.SetBullet(hpCost,bulletSpeed, direction);
+            
             RecoilForce();
 
 

@@ -19,12 +19,12 @@ public class Shotgun : Gun
                 if (bulletNum % 2 == 0)
                 {
                     RevolverBullet bullet = Instantiate(bullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<RevolverBullet>();
-                    bullet.SetBullet(bulletSpeed, Quaternion.AngleAxis(bulletAngel / 2 + (bulletAngel * (i - mid)), Vector3.forward) * direction);
+                    bullet.SetBullet(1,bulletSpeed, Quaternion.AngleAxis(bulletAngel / 2 + (bulletAngel * (i - mid)), Vector3.forward) * direction);
                 }
                 else
                 {
                     RevolverBullet bullet = Instantiate(bullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<RevolverBullet>();
-                    bullet.SetBullet(bulletSpeed, Quaternion.AngleAxis(bulletAngel * (i - mid), Vector3.forward) * direction);
+                    bullet.SetBullet(1,bulletSpeed, Quaternion.AngleAxis(bulletAngel * (i - mid), Vector3.forward) * direction);
                 }
             }
             RecoilForce();

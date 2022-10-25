@@ -5,14 +5,17 @@ using UnityEngine;
 public class RevolverBullet : MonoBehaviour
 {
     //Components
-    [SerializeField] private Transform m_Transform;
+    private Transform m_Transform;
     private Rigidbody2D m_Rigidbody2D;
-
-    [SerializeField] private float speed;
-
     private bool isStickBorder = false;
     private bool isAbsorbed = false;
+    private int hpRecover=1;
+
+    [SerializeField] private float speed;
     [SerializeField] private float absorbedRadius;
+
+    
+    
 
     private Transform player_Transform;
 
@@ -42,13 +45,14 @@ public class RevolverBullet : MonoBehaviour
             if (m_Transform.position == player_Transform.position)
             {
                 Destroy(gameObject);
-                player_Transform.gameObject.GetComponent<PlayerController>().HP++;
+                player_Transform.gameObject.GetComponent<PlayerController>().HP+=hpRecover;
             }
         }
     }
 
-    public void SetBullet(float speed, Vector2 direction)
+    public void SetBullet(int n_hpRecover,float speed, Vector2 direction)
     {
+        hpRecover = n_hpRecover;
         m_Rigidbody2D.velocity = direction.normalized * speed ;
         //m_Transform.right = direction;
     }
