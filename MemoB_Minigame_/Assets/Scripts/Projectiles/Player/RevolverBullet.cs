@@ -40,7 +40,7 @@ public class RevolverBullet : MonoBehaviour
 
         if (isAbsorbed)
         {
-            m_Transform.position = Vector2.MoveTowards(m_Transform.position, player_Transform.position, 0.05f);
+            m_Transform.position = Vector2.MoveTowards(m_Transform.position, player_Transform.position, 0.2f);
 
             if (m_Transform.position == player_Transform.position)
             {

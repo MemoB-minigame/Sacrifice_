@@ -24,8 +24,8 @@ public class Winchester : Gun
     }
     void Aim()
     {
-        //if (Input.GetMouseButtonDown(1))
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetMouseButtonDown(1))
+        //if (Input.GetKeyDown(KeyCode.J))
         {
             //bigPoint.transform.position = post.transform.position;
             bigPoint.transform.position = new Vector3(direction.x,direction.y,0)*6.5f + Player.transform.position;
@@ -36,8 +36,8 @@ public class Winchester : Gun
             
             Debug.Log("Post");
         }
-        //if (Input.GetMouseButtonUp(1))
-        if (Input.GetKeyUp(KeyCode.J))
+        if (Input.GetMouseButtonUp(1))
+        //if (Input.GetKeyUp(KeyCode.J))
         {
             virtualCamera.Follow = Player.transform;
             post.GetComponent<Sight>().sensitivity = 1;

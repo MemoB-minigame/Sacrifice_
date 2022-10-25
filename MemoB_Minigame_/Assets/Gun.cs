@@ -2,12 +2,12 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using UnityEditor.Search;
+//using UnityEditor.Search;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    protected float timer=0;//计时器
+    protected float timer=10;//计时器
     protected Vector2 direction;//发射方向
     protected PlayerController  Controller;
     protected Transform muzzle;
