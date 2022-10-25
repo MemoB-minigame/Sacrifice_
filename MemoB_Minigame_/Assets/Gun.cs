@@ -77,16 +77,16 @@ public class Gun : MonoBehaviour
     }
     IEnumerator Recoil(float hard,float smooth)
     {
-        for(int i=1;i<=3; i++)
+        for(int i=1;i<=2; i++)
         {
-            Player.transform.Translate(-direction / 8*hard);
-            Player.transform.Translate(Vector3.up/25*jump);
+            Player.transform.Translate(-direction / 5*hard);
+            Player.transform.Translate(Vector3.up/20*jump);
             yield return new WaitForFixedUpdate();
         }
-        for (int i = 1; i <= 9; i++)
+        for (int i = 1; i <= 6; i++)
         {
-            Player.transform.Translate(-direction / 24*smooth);
-            Player.transform.Translate(Vector3.down / 75 * jump);
+            Player.transform.Translate(-direction / 20*smooth);
+            Player.transform.Translate(Vector3.down / 60 * jump);
             yield return new WaitForFixedUpdate();
         }
     }
