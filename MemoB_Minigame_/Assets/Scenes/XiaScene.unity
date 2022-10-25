@@ -1090,8 +1090,8 @@ MonoBehaviour:
   smoothRecoilForce: 1.5
   jump: 1
   interval: 0.625
-  bulletNum: 3
-  bulletAngel: 15
+  bulletNum: 4
+  bulletAngel: 5
 --- !u!212 &682514971
 SpriteRenderer:
   m_ObjectHideFlags: 0
