@@ -32,7 +32,7 @@ public class Winchester : Gun
             timer = 0;
             Controller.HP -= hpCost;
             RevolverBullet revolverBullet = Instantiate<GameObject>(bullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<RevolverBullet>();
-            revolverBullet.SetBullet(hpCost, bulletSpeed, direction);
+            revolverBullet.SetBullet(1, bulletSpeed, direction);
 
             RecoilForce();
             animator.SetTrigger("Fire");

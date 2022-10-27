@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy_01_Ctrl : MonoBehaviour
@@ -29,7 +30,7 @@ public class Enemy_01_Ctrl : MonoBehaviour
         Debug.Log("attacked");
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Hp--;
+            Hp-=collision.gameObject.GetComponent<RevolverBullet>().damage;
         }
     }
 }

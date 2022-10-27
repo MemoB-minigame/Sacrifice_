@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class RevolverBullet : MonoBehaviour
     private Rigidbody2D rigidbody;
     private bool isStickBorder = false;
     private bool isAbsorbed = false;
-    private int hpRecover=1;
+    [NonSerialized]public int damage;
 
     void Awake()
     {    
@@ -39,9 +40,9 @@ public class RevolverBullet : MonoBehaviour
         }*/
     }
 
-    public void SetBullet(int tmp_hpRecover,float speed, Vector2 direction)
+    public void SetBullet(int tmp_daamage,float speed, Vector2 direction)
     {
-        hpRecover = tmp_hpRecover;
+        damage = tmp_damage;
         rigidbody.velocity = direction.normalized * speed ;
         transform.right = direction;
     }
