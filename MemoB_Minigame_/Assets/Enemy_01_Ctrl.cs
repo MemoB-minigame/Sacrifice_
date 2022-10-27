@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Enemy_01_Ctrl : MonoBehaviour
 {
-    [SerializeField]private int hp;
+    private int hp;
+    private Animator animator;
     public int Hp 
     {
         get {return hp; }
@@ -19,18 +20,21 @@ public class Enemy_01_Ctrl : MonoBehaviour
     void Start()
     {
         hp = GetComponent<Enemy_01_Parameters>().attribute.Hp;
+        animator = GetComponent<Animator>();
     }
     void Die()
     {
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("attacked");
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Hp-=collision.gameObject.GetComponent<RevolverBullet>().damage;
+
+            Hp -= collision.gameObject.GetComponent<RevolverBullet>().damage;
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("Aggress"))
+                animator.SetTrigger("InterruptSwitch");
         }
     }
 }

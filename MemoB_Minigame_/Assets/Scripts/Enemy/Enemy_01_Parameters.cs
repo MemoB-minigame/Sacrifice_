@@ -69,6 +69,9 @@ public class Enemy_01_Parameters : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, distance.alertDistance);
 
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, distance.aggressDistance);
+
 
     }
 

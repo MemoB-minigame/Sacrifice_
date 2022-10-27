@@ -22,6 +22,7 @@ public class Sight : MonoBehaviour
 
     void Update()
     {
+        Cursor.visible = false;
         Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         m_Transform.position = mousePositionWorld;
 
