@@ -13,6 +13,7 @@ public class Sight : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
         m_Transform = gameObject.GetComponent<Transform>();
 
         cinemachineVirtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();

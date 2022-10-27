@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 279017512}
   - component: {fileID: 279017511}
   - component: {fileID: 279017510}
+  - component: {fileID: 279017513}
   m_Layer: 9
   m_Name: Winchester
   m_TagString: Untagged
@@ -351,8 +352,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279017508}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.014699936, z: 0}
-  m_LocalScale: {x: 1.3228854, y: 0.14867568, z: 1}
+  m_LocalPosition: {x: 0.97, y: -0.12, z: 0}
+  m_LocalScale: {x: 0.16091973, y: 0.15094967, z: 0.6013}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2013070060}
@@ -385,7 +386,7 @@ MonoBehaviour:
     m_ImpulseType: 3
     m_DissipationRate: 0.25
     m_RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
-    m_AmplitudeGain: 2
+    m_AmplitudeGain: 3.78
     m_FrequencyGain: 4
     m_RepeatMode: 0
     m_Randomize: 1
@@ -477,8 +478,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 7482667652216324306, guid: 5ef7a81ceae4850419a9d50397cbfbea, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.8187003, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c6a6d084ef3c93945a58e5af09c0125b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -488,6 +489,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &279017513
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279017508}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7868532e6cf7de41ac6054abf427a9a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &400949213
 GameObject:
   m_ObjectHideFlags: 0

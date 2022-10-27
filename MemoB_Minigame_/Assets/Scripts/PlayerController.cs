@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool canSkill = false;
 
     //HP
-    private int hp = 24;
+    private int hp = 240;
     public bool isLife = true;
 
     //Prefab
