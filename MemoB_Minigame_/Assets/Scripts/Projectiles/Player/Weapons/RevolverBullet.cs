@@ -40,7 +40,7 @@ public class RevolverBullet : MonoBehaviour
         }*/
     }
 
-    public void SetBullet(int tmp_daamage,float speed, Vector2 direction)
+    public void SetBullet(int tmp_damage,float speed, Vector2 direction)
     {
         damage = tmp_damage;
         rigidbody.velocity = direction.normalized * speed ;

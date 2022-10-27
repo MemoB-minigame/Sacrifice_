@@ -19,6 +19,7 @@ public class Gun : MonoBehaviour
     [SerializeField] protected float jump;//后坐力人物上移
     [SerializeField] protected float interval=0.384f;//发射间隔
     [SerializeField] protected int hpCost = 1;
+    [SerializeField] protected float deflectionAngel = 5f;
     CinemachineImpulseSource impulse;//屏幕震动
 
     protected Vector2 mousePos;//鼠标位置
@@ -62,6 +63,9 @@ public class Gun : MonoBehaviour
         {
             timer=0;
             Controller.HP-=hpCost;
+            float randomFireAngel;
+            randomFireAngel = Random.Range(deflectionAngel, deflectionAngel);
+            direction = Quaternion.AngleAxis(randomFireAngel, Vector3.forward) * direction;
             RevolverBullet revolverBullet = Instantiate<GameObject>(bullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<RevolverBullet>();
             revolverBullet.SetBullet(hpCost,bulletSpeed, direction);
             

@@ -7,6 +7,7 @@ public class Shotgun : Gun
     [SerializeField] int bulletNum = 3;
     [SerializeField] float bulletAngel;
     
+    
     protected override void Fire()
     {
         timer+=Time.deltaTime;  
@@ -15,6 +16,9 @@ public class Shotgun : Gun
             timer = 0;
             Controller.HP -= bulletNum;
             int mid = bulletNum / 2;
+            float randomFireAngel;
+            randomFireAngel = Random.Range(-deflectionAngel, deflectionAngel);
+            direction = Quaternion.AngleAxis(randomFireAngel, Vector3.forward) * direction;
             for (int i = 1; i <= bulletNum; i++)
             {
                 if (bulletNum % 2 == 0)

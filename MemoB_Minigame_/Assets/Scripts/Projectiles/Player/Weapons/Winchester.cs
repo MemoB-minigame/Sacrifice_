@@ -32,6 +32,9 @@ public class Winchester : Gun
             timer = 0;
             Controller.HP -= hpCost;
             RevolverBullet revolverBullet = Instantiate<GameObject>(bullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<RevolverBullet>();
+            float randomFireAngel;
+            randomFireAngel = Random.Range(deflectionAngel, deflectionAngel);
+            direction = Quaternion.AngleAxis(randomFireAngel, Vector3.forward) * direction;
             revolverBullet.SetBullet(1, bulletSpeed, direction);
 
             RecoilForce();
