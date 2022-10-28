@@ -8,6 +8,7 @@ public class Enemy_01_Parameters : MonoBehaviour
     private void Start()
     {
         position.rebornPos = transform.position;
+        Player = GameObject.Find("Player");
     }
     #region 
     [System.Serializable]
@@ -50,7 +51,7 @@ public class Enemy_01_Parameters : MonoBehaviour
         public int Hp;
         public float regeneration;
     }
-    public GameObject Player;
+    [NonSerialized]public GameObject Player;
     public bool alertTrigger;
     [SerializeField] public Position position;
     [SerializeField] public Speed speed;

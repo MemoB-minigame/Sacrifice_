@@ -11,13 +11,14 @@ public class Winchester : Gun
     
     CinemachineTransposer transposer;
     GameObject bigPoint;
-    Animator animator;
+    Animator animator,aniMuzzle;
     protected override void Start()
     {
         base.Start();
         transposer = virtualCamera.GetComponent<CinemachineTransposer>();
         bigPoint = transform.Find("BigPoint").gameObject;
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();        
+        aniMuzzle = transform.Find("AniMuzzle").GetComponent<Animator>();
     }
     protected override void Update()
     {
@@ -36,9 +37,10 @@ public class Winchester : Gun
             randomFireAngel = Random.Range(deflectionAngel, deflectionAngel);
             direction = Quaternion.AngleAxis(randomFireAngel, Vector3.forward) * direction;
             revolverBullet.SetBullet(1, bulletSpeed, direction);
-
+            StartCoroutine(PlayFireAni());
             RecoilForce();
-            animator.SetTrigger("Fire");
+            
+            
         }
 
     }
@@ -52,7 +54,7 @@ public class Winchester : Gun
             //bigPoint.transform.position = post.transform.position;
             bigPoint.transform.position = new Vector3(direction.x,direction.y,0)*6.5f + Player.transform.position;
             virtualCamera.Follow = bigPoint.transform;
-            //virtualCamera.m_Lens.OrthographicSize = 10.5f/bigSize;
+            //virtualCamera.m_Lens.OrthographicSize = 6f/bigSize;
             StartCoroutine(BecomeBigSize(10));
             post.GetComponent<Sight>().sensitivity = 1/bigSize;
             
@@ -76,7 +78,7 @@ public class Winchester : Gun
     {
         for (int i = 1; i <= damping; i++)
         {
-            virtualCamera.m_Lens.OrthographicSize += (10.5f / bigSize-10.5f) / damping;
+            virtualCamera.m_Lens.OrthographicSize += (6f / bigSize-6f) / damping;
             yield return new WaitForFixedUpdate();
         }
     }
@@ -84,8 +86,20 @@ public class Winchester : Gun
     {
         for(int i = 1; i <= damping; i++)
         {
-            virtualCamera.m_Lens.OrthographicSize += (10.5f-10.5f/bigSize)/damping;
+            virtualCamera.m_Lens.OrthographicSize += (6f-6f/bigSize)/damping;
             yield return new WaitForFixedUpdate();
         }
+    }
+    IEnumerator PlayFireAni()
+    {
+        aniMuzzle.gameObject.SetActive(true);
+        while (aniMuzzle.GetCurrentAnimatorStateInfo(0).normalizedTime <= 0.95f)
+        {
+            yield return new WaitForFixedUpdate();
+
+        }
+        aniMuzzle.gameObject.SetActive(false);
+        animator.SetTrigger("Fire");
+
     }
 }
