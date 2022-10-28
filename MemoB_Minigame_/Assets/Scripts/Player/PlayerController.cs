@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-//XiaTest
+using UnityEngine.UI;
+
 public class PlayerController : MonoBehaviour
 {
     //Components
@@ -33,7 +33,11 @@ public class PlayerController : MonoBehaviour
     private GameObject revolverBullet_Prefab;
 
     //UI
-    private TextMeshProUGUI hpNum;
+    private Image hpSlider;
+    private Image buff_0;
+    private Image buff_1;
+    private Image buff_2;
+    private SmallHP smallHP;
 
     Vector2 mousePositionWorld;
 
@@ -43,18 +47,29 @@ public class PlayerController : MonoBehaviour
         set 
         { 
             hp = value;
-            hpNum.text = string.Format("{0:D2}", hp);
-            if (hp <= 18 && hp > 12)
+            smallHP.Player_HP = value;  //更新小血条
+            //hpNum.text = string.Format("{0:D2}", hp);
+            hpSlider.fillAmount = 1 / 24.0f * hp;
+
+            if (hp > 18)
             {
-                Debug.Log("hi");
+                buff_0.color = Color.white;
+            }
+            else if (hp <= 18 && hp > 12)
+            {
+                buff_0.color = Color.yellow;
+                buff_1.color = Color.white;
             }
             else if (hp <= 12 && hp > 6)
             {
                 canSkill = false;
+                buff_1.color = Color.yellow;
+                buff_2.color = Color.white;
             }
             else if (hp <= 6 && hp >= 0)
             {
                 canSkill = true;
+                buff_2.color = Color.yellow;
             }
             else if (hp < 0)
             {
@@ -73,7 +88,11 @@ public class PlayerController : MonoBehaviour
 
         revolverBullet_Prefab = Resources.Load<GameObject>("Projectiles/Player/RevolverBullet");
 
-        hpNum = GameObject.Find("PlayerInfoCanvas/HP/HPNum").GetComponent<TextMeshProUGUI>();
+        hpSlider = GameObject.Find("PlayerInfoCanvas/HPText/HPBackground/HPSlider").GetComponent<Image>();
+        buff_0 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_0_Image").GetComponent<Image>();
+        buff_1 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_1_Image").GetComponent<Image>();
+        buff_2 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_2_Image").GetComponent<Image>();
+        smallHP = GameObject.Find("PlayerInfoCanvas/SmallHP").GetComponent<SmallHP>();
     }
 
     void Start()
