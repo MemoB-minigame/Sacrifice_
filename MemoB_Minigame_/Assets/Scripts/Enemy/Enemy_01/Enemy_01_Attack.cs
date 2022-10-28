@@ -15,6 +15,7 @@ public class Enemy_01_Attack : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log("EnterAttack");
         /*--------------------------------≥ı ºªØ--------------------------------------*/
         Enemy = animator.gameObject;
         parameters = animator.gameObject.GetComponent<Enemy_01_Parameters>();
@@ -25,10 +26,8 @@ public class Enemy_01_Attack : StateMachineBehaviour
         targetPosition = Enemy.transform.position + parameters.distance.dashDistanceMultuplier * (parameters.Player.transform.position - Enemy.transform.position);
         targetPosition.z = 0;
         direction = (targetPosition - Enemy.transform.position).normalized;
-        animator.SetInteger("AggressToAttack", 0);
         rigidbody.velocity = direction * parameters.speed.dashSpeed;
         GameObject.Find("Test").transform.position=targetPosition;
-        Debug.Log("speedchanges");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

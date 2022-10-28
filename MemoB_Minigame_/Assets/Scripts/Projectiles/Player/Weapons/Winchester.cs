@@ -78,7 +78,7 @@ public class Winchester : Gun
     {
         for (int i = 1; i <= damping; i++)
         {
-            virtualCamera.m_Lens.OrthographicSize += (6f / bigSize-6f) / damping;
+            virtualCamera.m_Lens.OrthographicSize += (7f / bigSize-7f) / damping;
             yield return new WaitForFixedUpdate();
         }
     }
@@ -86,7 +86,7 @@ public class Winchester : Gun
     {
         for(int i = 1; i <= damping; i++)
         {
-            virtualCamera.m_Lens.OrthographicSize += (6f-6f/bigSize)/damping;
+            virtualCamera.m_Lens.OrthographicSize += (7f-7f/bigSize)/damping;
             yield return new WaitForFixedUpdate();
         }
     }

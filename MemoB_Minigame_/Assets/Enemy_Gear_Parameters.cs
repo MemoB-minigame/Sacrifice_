@@ -29,8 +29,8 @@ public class Enemy_Gear_Parameters : MonoBehaviour
     [System.Serializable]
     public struct Time
     {
-        public float dlertDuration;
-        public float shootRound;
+        public float alertDuration;
+        public int shootRound;
         public float shootDuration;
     }
     [System.Serializable]

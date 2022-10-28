@@ -2,32 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Gear_Idle : StateMachineBehaviour
+public class Enemy_Gear_Die : StateMachineBehaviour
 {
     GameObject enemy;
     Transform transform;
     Enemy_Gear_Parameters para;
-    bool transition;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        para=animator.GetComponent<Enemy_Gear_Parameters>();    
+        para = animator.GetComponent<Enemy_Gear_Parameters>();
         enemy = animator.gameObject;
         transform = animator.transform;
-        transition = true;
+
+        Instantiate(para.attribute.deathBulletMode, transform.position, Quaternion.identity);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (transition && Vector2.Distance(transform.position, para.Player.transform.position) < para.distance.alertDistance)
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
         {
-            transition = false;
-            animator.SetTrigger("IdleToAlert");
+            Destroy(enemy.gameObject);
         }
     }
 
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
-
+    //    
     //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -21,7 +21,9 @@ public class Enemy_01_Aggress : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(transition)rigidbody.velocity = (parameters.Player.transform.position - Enemy.transform.position).normalized * parameters.speed.aggressMoveSpeed;
+        if(transition) //好像去掉确实没有问题 但是为了保险起见还是加上吧
+            rigidbody.velocity = (parameters.Player.transform.position - Enemy.transform.position).normalized * parameters.speed.aggressMoveSpeed;
+        Debug.Log("AggressUpdate");
         if (Vector2.Distance(parameters.Player.transform.position, Enemy.transform.position) < parameters.distance.aggressDistance && transition)
         {
             transition = false;

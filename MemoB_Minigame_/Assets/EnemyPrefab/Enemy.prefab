@@ -130,12 +130,12 @@ MonoBehaviour:
     aggressMoveSpeed: 5
     dashSpeed: 12.42
   distance:
-    wanderRadius: 10
-    wanderDistanceLowerBound: 2
-    wanderDistanceUpperBound: 7
-    alertDistance: 4
+    wanderRadius: 9.7
+    wanderDistanceLowerBound: 2.95
+    wanderDistanceUpperBound: 6.8
+    alertDistance: 7.43
     retainDistance: 3
-    aggressDistance: 4.62
+    aggressDistance: 4.32
     dashDistanceMultuplier: 2
   time:
     idleDuration: 1
