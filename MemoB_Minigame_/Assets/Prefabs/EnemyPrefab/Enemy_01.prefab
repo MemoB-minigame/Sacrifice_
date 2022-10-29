@@ -145,7 +145,7 @@ MonoBehaviour:
     interruptDuration: 0.5
   attribute:
     attackDamage: 0
-    Hp: 10
+    Hp: 4
     regeneration: 0
 --- !u!61 &5502627208115412251
 BoxCollider2D:

@@ -102,7 +102,7 @@ MonoBehaviour:
   prepareDuration: 0.05
   lifeDuration: 10
   damage: 1
-  blockable: 0
+  blockable: 1
   repelPower: 0
   trackPower: 0
   lifeTimer: 0

@@ -34,6 +34,7 @@ public class Enemy_Gear_Shoot : StateMachineBehaviour
                 //Instantiate(para.attribute.attackBulletMode, transform.position, Quaternion.identity);
                 GameObject attack = ObjectPool.Instance.GetObject(para.attribute.attackBulletMode);
                 attack.transform.position = transform.position;
+                attack.transform.right = (para.Player.transform.position - animator.transform.position).normalized;
             }
         }
         else if(transition)

@@ -54,11 +54,11 @@ public class Enemy_Bulllet_Basic : MonoBehaviour
         Vector2 dirToTarget = (trackTarget.position - transform.position).normalized;
         transform.right = Vector2.Lerp(transform.right, dirToTarget, trackPower*Time.deltaTime).normalized;
     }
-    protected virtual void SetBullet(Vector2 _direction,float _speed, int _damage)
+    public virtual void SetBullet(int _damage, float _speed,float _trackPower)
     {
-        transform.right = _direction;
-        damage = _damage;
         speed = _speed;
+        damage = _damage;
+        trackPower = _trackPower;
     }
     protected virtual bool Prepare()
     {
@@ -85,7 +85,7 @@ public class Enemy_Bulllet_Basic : MonoBehaviour
         while (destroyTimer <= interval)
         {
             destroyTimer += Time.deltaTime;
-            Debug.Log(destroyTimer);
+            //Debug.Log(destroyTimer);
             yield return new WaitForFixedUpdate();
         }
         ObjectPool.Instance.PushObject(gameObject);

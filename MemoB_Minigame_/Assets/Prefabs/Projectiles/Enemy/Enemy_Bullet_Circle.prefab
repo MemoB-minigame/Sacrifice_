@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5184978036639307699}
   - component: {fileID: 5184978036639307708}
   - component: {fileID: 5184978036639307709}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy_Bullet_Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5184978036639307696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.77, y: 6.6143465, z: -0.09632599}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5499, y: 0.5499, z: 0.5499}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,17 +49,17 @@ MonoBehaviour:
   speed: 3
   prepareDuration: 0
   lifeDuration: 6
-  damage: 0
+  damage: 1
   blockable: 0
   repelPower: 0
-  trackPower: 0
+  trackPower: 0.5
   lifeTimer: 0
   traceDuration: 0
   traceMaxLength: 0
   angel: 360
   basicRadius: 0.8
   bulletNum: 10
-  changeDuration: 0.5
+  changeDuration: 1.5
   bulletMode: {fileID: 2784454937847400500, guid: 64e2df7c22e60ab449fb242c49b62e41, type: 3}
 --- !u!212 &5184978036639307708
 SpriteRenderer:
