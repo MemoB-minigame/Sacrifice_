@@ -32,7 +32,7 @@ public class Enemy_01_Ctrl : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
 
-            Hp -= collision.gameObject.GetComponent<RevolverBullet>().damage;
+            Hp -= collision.gameObject.GetComponent<PlayerBullet>().Damage;
             if(animator.GetCurrentAnimatorStateInfo(0).IsName("Aggress"))
                 animator.SetTrigger("InterruptSwitch");
         }

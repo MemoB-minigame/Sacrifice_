@@ -27,7 +27,6 @@ public class Enemy_01_Attack : StateMachineBehaviour
         targetPosition.z = 0;
         direction = (targetPosition - Enemy.transform.position).normalized;
         rigidbody.velocity = direction * parameters.speed.dashSpeed;
-        GameObject.Find("Test").transform.position=targetPosition;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -42,7 +42,7 @@ public class SmallHP : MonoBehaviour
 
     void Update()
     {
-        smallHP_Parent_RectTransform.position = new Vector3(Camera.main.WorldToScreenPoint(player_Transform.position).x, Camera.main.WorldToScreenPoint(player_Transform.position).y + 105, Camera.main.WorldToScreenPoint(player_Transform.position).z);
+        smallHP_Parent_RectTransform.position = new Vector3(Camera.main.WorldToScreenPoint(player_Transform.position).x, Camera.main.WorldToScreenPoint(player_Transform.position).y + 130, Camera.main.WorldToScreenPoint(player_Transform.position).z);
 
         timer += Time.deltaTime;
         if (timer >= 2 && smallHPBackground.color.a > 0 && smallHPSlider.color.a > 0)

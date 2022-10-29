@@ -19,14 +19,14 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private float revolverBulletSpeed; ≈≤∂ØµΩŒ‰∆˜¿Ô
 
     //Move
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
     private int facingDirection = 1;
     private bool isMove = false;
 
     private bool canSkill = false;
 
     //HP
-    private int hp = 240;
+    private int hp = 24;
     public bool isLife = true;
 
     //Prefab
