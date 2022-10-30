@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool canSkill = false;
 
     //HP
-    private int hp = 240;
+    private int hp = 24;
     public bool isLife = true;
 
     //Prefab
@@ -39,7 +39,8 @@ public class PlayerController : MonoBehaviour
     private Image buff_2;
     private SmallHP smallHP;
 
-    Vector2 mousePositionWorld;
+    private DialogPanelController dialogPanelController;
+    private Vector2 mousePositionWorld;
 
     public int HP
     {
@@ -88,11 +89,13 @@ public class PlayerController : MonoBehaviour
 
         revolverBullet_Prefab = Resources.Load<GameObject>("Projectiles/Player/RevolverBullet");
 
-        hpSlider = GameObject.Find("PlayerInfoCanvas/HPText/HPBackground/HPSlider").GetComponent<Image>();
+        hpSlider = GameObject.Find("PlayerInfoCanvas/HPText/HPSlider").GetComponent<Image>();
         buff_0 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_0_Image").GetComponent<Image>();
         buff_1 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_1_Image").GetComponent<Image>();
         buff_2 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_2_Image").GetComponent<Image>();
         smallHP = GameObject.Find("PlayerInfoCanvas/SmallHP").GetComponent<SmallHP>();
+
+        dialogPanelController = GameObject.Find("DialogCanvas/DialogPanel").GetComponent<DialogPanelController>();
     }
 
     void Start()
@@ -113,34 +116,39 @@ public class PlayerController : MonoBehaviour
         xMoveInputDirection = Input.GetAxisRaw("Horizontal");
         yMoveInputDirection = Input.GetAxisRaw("Vertical");
 
-        m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection, yMoveInputDirection).normalized * speed;
+        
 
-        if ((xMoveInputDirection != 0 || yMoveInputDirection != 0) && !isMove) 
+        if (!dialogPanelController.isSpeaking)
         {
-            isMove = true;
-        }
-        else if (xMoveInputDirection == 0 && yMoveInputDirection == 0 && isMove)
-        {
-            isMove = false;
-            m_Animator.Play("PlayerIdle");
-        }
+            m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection, yMoveInputDirection).normalized * speed;
 
-        if (isMove)
-        {
-            if ((facingDirection == -1 && xMoveInputDirection > 0) || (facingDirection == 1 && xMoveInputDirection < 0))
+            if ((xMoveInputDirection != 0 || yMoveInputDirection != 0) && !isMove)
             {
-                m_Animator.Play("PlayerRunBack");
+                isMove = true;
             }
-            else
+            else if (xMoveInputDirection == 0 && yMoveInputDirection == 0 && isMove)
             {
-                m_Animator.Play("PlayerRun");
+                isMove = false;
+                m_Animator.Play("PlayerIdle");
+            }
+
+            if (isMove)
+            {
+                if ((facingDirection == -1 && xMoveInputDirection > 0) || (facingDirection == 1 && xMoveInputDirection < 0))
+                {
+                    m_Animator.Play("PlayerRunBack");
+                }
+                else
+                {
+                    m_Animator.Play("PlayerRun");
+                }
             }
         }
     }
 
     private void CheckMovementDirection()
     {
-        if ((facingDirection == -1 && mousePositionWorld.x - m_Transform.position.x > 0) || (facingDirection == 1 && mousePositionWorld.x - m_Transform.position.x < 0))
+        if (((facingDirection == -1 && mousePositionWorld.x - m_Transform.position.x > 0) || (facingDirection == 1 && mousePositionWorld.x - m_Transform.position.x < 0)) && !dialogPanelController.isSpeaking)
         {
             Flip();
         }
