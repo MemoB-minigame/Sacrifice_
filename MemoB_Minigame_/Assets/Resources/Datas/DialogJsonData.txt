@@ -1,5 +1,0 @@
-{
-	"DialogID" : 1,
-	"DialogCount" : 1,
-	"Sentence1" : "方珂：弹匣还是满的。\n堤福俄斯，你也懂决斗礼仪吗？"
-}
