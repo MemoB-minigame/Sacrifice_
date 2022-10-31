@@ -2041,8 +2041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a1c27e1dfe6a34c956cf51a6e338bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1216980869}
-  bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
+  bulletDamage: 1
   bulletSpeed: 48
   hardRecoilForce: 0.8
   smoothRecoilForce: 0.8
@@ -2050,6 +2049,7 @@ MonoBehaviour:
   interval: 0.384
   hpCost: 1
   deflectionAngel: 5
+  bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
 --- !u!1 &1473726314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,8 +2405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3563a5c782da9468a90ab71825a0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1216980869}
-  bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
+  bulletDamage: 1
   bulletSpeed: 30
   hardRecoilForce: 1.5
   smoothRecoilForce: 1.5
@@ -2414,6 +2413,7 @@ MonoBehaviour:
   interval: 0.625
   hpCost: 1
   deflectionAngel: 5
+  bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
   bulletNum: 4
   bulletAngel: 5
 --- !u!212 &1547971249
@@ -2465,7 +2465,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1597021304

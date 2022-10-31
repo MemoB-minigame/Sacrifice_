@@ -35,6 +35,19 @@ public class DialogPanelController : MonoBehaviour
         {
             ToNextSentence();
         }
+
+        //test
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (playableDirector.state == PlayState.Playing)
+            {
+                playableDirector.Pause();
+            }
+            else
+            {
+                playableDirector.Play();
+            }
+        }
     }
 
     private void Init()
