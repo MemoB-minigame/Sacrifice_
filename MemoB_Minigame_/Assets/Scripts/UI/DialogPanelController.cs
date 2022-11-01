@@ -64,8 +64,8 @@ public class DialogPanelController : MonoBehaviour
         speakerImageDic = new Dictionary<string, Sprite>();
 
         speakerImageDic = m_DialogPanelModel.GetSpeakerImageDic();
-
-        playableDirector = GameObject.Find("TimelineManager").GetComponent<PlayableDirector>();
+        if(GameObject.Find("TimelineManager")!=null)
+            playableDirector = GameObject.Find("TimelineManager").GetComponent<PlayableDirector>();
 
         //GetDialogFromDialogPanelModel("dialog_0");
         //ToNextSentence();

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("≤‚ ‘")]
+    [SerializeField] bool skipDialogue;
+
     //Components
     private Transform m_Transform;
     private Rigidbody2D m_Rigidbody2D;
@@ -94,8 +97,8 @@ public class PlayerController : MonoBehaviour
         buff_1 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_1_Image").GetComponent<Image>();
         buff_2 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_2_Image").GetComponent<Image>();
         smallHP = GameObject.Find("PlayerInfoCanvas/SmallHP").GetComponent<SmallHP>();
-
-        dialogPanelController = GameObject.Find("DialogCanvas/DialogPanel").GetComponent<DialogPanelController>();
+        if (GameObject.Find("DialogCanvas/DialogPanel")!=null)
+            dialogPanelController = GameObject.Find("DialogCanvas/DialogPanel").GetComponent<DialogPanelController>();
     }
 
     void Start()
@@ -118,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
         
 
-        if (!dialogPanelController.isSpeaking)
+        if (!dialogPanelController.isSpeaking||skipDialogue)
         {
             m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection, yMoveInputDirection).normalized * speed;
 
