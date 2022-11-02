@@ -10,12 +10,14 @@ public class Enemy_Shooter_Parameters :MonoBehaviour
 
     [Header("Œª÷√")]
     public Vector3 rebornPos;
+    public LayerMask border;
     [Header("ÀŸ∂»")]
     public float wanderSpeed;
     public float alertMoveSpeed;
     public float aggressMoveSpeed;
     public float dashSpeed;
     [Header("æ‡¿Î")]
+    public float alertDistance;
     public float wanderRadius;
     public float wanderDistanceLowerBound;
     public float wanderDistanceUpperBound;
@@ -49,8 +51,25 @@ public class Enemy_Shooter_Parameters :MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, wanderDistanceLowerBound);
         Gizmos.DrawWireSphere(transform.position, wanderDistanceUpperBound);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, alertDurationLowerBound);
-        Gizmos.DrawWireSphere(transform.position, alertDurationUpperBound);
+        Gizmos.DrawWireSphere(transform.position, alertDistance);
+        Gizmos.color= Color.green;
+        Gizmos.DrawWireSphere(transform.position, alertRetainDistance);
         
+    }
+
+    public IEnumerator Shoot()
+    {
+        int shootCount = 0;
+        while (shootCount < shootRound)
+        {
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            GameObject bullet = ObjectPool.Instance.GetObject(attackBulletMode);
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.identity;
+            bullet.transform.right = direction;
+            shootCount++;
+
+            yield return new WaitForSecondsRealtime(shootDuration);
+        }
     }
 }

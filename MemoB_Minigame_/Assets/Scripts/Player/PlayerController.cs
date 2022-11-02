@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckMovementDirection()
     {
-        if (((facingDirection == -1 && mousePositionWorld.x - m_Transform.position.x > 0) || (facingDirection == 1 && mousePositionWorld.x - m_Transform.position.x < 0)) && !dialogPanelController.isSpeaking)
+        if (((facingDirection == -1 && mousePositionWorld.x - m_Transform.position.x > 0) || (facingDirection == 1 && mousePositionWorld.x - m_Transform.position.x < 0)) && (!dialogPanelController.isSpeaking||skipDialogue))
         {
             Flip();
         }

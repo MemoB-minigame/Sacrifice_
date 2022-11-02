@@ -20,14 +20,14 @@ public class Sight : MonoBehaviour
 
         cinemachineVirtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         cinemachineTransposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-
+        Cursor.SetCursor(cursor_sight, new Vector2(32, 32), CursorMode.ForceSoftware);
         //dialogPanelController = GameObject.Find("DialogCanvas/DialogPanel").GetComponent<DialogPanelController>();
     }
 
     void Update()
     {
         //Cursor.visible = false;
-        Cursor.SetCursor(cursor_sight, new Vector2(32, 32), CursorMode.ForceSoftware);
+        
         Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         m_Transform.position = mousePositionWorld;
 

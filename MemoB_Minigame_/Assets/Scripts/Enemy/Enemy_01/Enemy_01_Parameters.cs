@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Enemy_01_Parameters : MonoBehaviour
 {
+    [Header("Ç½±Ú")]
+    public LayerMask border;
     private void Start()
     {
         position.rebornPos = transform.position;

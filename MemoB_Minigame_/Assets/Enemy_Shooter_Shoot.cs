@@ -2,32 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Shooter_Idle : StateMachineBehaviour
+public class Enemy_Shooter_Shoot : StateMachineBehaviour
 {
     Enemy_Shooter_Parameters para;
     GameObject enemy;
-    float idleTimer;
     bool transition;
+
+    float shootTimer;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        para = animator.GetComponent<Enemy_Shooter_Parameters>();
         enemy = animator.gameObject;
-        para=animator.GetComponent<Enemy_Shooter_Parameters>();
         transition = true;
-        idleTimer = 0;
+        para.StartCoroutine(para.Shoot());
+        shootTimer = 0;
+
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        idleTimer += Time.deltaTime;
-        if (transition && idleTimer >= para.idleDuration)
+        shootTimer += Time.deltaTime;
+        if (transition && shootTimer > (para.shootRound - 1) * para.shootDuration + 0.5f)
         {
             transition = false;
-            animator.SetTrigger("Idle>Wander");
-        }
-        else if (transition && Vector3.Distance(enemy.transform.position, para.player.transform.position) < para.alertDistance)
-        {
-            transition = false;
-            animator.SetTrigger(">Alert");
+            animator.SetTrigger("Shoot>Alert");
         }
     }
 
@@ -48,4 +47,5 @@ public class Enemy_Shooter_Idle : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
+
 }

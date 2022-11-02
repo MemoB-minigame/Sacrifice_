@@ -10,7 +10,7 @@ public class Enemy_Shooter_Wander : StateMachineBehaviour
     new Rigidbody2D rigidbody;
     bool transition;
 
-    Vector2 wanderTargetPosition;
+    Vector3 wanderTargetPosition;
     float wanderTimer; 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -19,12 +19,15 @@ public class Enemy_Shooter_Wander : StateMachineBehaviour
         rigidbody = animator.GetComponent<Rigidbody2D>();
         transition = true;
         wanderTimer = 0;
-
+        RaycastHit2D[] cast;
         do//生成随机游荡点
         {
             wanderTargetPosition = SpawnRandomPoint();
-        } while (Vector2.Distance(para.rebornPos, wanderTargetPosition) > para.wanderRadius);
-        GameObject.Find("TestPoint").transform.position = wanderTargetPosition;
+            Vector3 direction = (wanderTargetPosition - enemy.transform.position).normalized;
+            cast = Physics2D.RaycastAll(enemy.transform.position, direction, Vector3.Distance(enemy.transform.position, wanderTargetPosition)+1.1f, (int)para.border);
+            Debug.DrawRay(enemy.transform.position, direction* (Vector3.Distance(enemy.transform.position, wanderTargetPosition)+1.1f));
+        } while (Vector3.Distance(para.rebornPos, wanderTargetPosition) > para.wanderRadius ||cast.Length!=0 );
+        //  GameObject.Find("TestPoint").transform.position = wanderTargetPosition;
         rigidbody.velocity = (new Vector3(wanderTargetPosition.x, wanderTargetPosition.y, 0) - enemy.transform.position).normalized * para.wanderSpeed;
     }
 
@@ -44,7 +47,7 @@ public class Enemy_Shooter_Wander : StateMachineBehaviour
             else if (alertTransition)
             {
                 transition = false;
-                animator.SetTrigger("Wander>Alert");
+                animator.SetTrigger(">Alert");
             }
         }
     }
