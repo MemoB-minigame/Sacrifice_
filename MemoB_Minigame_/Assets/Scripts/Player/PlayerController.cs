@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
     //HP
     private int hp = 24;
     public bool isLife = true;
+    [SerializeField] float invincibleDuration=1.5f;
+    private float invincibleTimer;
+
 
     //Prefab
     private GameObject revolverBullet_Prefab;
@@ -44,41 +47,46 @@ public class PlayerController : MonoBehaviour
 
     private DialogPanelController dialogPanelController;
     private Vector2 mousePositionWorld;
+    
 
     public int HP
     {
         get { return hp; }
-        set 
-        { 
-            hp = value;
-            smallHP.Player_HP = value;  //更新小血条
-            //hpNum.text = string.Format("{0:D2}", hp);
-            hpSlider.fillAmount = 1 / 24.0f * hp;
+        set
+        {
+            if (invincibleTimer == 0)//如果无敌时间已经到了
+            {
+                invincibleTimer = invincibleDuration;
+                hp = value;
+                smallHP.Player_HP = value;  //更新小血条
+                                            //hpNum.text = string.Format("{0:D2}", hp);
+                hpSlider.fillAmount = 1 / 24.0f * hp;
 
-            if (hp > 18)
-            {
-                buff_0.color = Color.white;
-            }
-            else if (hp <= 18 && hp > 12)
-            {
-                buff_0.color = Color.yellow;
-                buff_1.color = Color.white;
-            }
-            else if (hp <= 12 && hp > 6)
-            {
-                canSkill = false;
-                buff_1.color = Color.yellow;
-                buff_2.color = Color.white;
-            }
-            else if (hp <= 6 && hp >= 0)
-            {
-                canSkill = true;
-                buff_2.color = Color.yellow;
-            }
-            else if (hp < 0)
-            {
-                isLife = false;
-                Dead();
+                if (hp > 18)
+                {
+                    buff_0.color = Color.white;
+                }
+                else if (hp <= 18 && hp > 12)
+                {
+                    buff_0.color = Color.yellow;
+                    buff_1.color = Color.white;
+                }
+                else if (hp <= 12 && hp > 6)
+                {
+                    canSkill = false;
+                    buff_1.color = Color.yellow;
+                    buff_2.color = Color.white;
+                }
+                else if (hp <= 6 && hp >= 0)
+                {
+                    canSkill = true;
+                    buff_2.color = Color.yellow;
+                }
+                else if (hp < 0)
+                {
+                    isLife = false;
+                    Dead();
+                }
             }
         }
     }
@@ -108,6 +116,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        invincibleTimer = invincibleTimer > 0 ? invincibleTimer - Time.deltaTime : 0;
         CheckInput();
         CheckMovementDirection();
 
@@ -173,4 +183,6 @@ public class PlayerController : MonoBehaviour
     {
         GameObject.Destroy(gameObject);
     }
+    
+    
 }
