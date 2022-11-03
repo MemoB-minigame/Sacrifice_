@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 //using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Gun : MonoBehaviour
 {
@@ -48,7 +49,11 @@ public class Gun : MonoBehaviour
         
         mousePos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = (mousePos-(new Vector2(transform.position.x, transform.position.y))).normalized;
-        transform.right = direction;
+
+        if (!Controller.dialogPanelController.isSpeaking && Controller.playableDirector.state != PlayState.Playing)  //过场动画时枪不朝向鼠标
+        {
+            transform.right = direction;
+        }
 
         if (mousePos.x > transform.position.x)
         {
@@ -62,7 +67,7 @@ public class Gun : MonoBehaviour
     protected virtual void Fire()
     {
         timer += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0) && Controller.isLife&&timer>=interval&&Controller.HP-hpCost>=0)
+        if (Input.GetMouseButtonDown(0) && Controller.isLife&&timer>=interval&&Controller.HP-hpCost>=0 && !Controller.dialogPanelController.isSpeaking && Controller.playableDirector.state != PlayState.Playing)
         {
             timer=0;
             Controller.HP-=hpCost;

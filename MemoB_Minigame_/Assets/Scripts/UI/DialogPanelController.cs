@@ -14,6 +14,7 @@ public class DialogPanelController : MonoBehaviour
     private GameObject dialogBox;
     private TextMeshProUGUI npcNameText;
     private TextMeshProUGUI dialogText;
+    private GameObject speakerImageBG;
     private Image speakerImage;
 
     public bool isSpeaking = true;
@@ -21,6 +22,9 @@ public class DialogPanelController : MonoBehaviour
     private Dictionary<string, Sprite> speakerImageDic;
     public string[] currentDialogContents;
     private int currentLine = -1;
+
+    private Animator blackLine_Animator;
+    private Animator speakerImageBG_Animator;
 
     private PlayableDirector playableDirector;
 
@@ -31,23 +35,11 @@ public class DialogPanelController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && dialogBox.activeInHierarchy)
+        if (Input.GetMouseButtonDown(0) && isSpeaking)
         {
             ToNextSentence();
         }
 
-        //test
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (playableDirector.state == PlayState.Playing)
-            {
-                playableDirector.Pause();
-            }
-            else
-            {
-                playableDirector.Play();
-            }
-        }
     }
 
     private void Init()
@@ -57,13 +49,17 @@ public class DialogPanelController : MonoBehaviour
         m_DialogPanelModel = gameObject.GetComponent<DialogPanelModel>();
 
         dialogBox = m_Transform.Find("DialogBackground").gameObject;
-        dialogText = m_Transform.Find("DialogBackground/DialogText").GetComponent<TextMeshProUGUI>();
-        npcNameText = m_Transform.Find("DialogBackground/NPCNameText").GetComponent<TextMeshProUGUI>();
-        speakerImage = m_Transform.Find("DialogBackground/SpeakerImage").GetComponent<Image>();
+        dialogText = m_Transform.Find("DialogBackground/DialogBlackLine/DialogText").GetComponent<TextMeshProUGUI>();
+        npcNameText = m_Transform.Find("DialogBackground/DialogBlackLine/NPCNameText").GetComponent<TextMeshProUGUI>();
+        speakerImageBG = m_Transform.Find("DialogBackground/SpeakerImageBG").gameObject;
+        speakerImage = m_Transform.Find("DialogBackground/SpeakerImageBG/SpeakerImage").GetComponent<Image>();
 
         speakerImageDic = new Dictionary<string, Sprite>();
 
         speakerImageDic = m_DialogPanelModel.GetSpeakerImageDic();
+
+        blackLine_Animator = m_Transform.Find("DialogBackground/DialogBlackLine").GetComponent<Animator>();
+        speakerImageBG_Animator = m_Transform.Find("DialogBackground/SpeakerImageBG").GetComponent<Animator>();
 
         playableDirector = GameObject.Find("TimelineManager").GetComponent<PlayableDirector>();
 
@@ -75,6 +71,7 @@ public class DialogPanelController : MonoBehaviour
     {
         playableDirector.Pause();
         DialogBoxShow();
+        DialogBoxFadeIn();
 
         currentDialogContents = m_DialogPanelModel.GetDialogFromXml(dialogName);
         ToNextSentence(); 
@@ -91,11 +88,11 @@ public class DialogPanelController : MonoBehaviour
             speakerImageDic.TryGetValue(temp[0], out speakerSprite);
             if (speakerSprite == null)
             {
-                speakerImage.gameObject.SetActive(false);
+                speakerImageBG.gameObject.SetActive(false);
             }
             else
             {
-                speakerImage.gameObject.SetActive(true);
+                speakerImageBG.gameObject.SetActive(true);
                 speakerImage.sprite = speakerSprite;
             }
 
@@ -104,21 +101,35 @@ public class DialogPanelController : MonoBehaviour
         }
         else
         {
-            DialogBoxHide();
+            DialogBoxFadeOut();
         }
     }
 
     public void DialogBoxHide()
     {
+        dialogBox.SetActive(false);
+    }
+
+    public void DialogBoxFadeOut()
+    {
         playableDirector.Play();
         currentLine = -1;
         isSpeaking = false;
-        dialogBox.SetActive(false);
+
+        blackLine_Animator.Play("BlankLineFadeOut");
+        speakerImageBG_Animator.Play("SpeakerImageBGFadeOut");
+    }
+
+    private void DialogBoxFadeIn()
+    {
+        isSpeaking = true;
+
+        blackLine_Animator.Play("BlankLineFadeIn");
+        speakerImageBG_Animator.Play("SpeakerImageBGFadeIn");
     }
 
     private void DialogBoxShow()
     {
-        isSpeaking = true;
         dialogBox.SetActive(true);
     }
 }

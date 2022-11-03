@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     //Move
     [SerializeField] public float speed;
-    private int facingDirection = 1;
+    [SerializeField] private int facingDirection = 1;
     private bool isMove = false;
 
     private bool canSkill = false;
@@ -39,8 +40,10 @@ public class PlayerController : MonoBehaviour
     private Image buff_2;
     private SmallHP smallHP;
 
-    private DialogPanelController dialogPanelController;
+    public DialogPanelController dialogPanelController;
     private Vector2 mousePositionWorld;
+
+    public PlayableDirector playableDirector;
 
     public int HP
     {
@@ -89,13 +92,15 @@ public class PlayerController : MonoBehaviour
 
         revolverBullet_Prefab = Resources.Load<GameObject>("Projectiles/Player/RevolverBullet");
 
-        hpSlider = GameObject.Find("PlayerInfoCanvas/HPText/HPSlider").GetComponent<Image>();
+        hpSlider = GameObject.Find("PlayerInfoCanvas/HP/HPSlider").GetComponent<Image>();
         buff_0 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_0_Image").GetComponent<Image>();
         buff_1 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_1_Image").GetComponent<Image>();
         buff_2 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_2_Image").GetComponent<Image>();
         smallHP = GameObject.Find("PlayerInfoCanvas/SmallHP").GetComponent<SmallHP>();
 
         dialogPanelController = GameObject.Find("DialogCanvas/DialogPanel").GetComponent<DialogPanelController>();
+
+        playableDirector = GameObject.Find("TimelineManager").GetComponent<PlayableDirector>();
     }
 
     void Start()
@@ -105,8 +110,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        CheckInput();
-        CheckMovementDirection();
+        if (!dialogPanelController.isSpeaking && playableDirector.state != PlayState.Playing)
+        {
+            CheckInput();
+            CheckMovementDirection();
+        }
 
         mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
@@ -117,31 +125,27 @@ public class PlayerController : MonoBehaviour
         yMoveInputDirection = Input.GetAxisRaw("Vertical");
 
         
+        m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection, yMoveInputDirection).normalized * speed;
 
-        if (!dialogPanelController.isSpeaking)
+        if ((xMoveInputDirection != 0 || yMoveInputDirection != 0) && !isMove)
         {
-            m_Rigidbody2D.velocity = new Vector2(xMoveInputDirection, yMoveInputDirection).normalized * speed;
+            isMove = true;
+        }
+        else if (xMoveInputDirection == 0 && yMoveInputDirection == 0 && isMove)
+        {
+            isMove = false;
+            m_Animator.Play("PlayerIdle");
+        }
 
-            if ((xMoveInputDirection != 0 || yMoveInputDirection != 0) && !isMove)
+        if (isMove)
+        {
+            if ((facingDirection == -1 && xMoveInputDirection > 0) || (facingDirection == 1 && xMoveInputDirection < 0))
             {
-                isMove = true;
+                m_Animator.Play("PlayerRunBack");
             }
-            else if (xMoveInputDirection == 0 && yMoveInputDirection == 0 && isMove)
+            else
             {
-                isMove = false;
-                m_Animator.Play("PlayerIdle");
-            }
-
-            if (isMove)
-            {
-                if ((facingDirection == -1 && xMoveInputDirection > 0) || (facingDirection == 1 && xMoveInputDirection < 0))
-                {
-                    m_Animator.Play("PlayerRunBack");
-                }
-                else
-                {
-                    m_Animator.Play("PlayerRun");
-                }
+                m_Animator.Play("PlayerRun");
             }
         }
     }
@@ -161,8 +165,21 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
+        //Debug.Log("flip");
         facingDirection *= -1;
-        m_SpriteRenderer.flipX = !m_SpriteRenderer.flipX;
+        //m_SpriteRenderer.flipX = !m_SpriteRenderer.flipX;
+
+        if (facingDirection == 1)  //不能写简洁方法，这样修复了一半结束动画后角色朝向翻转问题
+        {
+            m_SpriteRenderer.flipX = false;
+            //Debug.Log("false");
+        }
+        else if (facingDirection == -1)
+        {
+            m_SpriteRenderer.flipX = true;
+            //Debug.Log("true");
+        }
+
         //m_Transform.localScale = new Vector3(m_Transform.localScale.x * -1, 1, 1);
     }
 
