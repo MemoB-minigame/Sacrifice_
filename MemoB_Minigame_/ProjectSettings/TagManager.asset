@@ -16,7 +16,7 @@ TagManager:
   - UI
   - Border
   - PlayerProjectile
-  - EnemyProjectile
+  - 
   - Player
   - Enemy
   - EnemyBullet

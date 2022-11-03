@@ -8,25 +8,26 @@ public class Sight : MonoBehaviour
     private Transform m_Transform;
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     private CinemachineTransposer cinemachineTransposer;
-
+    [SerializeField] Texture2D cursor_sight;
     //private DialogPanelController dialogPanelController;
 
     public float sensitivity = 1f;
 
     void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
         m_Transform = gameObject.GetComponent<Transform>();
 
         cinemachineVirtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         cinemachineTransposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-
+        Cursor.SetCursor(cursor_sight, new Vector2(32, 32), CursorMode.ForceSoftware);
         //dialogPanelController = GameObject.Find("DialogCanvas/DialogPanel").GetComponent<DialogPanelController>();
     }
 
     void Update()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
+        
         Vector2 mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         m_Transform.position = mousePositionWorld;
 
