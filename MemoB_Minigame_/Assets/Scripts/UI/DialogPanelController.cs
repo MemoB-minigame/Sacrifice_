@@ -69,7 +69,8 @@ public class DialogPanelController : MonoBehaviour
 
     public void GetDialogFromDialogPanelModel(string dialogName)
     {
-        playableDirector.Pause();
+        //playableDirector.Pause();
+        playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(0);
         DialogBoxShow();
         DialogBoxFadeIn();
 
@@ -112,7 +113,8 @@ public class DialogPanelController : MonoBehaviour
 
     public void DialogBoxFadeOut()
     {
-        playableDirector.Play();
+        //playableDirector.Play();
+        playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1);
         currentLine = -1;
         isSpeaking = false;
 

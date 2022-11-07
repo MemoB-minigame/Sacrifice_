@@ -44,41 +44,51 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePositionWorld;
 
     public PlayableDirector playableDirector;
+    //无敌时间
+    [SerializeField] float invincibleDuration=1.5f;
+    private float invincibleTimer;
+    [Header("测试选项")]
+    [SerializeField] bool forTest;
 
     public int HP
     {
         get { return hp; }
         set 
-        { 
-            hp = value;
-            smallHP.Player_HP = value;  //更新小血条
-            //hpNum.text = string.Format("{0:D2}", hp);
-            hpSlider.fillAmount = 1 / 24.0f * hp;
+        {
+            if (invincibleTimer == 0)
+            {
+                invincibleTimer = invincibleDuration;
+                StartCoroutine(Hurt());
+                hp = value;
+                smallHP.Player_HP = value;  //更新小血条
+                                            //hpNum.text = string.Format("{0:D2}", hp);
+                hpSlider.fillAmount = 1 / 24.0f * hp;
 
-            if (hp > 18)
-            {
-                buff_0.color = Color.white;
-            }
-            else if (hp <= 18 && hp > 12)
-            {
-                buff_0.color = Color.yellow;
-                buff_1.color = Color.white;
-            }
-            else if (hp <= 12 && hp > 6)
-            {
-                canSkill = false;
-                buff_1.color = Color.yellow;
-                buff_2.color = Color.white;
-            }
-            else if (hp <= 6 && hp >= 0)
-            {
-                canSkill = true;
-                buff_2.color = Color.yellow;
-            }
-            else if (hp < 0)
-            {
-                isLife = false;
-                Dead();
+                if (hp > 18)
+                {
+                    buff_0.color = Color.white;
+                }
+                else if (hp <= 18 && hp > 12)
+                {
+                    buff_0.color = Color.yellow;
+                    buff_1.color = Color.white;
+                }
+                else if (hp <= 12 && hp > 6)
+                {
+                    canSkill = false;
+                    buff_1.color = Color.yellow;
+                    buff_2.color = Color.white;
+                }
+                else if (hp <= 6 && hp >= 0)
+                {
+                    canSkill = true;
+                    buff_2.color = Color.yellow;
+                }
+                else if (hp < 0)
+                {
+                    isLife = false;
+                    Dead();
+                }
             }
         }
     }
@@ -101,6 +111,8 @@ public class PlayerController : MonoBehaviour
         dialogPanelController = GameObject.Find("DialogCanvas/DialogPanel").GetComponent<DialogPanelController>();
 
         playableDirector = GameObject.Find("TimelineManager").GetComponent<PlayableDirector>();
+
+        invincibleTimer = 0f;
     }
 
     void Start()
@@ -110,7 +122,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!dialogPanelController.isSpeaking && playableDirector.state != PlayState.Playing)
+        invincibleTimer-=Time.deltaTime;invincibleTimer=invincibleTimer>0?invincibleTimer:0;//更新剩余无敌时间
+        if ((!dialogPanelController.isSpeaking && playableDirector.state != PlayState.Playing)||forTest)
         {
             CheckInput();
             CheckMovementDirection();
@@ -186,5 +199,28 @@ public class PlayerController : MonoBehaviour
     private void Dead()
     {
         GameObject.Destroy(gameObject);
+    }
+    IEnumerator Hurt()
+    {
+        int tmp = 0;
+        while (invincibleTimer > 0)
+        {
+            if (tmp == 0)
+            {
+                tmp = 1;
+                m_SpriteRenderer.color = Color.black;
+            }
+            else if (tmp == 1)
+            {
+                tmp = 0;
+                m_SpriteRenderer.color = Color.white;
+            }
+            yield return new WaitForSecondsRealtime(0.1f);
+            Debug.Log(invincibleTimer);
+            invincibleTimer -= Time.deltaTime;
+        }
+        m_SpriteRenderer.color = Color.white;
+        invincibleTimer = 0;
+        yield break;
     }
 }

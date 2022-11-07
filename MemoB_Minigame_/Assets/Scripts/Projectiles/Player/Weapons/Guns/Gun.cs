@@ -8,6 +8,7 @@ using UnityEngine.Playables;
 
 public class Gun : MonoBehaviour
 {
+    
     protected float timer=10;//计时器
     protected Vector2 direction;//发射方向
     protected PlayerController  Controller;
@@ -29,6 +30,8 @@ public class Gun : MonoBehaviour
     
 
     float flipY,flipX;//枪支上下翻转
+    [Header("测试选项")]//FIXME:记得去除这个
+    [SerializeField] bool Fortest;
     protected virtual void Start()
     {
         Player = GameObject.Find("Player");
@@ -50,7 +53,7 @@ public class Gun : MonoBehaviour
         mousePos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = (mousePos-(new Vector2(transform.position.x, transform.position.y))).normalized;
 
-        if (!Controller.dialogPanelController.isSpeaking && Controller.playableDirector.state != PlayState.Playing)  //过场动画时枪不朝向鼠标
+        if (Fortest||(!Controller.dialogPanelController.isSpeaking && Controller.playableDirector.state != PlayState.Playing))  //过场动画时枪不朝向鼠标
         {
             transform.right = direction;
         }
