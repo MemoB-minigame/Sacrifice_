@@ -111,6 +111,7 @@ public class Enemy_Bulllet_Basic : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player"))
         {
             playerController.HP -= damage;
+            playerController.HurtRecoilForce(repelPower, transform.right);
             if (gameObject.active)//·ÀÖ¹³öbug
                 StartCoroutine(Destroy(0f));
         }

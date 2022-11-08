@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         get { return hp; }
         set 
         {
-            if (invincibleTimer == 0)
+            if (invincibleTimer == 0)//如果无敌时间已经没了
             {
                 
                 if (!hurtByWeapon) {
@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                     hurtByWeapon = false;
+
                 hp = value;
                 smallHP.Player_HP = value;  //更新小血条
                                             //hpNum.text = string.Format("{0:D2}", hp);
@@ -208,6 +209,25 @@ public class PlayerController : MonoBehaviour
     private void Dead()
     {
         GameObject.Destroy(gameObject);
+    }
+    public void HurtRecoilForce(float vol,Vector3 direction)
+    {
+        StartCoroutine(Recoil(vol, direction));
+    }
+    IEnumerator Recoil(float vol,Vector3 direction)
+    {
+        float hard=1;
+        float smooth=1;
+        for (int i = 1; i <= 2; i++)
+        {
+            transform.Translate(direction / 5 * hard*vol);
+            yield return new WaitForFixedUpdate();
+        }
+        for (int i = 1; i <= 6; i++)
+        {
+            transform.Translate(direction / 20 * smooth*vol);
+            yield return new WaitForFixedUpdate();
+        }
     }
     IEnumerator Hurt()
     {

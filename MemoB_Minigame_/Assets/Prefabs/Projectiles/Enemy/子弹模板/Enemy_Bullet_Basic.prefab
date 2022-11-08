@@ -103,7 +103,7 @@ MonoBehaviour:
   lifeDuration: 10
   damage: 1
   blockable: 1
-  repelPower: 0
+  repelPower: 1
   trackPower: 0
   lifeTimer: 0
   traceDuration: 0
