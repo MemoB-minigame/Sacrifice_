@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float xMoveInputDirection;
     [SerializeField] private float yMoveInputDirection;
     [SerializeField] private float attack;
+    
 
     //[SerializeField] private float revolverBulletSpeed; 挪动到武器里
 
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private Image buff_1;
     private Image buff_2;
     private SmallHP smallHP;
+    
 
     public DialogPanelController dialogPanelController;
     private Vector2 mousePositionWorld;
@@ -47,6 +49,8 @@ public class PlayerController : MonoBehaviour
     //无敌时间
     [SerializeField] float invincibleDuration=1.5f;
     private float invincibleTimer;
+    public bool hurtByWeapon=false;//若是因为武器掉血则角色不闪动
+
     [Header("测试选项")]
     [SerializeField] bool forTest;
 
@@ -57,8 +61,13 @@ public class PlayerController : MonoBehaviour
         {
             if (invincibleTimer == 0)
             {
-                invincibleTimer = invincibleDuration;
-                StartCoroutine(Hurt());
+                
+                if (!hurtByWeapon) {
+                    invincibleTimer = invincibleDuration;
+                    StartCoroutine(Hurt());//若是因为武器掉血则角色不闪动
+                }
+                else
+                    hurtByWeapon = false;
                 hp = value;
                 smallHP.Player_HP = value;  //更新小血条
                                             //hpNum.text = string.Format("{0:D2}", hp);

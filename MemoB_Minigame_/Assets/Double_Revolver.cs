@@ -20,6 +20,7 @@ public class Double_Revolver : Gun
         if (Input.GetMouseButtonDown(0) && Controller.isLife && timer >= interval && Controller.HP - hpCost >= 0)
         {
             timer = 0;
+            Controller.hurtByWeapon = true;
             Controller.HP -= hpCost;
             float randomFireAngel;
             
@@ -37,6 +38,7 @@ public class Double_Revolver : Gun
     {
         yield return  new WaitForSeconds(doubleDuration);
 
+        Controller.hurtByWeapon = true;
         Controller.HP -= hpCost;
         float randomFireAngel;
 

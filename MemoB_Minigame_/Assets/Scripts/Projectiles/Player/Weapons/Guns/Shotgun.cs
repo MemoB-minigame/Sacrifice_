@@ -14,6 +14,7 @@ public class Shotgun : Gun
         if (Input.GetMouseButtonDown(0) && Controller.isLife && timer >= interval&&Controller.HP-bulletNum>=0)
         {
             timer = 0;
+            Controller.hurtByWeapon = true;
             Controller.HP -= bulletNum*hpCost;
             int mid = bulletNum / 2;
             float randomFireAngel;

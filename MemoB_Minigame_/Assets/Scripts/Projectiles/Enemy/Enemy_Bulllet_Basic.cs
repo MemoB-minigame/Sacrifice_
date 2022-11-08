@@ -26,6 +26,29 @@ public class Enemy_Bulllet_Basic : MonoBehaviour
     protected float traceTimer;     // 路径记录计时器
     protected PlayerController playerController;
     private float preTimer;
+    //传递参数打包
+    protected struct Pack 
+    {
+        public bool inheritSpeed;
+        public bool inheritDamage;
+        public bool inheritTrackPower;
+        public float speed;
+        public float damage;
+        public float trackPower;
+
+        
+
+        public Pack(bool inheritSpeed, bool inheritDamage, bool inheritTrackPower, float speed, float damage, float trackPower)
+        {
+            this.inheritSpeed = inheritSpeed;
+            this.inheritDamage = inheritDamage;
+            this.inheritTrackPower = inheritTrackPower;
+            this.speed = speed;
+            this.damage = damage;
+            this.trackPower = trackPower;
+        }
+    }
+
     protected virtual void Awake()
     {
         trackTarget = GameObject.Find("Player").transform;
@@ -54,11 +77,24 @@ public class Enemy_Bulllet_Basic : MonoBehaviour
         Vector2 dirToTarget = (trackTarget.position - transform.position).normalized;
         transform.right = Vector2.Lerp(transform.right, dirToTarget, trackPower*Time.deltaTime).normalized;
     }
+    public virtual void SetBullet(float _speed)
+    {
+        speed = _speed;
+    }
     public virtual void SetBullet(int _damage, float _speed,float _trackPower)
     {
         speed = _speed;
         damage = _damage;
         trackPower = _trackPower;
+    }
+    protected virtual void SetBullet(Pack pack)
+    {
+        if (pack.inheritSpeed)
+            speed = pack.speed;
+        if(pack.inheritDamage)
+            speed = pack.speed;
+        if(pack.inheritTrackPower)
+            trackPower = pack.trackPower;
     }
     protected virtual bool Prepare()
     {
