@@ -107,11 +107,11 @@ MonoBehaviour:
   speed:
     moveSpeed: 0
   distance:
-    alertDistance: 5.1
+    alertDistance: 7.38
   time:
     alertDuration: 0
-    shootRound: 1
-    shootDuration: 5
+    shootRound: 5
+    shootDuration: 0.2
   attribute:
     attackBulletMode: {fileID: 2784454937847400500, guid: 65463a630a5b0d640b9cb631a1a8208d, type: 3}
     deathBulletMode: {fileID: 0}

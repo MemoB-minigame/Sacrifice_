@@ -86,6 +86,10 @@ public class Gun : MonoBehaviour
             RecoilForce();
         }
     }
+    protected virtual void CheckBuffs()
+    {
+
+    }
     protected virtual void RecoilForce()
     {
             impulse.GenerateImpulse();

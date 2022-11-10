@@ -52,7 +52,7 @@ MonoBehaviour:
   damage: 1
   blockable: 0
   repelPower: 0
-  trackPower: 0.5
+  trackPower: 0
   lifeTimer: 0
   traceDuration: 0.5
   traceMaxLength: 0

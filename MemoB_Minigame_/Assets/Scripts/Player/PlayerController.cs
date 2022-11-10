@@ -57,49 +57,54 @@ public class PlayerController : MonoBehaviour
     public int HP
     {
         get { return hp; }
-        set 
+        set
         {
-            if (invincibleTimer == 0)//如果无敌时间已经没了
+
+            if (invincibleTimer == 0&&value<hp)//如果无敌时间已经没了
             {
-                
-                if (!hurtByWeapon) {
+                if (!hurtByWeapon)//若是因为武器掉血则角色不闪动
+                {
                     invincibleTimer = invincibleDuration;
-                    StartCoroutine(Hurt());//若是因为武器掉血则角色不闪动
+                    StartCoroutine(Hurt());
                 }
                 else
                     hurtByWeapon = false;
-
-                hp = value;
-                smallHP.Player_HP = value;  //更新小血条
-                                            //hpNum.text = string.Format("{0:D2}", hp);
-                hpSlider.fillAmount = 1 / 24.0f * hp;
-
-                if (hp > 18)
-                {
-                    buff_0.color = Color.white;
-                }
-                else if (hp <= 18 && hp > 12)
-                {
-                    buff_0.color = Color.yellow;
-                    buff_1.color = Color.white;
-                }
-                else if (hp <= 12 && hp > 6)
-                {
-                    canSkill = false;
-                    buff_1.color = Color.yellow;
-                    buff_2.color = Color.white;
-                }
-                else if (hp <= 6 && hp >= 0)
-                {
-                    canSkill = true;
-                    buff_2.color = Color.yellow;
-                }
-                else if (hp < 0)
-                {
-                    isLife = false;
-                    Dead();
-                }
             }
+
+
+            //更新血条
+            hp = value;
+            smallHP.Player_HP = value;  //更新小血条
+                                        //hpNum.text = string.Format("{0:D2}", hp);
+            hpSlider.fillAmount = 1 / 24.0f * hp;
+
+            if (hp > 18)
+            {
+                buff_0.color = Color.white;
+            }
+            else if (hp <= 18 && hp > 12)
+            {
+                buff_0.color = Color.yellow;
+                buff_1.color = Color.white;
+            }
+            else if (hp <= 12 && hp > 6)
+            {
+                canSkill = false;
+                buff_1.color = Color.yellow;
+                buff_2.color = Color.white;
+            }
+            else if (hp <= 6 && hp >= 0)
+            {
+                canSkill = true;
+                buff_2.color = Color.yellow;
+            }
+            else if (hp < 0)
+            {
+                isLife = false;
+                Dead();
+            }
+
+
         }
     }
 
