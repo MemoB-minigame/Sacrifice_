@@ -115,8 +115,9 @@ MonoBehaviour:
   attribute:
     attackBulletMode: {fileID: 5184978036639307696, guid: f04d91bf5226ff146bfd41dbac7d195f, type: 3}
     deathBulletMode: {fileID: 8732409195026745842, guid: 632620ce587a70e4eb87559d7fca6664, type: 3}
-    Hp: 1000
+    Hp: 2
     regeneration: 0
+    regenerationPrefab: {fileID: 1640573038229508813, guid: 2d15d08663303f240a2cda815667bde7, type: 3}
 --- !u!95 &6875771264092123765
 Animator:
   serializedVersion: 4

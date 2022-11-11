@@ -13,32 +13,16 @@ public class Enemy_Gear_Die : StateMachineBehaviour
         enemy = animator.gameObject;
         transform = animator.transform;
 
-        Instantiate(para.attribute.deathBulletMode, transform.position, Quaternion.identity);
+        
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
         {
+            Instantiate(para.attribute.deathBulletMode, transform.position, Quaternion.identity);
+            Instantiate(para.attribute.regenerationPrefab, transform.position, Quaternion.identity);
             Destroy(enemy.gameObject);
         }
     }
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }

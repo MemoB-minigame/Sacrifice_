@@ -29,7 +29,7 @@ public class Shotgun : Gun
                     GameObject bullet = ObjectPool.Instance.GetObject(bullet_Prefab);
                     bullet.transform.position = muzzle.position;
                     bullet.transform.rotation = Quaternion.identity;
-                    bullet.GetComponent<PlayerBullet>().SetBullet(1, bulletSpeed, Quaternion.AngleAxis(bulletAngel / 2 + (bulletAngel * (i - mid)), Vector3.forward) * direction);
+                    bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, Quaternion.AngleAxis(bulletAngel / 2 + (bulletAngel * (i - mid)), Vector3.forward) * direction);
                 }
                 else
                 {
@@ -39,7 +39,7 @@ public class Shotgun : Gun
                     GameObject bullet = ObjectPool.Instance.GetObject(bullet_Prefab);
                     bullet.transform.position = muzzle.position;
                     bullet.transform.rotation = Quaternion.identity;
-                    bullet.GetComponent<PlayerBullet>().SetBullet(1, bulletSpeed, Quaternion.AngleAxis(bulletAngel * (i - mid), Vector3.forward) * direction);
+                    bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, Quaternion.AngleAxis(bulletAngel * (i - mid), Vector3.forward) * direction);
                 }
             }
             RecoilForce();

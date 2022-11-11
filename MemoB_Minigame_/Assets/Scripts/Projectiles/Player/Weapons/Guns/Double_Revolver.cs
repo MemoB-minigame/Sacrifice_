@@ -29,9 +29,9 @@ public class Double_Revolver : Gun
             GameObject bullet = ObjectPool.Instance.GetObject(bullet_Prefab);
             bullet.transform.position = muzzle.position;
             bullet.transform.rotation = Quaternion.identity;
-            bullet.GetComponent<PlayerBullet>().SetBullet(bulletDamage, bulletSpeed, direction);
-            RecoilForce();
+            bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, direction);
             StartCoroutine(doubleFire());
+            RecoilForce();
         }
     }
     IEnumerator doubleFire()
@@ -47,7 +47,7 @@ public class Double_Revolver : Gun
         GameObject bullet = ObjectPool.Instance.GetObject(bullet_Prefab);
         bullet.transform.position = muzzle2.position;
         bullet.transform.rotation = Quaternion.identity;
-        bullet.GetComponent<PlayerBullet>().SetBullet(bulletDamage, bulletSpeed, direction);
+        bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, direction);
 
         //RecoilForce();
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enmey_Shooter_Ctrl : MonoBehaviour
 {
+    BuffManager buffManager;
     GameObject player;
     Animator animator;
     [Header("µ–»À Ù–‘")]
@@ -23,30 +24,22 @@ public class Enmey_Shooter_Ctrl : MonoBehaviour
         }
         
     }
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
+        buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();
     }
 
     void Die()
     {
         animator.SetTrigger("Die");
-        player.GetComponent<PlayerController>().HP += recover;
-        Destroy(gameObject);
+        buffManager.ifLastBulletKills = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet")){
             HP-=collision.GetComponent<PlayerBullet>().Damage;
         }
-    }
-    IEnumerator WaitForDeath()
-    {
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime<=1f)
-        {
-            yield return new WaitForFixedUpdate();
-        }
-        Destroy(gameObject);
     }
 }

@@ -15,7 +15,8 @@ public class Gun : MonoBehaviour
     protected Transform muzzle;
     protected GameObject Player;
 
-    [SerializeField] protected int bulletDamage=1;
+    [SerializeField] protected int bulletDamage=1;//原本的子弹伤害
+    protected int finalBulletDamage;//计算完buff后的子弹伤害
     [SerializeField]protected float bulletSpeed;//子弹速度
     [SerializeField] protected float hardRecoilForce=1;//前半段较为快速的后座力
     [SerializeField] protected float smoothRecoilForce=1;//后半段较为缓和的后坐力
@@ -27,23 +28,34 @@ public class Gun : MonoBehaviour
     CinemachineImpulseSource impulse;//屏幕震动
 
     protected Vector2 mousePos;//鼠标位置
-    
+
+    //buff
+    private BuffManager buffManager;
+    private float damageMutiple=1;
+    private float originShakeAmplitude;
+    private float originShakeFrequency;
 
     float flipY,flipX;//枪支上下翻转
     [Header("测试选项")]//FIXME:记得去除这个
     [SerializeField] bool Fortest;
     protected virtual void Start()
     {
+        buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();
         Player = GameObject.Find("Player");
-        flipX=transform.localScale.x;
-        flipY = transform.localScale.y;
         Controller=Player.GetComponent<PlayerController>();
         muzzle=transform.Find("Muzzle");
-        impulse=GetComponent<CinemachineImpulseSource>();   
+
+        flipX=transform.localScale.x;
+        flipY = transform.localScale.y;
+
+        impulse=GetComponent<CinemachineImpulseSource>();
+        originShakeAmplitude = impulse.m_ImpulseDefinition.m_AmplitudeGain;
+        originShakeFrequency = impulse.m_ImpulseDefinition.m_FrequencyGain;
     }
 
     protected virtual void Update()
     {
+        CheckBuffs();
         Shoot();
         Fire();
     }
@@ -81,19 +93,29 @@ public class Gun : MonoBehaviour
             GameObject bullet = ObjectPool.Instance.GetObject(bullet_Prefab);
             bullet.transform.position = muzzle.position;
             bullet.transform.rotation = Quaternion.identity;
-            bullet.GetComponent<PlayerBullet>().SetBullet(bulletDamage, bulletSpeed, direction);
+            bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, direction);
 
             RecoilForce();
         }
     }
     protected virtual void CheckBuffs()
     {
-
+        if (buffManager.ifLastBulletKills && buffManager.buffs[3])
+        {
+            buffManager.ifLastBulletKills = false;
+            finalBulletDamage = bulletDamage * 2;
+            impulse.m_ImpulseDefinition.m_AmplitudeGain = originShakeAmplitude*1.5f;
+            impulse.m_ImpulseDefinition.m_FrequencyGain = originShakeFrequency*1.5f;
+        }
     }
     protected virtual void RecoilForce()
     {
-            impulse.GenerateImpulse();
-            StartCoroutine(Recoil(hardRecoilForce,smoothRecoilForce));
+        finalBulletDamage = bulletDamage;
+
+        impulse.GenerateImpulse();
+        impulse.m_ImpulseDefinition.m_AmplitudeGain = originShakeAmplitude;
+        impulse.m_ImpulseDefinition.m_FrequencyGain = originShakeFrequency;
+        StartCoroutine(Recoil(hardRecoilForce, smoothRecoilForce));
     }
     IEnumerator Recoil(float hard,float smooth)
     {

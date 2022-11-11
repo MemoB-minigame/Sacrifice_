@@ -35,6 +35,7 @@ public class Enemy_Shooter_Parameters :MonoBehaviour
     public GameObject deathBulletMode;
     public int Hp;
     public int regeneration;
+    public GameObject regenerationPrefab;
     [Header("´¥·¢Æ÷")]
     public bool alertTrigger;
 

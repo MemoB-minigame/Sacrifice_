@@ -48,6 +48,7 @@ public class Enemy_Bulllet_Basic : MonoBehaviour
             this.trackPower = trackPower;
         }
     }
+    
 
     protected virtual void Awake()
     {
@@ -87,7 +88,7 @@ public class Enemy_Bulllet_Basic : MonoBehaviour
         damage = _damage;
         trackPower = _trackPower;
     }
-    protected virtual void SetBullet(Pack pack)
+    protected virtual void SetBullet(Pack pack)//用于继承子弹的打包数据
     {
         if (pack.inheritSpeed)
             speed = pack.speed;
@@ -101,6 +102,7 @@ public class Enemy_Bulllet_Basic : MonoBehaviour
         return preTimer >= prepareDuration;
     }
 
+   
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Border")&&blockable)//FIXME: 更换为墙壁的tag

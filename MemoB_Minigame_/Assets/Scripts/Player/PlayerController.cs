@@ -250,7 +250,6 @@ public class PlayerController : MonoBehaviour
                 m_SpriteRenderer.color = Color.white;
             }
             yield return new WaitForSecondsRealtime(0.1f);
-            Debug.Log(invincibleTimer);
             invincibleTimer -= Time.deltaTime;
         }
         m_SpriteRenderer.color = Color.white;

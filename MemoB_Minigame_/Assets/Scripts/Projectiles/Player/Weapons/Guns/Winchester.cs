@@ -43,7 +43,7 @@ public class Winchester : Gun
             GameObject bullet=ObjectPool.Instance.GetObject(bullet_Prefab);
             bullet.transform.position = muzzle.position;
             bullet.transform.rotation = Quaternion.identity;
-            bullet.GetComponent<PlayerBullet>().SetBullet(bulletDamage, bulletSpeed, direction);
+            bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, direction);
 
             // bullet bullet = Instantiate<GameObject>(bullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<bullet>();
             StartCoroutine(PlayFireAni());

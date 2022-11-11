@@ -150,6 +150,7 @@ MonoBehaviour:
     attackDamage: 0
     Hp: 4
     regeneration: 0
+    regenerationPrefab: {fileID: 1640573038229508813, guid: 2d15d08663303f240a2cda815667bde7, type: 3}
 --- !u!61 &5502627208115412251
 BoxCollider2D:
   m_ObjectHideFlags: 0
