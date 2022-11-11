@@ -14,8 +14,7 @@ public class Enemy_Shooter_Parameters :MonoBehaviour
     [Header("ÀŸ∂»")]
     public float wanderSpeed;
     public float alertMoveSpeed;
-    public float aggressMoveSpeed;
-    public float dashSpeed;
+    public float shootMoveSpeed;
     [Header("æ‡¿Î")]
     public float alertDistance;
     public float wanderRadius;

@@ -78,11 +78,11 @@ public class PlayerController : MonoBehaviour
                                         //hpNum.text = string.Format("{0:D2}", hp);
             hpSlider.fillAmount = 1 / 24.0f * hp;
 
-            if (hp > 18)
+            if (hp > 20)
             {
                 buff_0.color = Color.white;
             }
-            else if (hp <= 18 && hp > 12)
+            else if (hp <= 16 && hp > 12)
             {
                 buff_0.color = Color.yellow;
                 buff_1.color = Color.white;

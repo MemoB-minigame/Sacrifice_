@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enmey_Shooter_Ctrl : MonoBehaviour
+public class Enemy_Shooter_Ctrl : MonoBehaviour
 {
     BuffManager buffManager;
     GameObject player;

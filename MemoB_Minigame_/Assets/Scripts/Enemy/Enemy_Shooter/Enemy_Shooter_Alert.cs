@@ -22,11 +22,11 @@ public class Enemy_Shooter_Alert : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         alertTimer+=Time.deltaTime;
-        if (Vector3.Distance(para.player.transform.position, enemy.transform.position) >para.alertDistance + 0.5f)
+        if (Vector3.Distance(para.player.transform.position, enemy.transform.position) >para.alertRetainDistance + 0.08f)
         {
             rigidbody.velocity = (para.player.transform.position - enemy.transform.position).normalized * para.alertMoveSpeed;
         }
-        else if (Vector3.Distance(para.player.transform.position, enemy.transform.position) < para.alertDistance - 0.5f)
+        else if (Vector3.Distance(para.player.transform.position, enemy.transform.position) < para.alertRetainDistance - 0.08f)
         {
             rigidbody.velocity = (-para.player.transform.position + enemy.transform.position).normalized * para.alertMoveSpeed;
         }
@@ -34,7 +34,7 @@ public class Enemy_Shooter_Alert : StateMachineBehaviour
         {
             rigidbody.velocity = Vector2.zero;
         }
-        if (transition&&(alertTimer > para.alertDurationUpperBound || (Vector3.Distance(para.player.transform.position, enemy.transform.position) < para.alertDistance + 0.08f) && alertTimer > para.alertDurationLowerBound))
+        if (transition&&(alertTimer > para.alertDurationUpperBound || (Vector3.Distance(para.player.transform.position, enemy.transform.position) < para.alertRetainDistance + 0.08f) && alertTimer > para.alertDurationLowerBound))
         {
             animator.SetTrigger("Alert>Shoot");
             transition= false;

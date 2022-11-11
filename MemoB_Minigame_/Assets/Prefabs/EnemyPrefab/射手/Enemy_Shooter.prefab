@@ -187,10 +187,10 @@ MonoBehaviour:
   wanderDuration: 3
   alertDurationLowerBound: 2
   alertDurationUpperBound: 3
-  shootRound: 3
-  shootDuration: 2
-  attackBulletMode: {fileID: 2784454937847400500, guid: 64e2df7c22e60ab449fb242c49b62e41, type: 3}
-  deathBulletMode: {fileID: 2784454937847400500, guid: 64e2df7c22e60ab449fb242c49b62e41, type: 3}
+  shootRound: 1
+  shootDuration: 3
+  attackBulletMode: {fileID: 2784454937847400500, guid: 0c735a4ccbefc95499083a833f952950, type: 3}
+  deathBulletMode: {fileID: 0}
   Hp: 10
   regeneration: 0
   regenerationPrefab: {fileID: 1640573038229508813, guid: 2d15d08663303f240a2cda815667bde7, type: 3}

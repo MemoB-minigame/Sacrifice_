@@ -36,7 +36,7 @@ public class Enemy_01_Parameters : MonoBehaviour
         public float alertDistance;
         public float retainDistance;
         public float aggressDistance;
-        public float dashDistanceMultuplier;
+        public float dashDistanceMultiplier;
     }
     [System.Serializable]
     public struct Time
