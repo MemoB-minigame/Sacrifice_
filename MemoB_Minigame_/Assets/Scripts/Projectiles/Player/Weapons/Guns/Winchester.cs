@@ -36,9 +36,9 @@ public class Winchester : Gun
             timer = 0;
             Controller.hurtByWeapon = true;
             Controller.HP -= hpCost;
-            float randomFireAngel;
-            randomFireAngel = Random.Range(deflectionAngel, deflectionAngel);
-            direction = Quaternion.AngleAxis(randomFireAngel, Vector3.forward) * direction;
+            float randomFireAngle;
+            randomFireAngle = Random.Range(deflectionAngle, deflectionAngle);
+            direction = Quaternion.AngleAxis(randomFireAngle, Vector3.forward) * direction;
 
             GameObject bullet=ObjectPool.Instance.GetObject(bullet_Prefab);
             bullet.transform.position = muzzle.position;

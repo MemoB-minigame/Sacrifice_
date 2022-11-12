@@ -22,10 +22,10 @@ public class Double_Revolver : Gun
             timer = 0;
             Controller.hurtByWeapon = true;
             Controller.HP -= hpCost;
-            float randomFireAngel;
+            float randomFireAngle;
             
-            randomFireAngel = Random.Range(deflectionAngel, deflectionAngel);
-            direction = Quaternion.AngleAxis(randomFireAngel, Vector3.forward) * direction;
+            randomFireAngle = Random.Range(deflectionAngle, deflectionAngle);
+            direction = Quaternion.AngleAxis(randomFireAngle, Vector3.forward) * direction;
             GameObject bullet = ObjectPool.Instance.GetObject(bullet_Prefab);
             bullet.transform.position = muzzle.position;
             bullet.transform.rotation = Quaternion.identity;
@@ -40,10 +40,10 @@ public class Double_Revolver : Gun
 
         Controller.hurtByWeapon = true;
         Controller.HP -= hpCost;
-        float randomFireAngel;
+        float randomFireAngle;
 
-        randomFireAngel = Random.Range(deflectionAngel, deflectionAngel);
-        direction = Quaternion.AngleAxis(randomFireAngel, Vector3.forward) * direction;
+        randomFireAngle = Random.Range(deflectionAngle, deflectionAngle);
+        direction = Quaternion.AngleAxis(randomFireAngle, Vector3.forward) * direction;
         GameObject bullet = ObjectPool.Instance.GetObject(bullet_Prefab);
         bullet.transform.position = muzzle2.position;
         bullet.transform.rotation = Quaternion.identity;

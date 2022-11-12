@@ -69,11 +69,11 @@ public class Enemy_01_Wander : StateMachineBehaviour
     Vector2 SpawnRandomPoint()
     {
         Vector2 targetPosition;
-        float randomDistance, randomAngel;
+        float randomDistance, randomAngle;
         randomDistance = Random.Range(parameters.distance.wanderDistanceLowerBound, parameters.distance.wanderDistanceUpperBound);
-        randomAngel = Random.Range(-180, 180);
+        randomAngle = Random.Range(-180, 180);
 
-        targetPosition =  (Quaternion.AngleAxis(randomAngel, Vector3.forward)*Vector2.up * randomDistance)+Enemy.transform.position;
+        targetPosition =  (Quaternion.AngleAxis(randomAngle, Vector3.forward)*Vector2.up * randomDistance)+Enemy.transform.position;
 
         return targetPosition;
     }

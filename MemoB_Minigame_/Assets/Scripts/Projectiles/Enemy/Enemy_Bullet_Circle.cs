@@ -7,7 +7,7 @@ using UnityEngine;
 public class Enemy_Bullet_Circle : Enemy_Bulllet_Basic
 {
     [Header("±êÁ¿")]
-    [SerializeField] float angel;
+    [SerializeField] float angle;
     [SerializeField] float basicRadius;
     [SerializeField] int bulletNum;
     [SerializeField] float changeDuration;
@@ -41,8 +41,8 @@ public class Enemy_Bullet_Circle : Enemy_Bulllet_Basic
     protected virtual void Generate()
     {
         generate = true;
-        if (angel > 360) angel %= 360;
-        float _angel =angel/ bulletNum;
+        if (angle > 360) angle %= 360;
+        float _angle =angle/ bulletNum;
         int mid = bulletNum / 2;
         if (bulletNum % 2 == 0)
         {
@@ -54,7 +54,7 @@ public class Enemy_Bullet_Circle : Enemy_Bulllet_Basic
                 
                 bullet.SendMessage("SetBullet", speed);
                 SetChildSpeed(bullet);
-                bullet.transform.right = Quaternion.AngleAxis((i-mid-0.5f)*_angel,Vector3.forward)*transform.right;
+                bullet.transform.right = Quaternion.AngleAxis((i-mid-0.5f)*_angle,Vector3.forward)*transform.right;
                 bullet.transform.position += bullet.transform.right.normalized * basicRadius;
             }
         }
@@ -66,7 +66,7 @@ public class Enemy_Bullet_Circle : Enemy_Bulllet_Basic
                 bullet.SendMessage("SetBullet", speed);
                 SetChildSpeed(bullet);
                 bullet.transform.position = transform.position;
-                bullet.transform.right = Quaternion.AngleAxis((i - mid-1) * _angel, Vector3.forward) * transform.right;
+                bullet.transform.right = Quaternion.AngleAxis((i - mid-1) * _angle, Vector3.forward) * transform.right;
                 bullet.transform.position+=bullet.transform.right.normalized*basicRadius;
             }
         }

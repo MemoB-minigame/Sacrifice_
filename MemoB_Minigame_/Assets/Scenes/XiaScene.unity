@@ -654,7 +654,7 @@ MonoBehaviour:
   jump: 2
   interval: 1.176
   hpCost: 1
-  deflectionAngel: 1
+  deflectionAngle: 5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
   Fortest: 1
   virtualCamera: {fileID: 516437293}
@@ -2128,7 +2128,7 @@ MonoBehaviour:
   jump: 1
   interval: 0.384
   hpCost: 1
-  deflectionAngel: 3
+  deflectionAngle: 5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
   Fortest: 1
 --- !u!1 &856094002
@@ -2339,63 +2339,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860331300}
   m_CullTransparentMesh: 1
---- !u!1001 &923705051
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412253, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5502627208115412254, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
-      propertyPath: m_Name
-      value: "\u7EA2\u773C\u8718\u86DB"
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f987e5990fa4b7f4184f859d25b08ecc, type: 3}
 --- !u!1 &944925665
 GameObject:
   m_ObjectHideFlags: 0
@@ -3149,11 +3092,11 @@ MonoBehaviour:
   jump: 1
   interval: 0.625
   hpCost: 0
-  deflectionAngel: 5
+  deflectionAngle: 5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
   Fortest: 1
   bulletNum: 4
-  bulletAngel: 5
+  bulletAngle: 5
 --- !u!212 &1142096053
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5494,7 +5437,7 @@ MonoBehaviour:
   jump: 1
   interval: 0.384
   hpCost: 1
-  deflectionAngel: 5
+  deflectionAngle: 5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
   Fortest: 1
   doubleDuration: 0.05
