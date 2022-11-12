@@ -4,7 +4,7 @@ using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy_Bulllet_Basic : MonoBehaviour
+public class Enemy_Bullet_Basic : MonoBehaviour
 {
     [Header("基本设置")]
     [SerializeField] protected float speed;             // 弹道速度

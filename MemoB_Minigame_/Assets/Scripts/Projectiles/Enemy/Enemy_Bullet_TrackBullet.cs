@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Bullet_TrackBullet : Enemy_Bulllet_Basic
+public class Enemy_Bullet_TrackBullet : Enemy_Bullet_Basic
 {
     [Header("¼ä¾à")]
     [SerializeField] float deltaDistance;
@@ -37,7 +37,7 @@ public class Enemy_Bullet_TrackBullet : Enemy_Bulllet_Basic
         GameObject bullet = ObjectPool.Instance.GetObject(trackBulletModes[index++]);
         bullet.transform.position=transform.position;
         bullet.transform.right = transform.right;
-        var bulletCtrl = bullet.GetComponent<Enemy_Bulllet_Basic>();
+        var bulletCtrl = bullet.GetComponent<Enemy_Bullet_Basic>();
         if(bulletCtrl==null)bulletCtrl = bullet.AddComponent<Enemy_Bullet_Queue>();
         else if (bulletCtrl == null) bulletCtrl = bullet.AddComponent<Enemy_Bullet_TrackBullet>();
         else if (bulletCtrl == null) bulletCtrl = bullet.AddComponent<Enemy_Bullet_Circle>();

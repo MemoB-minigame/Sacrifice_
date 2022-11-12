@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy_Bullet_Circle : Enemy_Bulllet_Basic
+public class Enemy_Bullet_Circle : Enemy_Bullet_Inferior
 {
     [Header("±Í¡ø")]
     [SerializeField] float angle;

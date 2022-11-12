@@ -56,8 +56,10 @@ MonoBehaviour:
   lifeTimer: 0
   traceDuration: 0
   traceMaxLength: 0
+  inferiorBulletAngle: 0
+  inferiorBulletMode: {fileID: 5184978036639307696, guid: db663aa4b580f8543bb74659184c4f1f, type: 3}
   angle: 360
-  basicRadius: 0
+  basicRadius: 0.6
   bulletNum: 8
   changeDuration: 1.5
   bulletMode: {fileID: 2784454937847400500, guid: 24001cd2fb0745a499d833535d116751, type: 3}
@@ -102,8 +104,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1210271435
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 0.60547304, g: 0.735849, b: 0.07219648, a: 1}

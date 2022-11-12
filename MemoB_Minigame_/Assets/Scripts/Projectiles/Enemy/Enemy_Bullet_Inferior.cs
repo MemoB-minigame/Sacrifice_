@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Bullet_Inferior : Enemy_Bulllet_Basic
+public class Enemy_Bullet_Inferior : Enemy_Bullet_Basic
 {
     [Header("Æ«ÒÆ½Ç¶È")]
     [SerializeField] float inferiorBulletAngle;

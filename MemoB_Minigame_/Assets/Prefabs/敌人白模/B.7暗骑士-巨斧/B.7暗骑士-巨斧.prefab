@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1789994457
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0.93207926, b: 0.38431373, a: 1}
@@ -125,7 +125,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 78a10716f0b1d604080f15c135a70613, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -173,10 +173,10 @@ MonoBehaviour:
   border:
     serializedVersion: 2
     m_Bits: 64
-  wanderSpeed: 1.8
-  alertMoveSpeed: 1.8
-  shootMoveSpeed: 1.8
-  alertDistance: 8
+  wanderSpeed: 2.4
+  alertMoveSpeed: 4
+  shootMoveSpeed: 2.4
+  alertDistance: 20
   wanderRadius: 4
   wanderDistanceLowerBound: 2
   wanderDistanceUpperBound: 3
@@ -186,8 +186,8 @@ MonoBehaviour:
   wanderDuration: 3
   alertDurationLowerBound: 2
   alertDurationUpperBound: 999
-  shootRound: 1
-  shootDuration: 0
+  shootRound: 3
+  shootDuration: 3
   attackBulletMode: {fileID: 5184978036639307696, guid: 2f39b0b89a6e87343b718e43ed1f631a, type: 3}
   deathBulletMode: {fileID: 0}
   Hp: 10
