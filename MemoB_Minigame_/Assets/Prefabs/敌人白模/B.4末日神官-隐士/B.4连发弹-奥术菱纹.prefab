@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2784454937847400502}
   - component: {fileID: 2784454937847400503}
   - component: {fileID: 2784454937847400457}
-  - component: {fileID: 472750978205637582}
+  - component: {fileID: 3025485523888264858}
   m_Layer: 11
   m_Name: "B.4\u8FDE\u53D1\u5F39-\u5965\u672F\u83F1\u7EB9"
   m_TagString: Untagged
@@ -108,8 +108,8 @@ MonoBehaviour:
   lifeTimer: 0
   traceDuration: 0
   traceMaxLength: 0
---- !u!61 &472750978205637582
-BoxCollider2D:
+--- !u!58 &3025485523888264858
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,19 +118,9 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0.15737784, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.34262213

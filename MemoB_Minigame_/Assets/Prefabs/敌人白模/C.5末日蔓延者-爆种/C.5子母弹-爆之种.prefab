@@ -51,15 +51,15 @@ MonoBehaviour:
   lifeDuration: 3
   damage: 2
   blockable: 1
-  repelPower: 0
+  repelPower: 1.5
   trackPower: 0
   lifeTimer: 0
   traceDuration: 0
   traceMaxLength: 0
-  angel: 360
-  basicRadius: 0.8
+  angle: 360
+  basicRadius: 0
   bulletNum: 8
-  changeDuration: 2
+  changeDuration: 1.5
   bulletMode: {fileID: 2784454937847400500, guid: 24001cd2fb0745a499d833535d116751, type: 3}
   inheritSpeed: 0
   inheritDamage: 0

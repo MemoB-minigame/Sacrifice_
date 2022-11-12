@@ -51,8 +51,7 @@ public class Enemy_Bullet_Circle : Enemy_Bulllet_Basic
             {
                 GameObject bullet = ObjectPool.Instance.GetObject(bulletMode);
                 bullet.transform.position = transform.position;
-                
-                bullet.SendMessage("SetBullet", speed);
+                // bullet.SendMessage("SetBullet", speed);
                 SetChildSpeed(bullet);
                 bullet.transform.right = Quaternion.AngleAxis((i-mid-0.5f)*_angle,Vector3.forward)*transform.right;
                 bullet.transform.position += bullet.transform.right.normalized * basicRadius;
@@ -63,7 +62,7 @@ public class Enemy_Bullet_Circle : Enemy_Bulllet_Basic
             for (int i = 1; i <= bulletNum; i++)
             {
                 GameObject bullet = ObjectPool.Instance.GetObject(bulletMode);
-                bullet.SendMessage("SetBullet", speed);
+                // bullet.SendMessage("SetBullet", speed);
                 SetChildSpeed(bullet);
                 bullet.transform.position = transform.position;
                 bullet.transform.right = Quaternion.AngleAxis((i - mid-1) * _angle, Vector3.forward) * transform.right;

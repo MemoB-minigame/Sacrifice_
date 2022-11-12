@@ -92,7 +92,7 @@ public class Enemy_Bulllet_Basic : MonoBehaviour
     {
         if (pack.inheritSpeed)
             speed = pack.speed;
-        if(pack.inheritDamage)
+        if (pack.inheritDamage)
             speed = pack.speed;
         if(pack.inheritTrackPower)
             trackPower = pack.trackPower;

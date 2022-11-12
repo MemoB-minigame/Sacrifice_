@@ -56,9 +56,9 @@ MonoBehaviour:
   lifeTimer: 0
   traceDuration: 0
   traceMaxLength: 0
-  angel: 180
+  angle: 180
   basicRadius: 0
-  bulletNum: 11
+  bulletNum: 6
   changeDuration: 0
   bulletMode: {fileID: 2784454937847400500, guid: 34eeff270161d6744a60f8d5080f2879, type: 3}
   inheritSpeed: 0

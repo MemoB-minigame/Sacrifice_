@@ -56,7 +56,7 @@ MonoBehaviour:
   lifeTimer: 0
   traceDuration: 0
   traceMaxLength: 0
-  angel: 30
+  angle: 30
   basicRadius: 0
   bulletNum: 2
   changeDuration: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2784454937847400457}
   - component: {fileID: 2784454937847400456}
   m_Layer: 11
-  m_Name: "[C.5\u9730\u5F39\u57FA]"
+  m_Name: "[C.5a\u9730\u5F39\u57FA]"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cad1a5ff9c8ab54fa8d2bd1b6651964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 8
   prepareDuration: 0
-  lifeDuration: 1
+  lifeDuration: 0.5
   damage: 1
   blockable: 1
   repelPower: 0.5
