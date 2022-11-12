@@ -45,6 +45,6 @@ BattleField/Topography: 带有障碍物的地形示例
 2022.11.12 12:05
 
 - 拼写错误修订。所有脚本中的 angel --> angle。
-- 新增白膜敌人和弹幕预制体。
+- 新增白模敌人和弹幕预制体。
 - 修订Enemy_Bullet_Circle.cs的逻辑错误。删除`SetChildSpeed(bullet)`之前的`bullet.SendMessage("SetBullet", speed)`以避免子弹幕`speed`属性被覆盖。（Line 54, 65）
 
