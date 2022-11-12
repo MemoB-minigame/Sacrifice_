@@ -6,20 +6,25 @@ public class Enemy_Shooter_Die : StateMachineBehaviour
 {
     Enemy_Shooter_Parameters para;
     Transform transform;
+    bool first;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         transform = animator.transform;
         para=animator.GetComponent<Enemy_Shooter_Parameters>();
+        first=true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (stateInfo.normalizedTime >= 0.95)
+        if (stateInfo.normalizedTime >= 0.95&&first)
         {
-            Instantiate(para.regenerationPrefab, transform.position, Quaternion.identity);
-            Instantiate(para.deathBulletMode, transform.position, Quaternion.identity);
+            first=false;
+            if(para.deathBulletMode!=null)
+                Instantiate(para.deathBulletMode, transform.position, Quaternion.identity);
+
+            Instantiate(para.regenerationPrefab, transform.position, Quaternion.identity).SendMessage("SetRegeneration", para.regeneration); 
             Destroy(animator.gameObject);
         }
     }

@@ -11,7 +11,9 @@ public class Enemy_Shooter_Wander : StateMachineBehaviour
     bool transition;
 
     Vector3 wanderTargetPosition;
-    float wanderTimer; 
+    float wanderTimer;
+
+    int tryNum;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy = animator.gameObject;
@@ -20,13 +22,16 @@ public class Enemy_Shooter_Wander : StateMachineBehaviour
         transition = true;
         wanderTimer = 0;
         RaycastHit2D[] cast;
+
+        tryNum = 0;
         do//生成随机游荡点
         {
             wanderTargetPosition = SpawnRandomPoint();
             Vector3 direction = (wanderTargetPosition - enemy.transform.position).normalized;
             cast = Physics2D.RaycastAll(enemy.transform.position, direction, Vector3.Distance(enemy.transform.position, wanderTargetPosition)+1.1f, (int)para.border);
             Debug.DrawRay(enemy.transform.position, direction* (Vector3.Distance(enemy.transform.position, wanderTargetPosition)+1.1f));
-        } while (Vector3.Distance(para.rebornPos, wanderTargetPosition) > para.wanderRadius ||cast.Length!=0 );
+            tryNum++;
+        } while ((Vector3.Distance(para.rebornPos, wanderTargetPosition) > para.wanderRadius ||cast.Length!=0)&&tryNum<100 );
         //  GameObject.Find("TestPoint").transform.position = wanderTargetPosition;
         rigidbody.velocity = (new Vector3(wanderTargetPosition.x, wanderTargetPosition.y, 0) - enemy.transform.position).normalized * para.wanderSpeed;
     }

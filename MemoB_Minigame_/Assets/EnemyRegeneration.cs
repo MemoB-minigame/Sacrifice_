@@ -63,6 +63,10 @@ public class EnemyRegeneration : MonoBehaviour
             StartCoroutine(Destroy(0f));
         }
     }
+    public void SetRegeneration(int _regeneration)
+    {
+        regeneration = _regeneration;
+    }
     IEnumerator SpawnGeneration()//Ä£ÄâµôÂäĞ§¹û
     {
         rigidbody.gravityScale = 3;

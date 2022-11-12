@@ -6,19 +6,22 @@ public class Enemy_01_Die : StateMachineBehaviour
 {
     Enemy_01_Parameters para;
     Transform transform;
+    bool first;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         para = animator.GetComponent<Enemy_01_Parameters>();
         transform = animator.transform;
+        first = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (stateInfo.normalizedTime >= 0.95f)
+        if (stateInfo.normalizedTime >= 0.95f&&first)
         {
-            Instantiate(para.attribute.regenerationPrefab, transform.position, Quaternion.identity);
+            first = false;
+            Instantiate(para.attribute.regenerationPrefab, transform.position, Quaternion.identity).SendMessage("SetRegeneration",para.attribute.regeneration);
             Destroy(animator.gameObject);
         }
     }

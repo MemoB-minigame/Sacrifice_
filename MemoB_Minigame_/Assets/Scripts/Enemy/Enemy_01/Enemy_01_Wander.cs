@@ -13,6 +13,9 @@ public class Enemy_01_Wander : StateMachineBehaviour
     private Vector3 wanderTargetPosition;
     RaycastHit2D[] cast;
     Vector3 direction;
+
+    //防止卡死
+    int num = 0;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         /*--------------------------------初始化--------------------------------------*/
@@ -29,8 +32,8 @@ public class Enemy_01_Wander : StateMachineBehaviour
             wanderTargetPosition = SpawnRandomPoint();
             direction = (wanderTargetPosition - Enemy.transform.position).normalized;
             cast = Physics2D.RaycastAll(Enemy.transform.position, direction, Vector3.Distance(Enemy.transform.position, wanderTargetPosition)+1.1f, (int)parameters.border);
-
-        } while(Vector2.Distance(parameters.position.rebornPos,wanderTargetPosition)>parameters.distance.wanderRadius || cast.Length != 0);//如果生成的目标点离出生点太远
+            num++;
+        } while(num<100&&(Vector2.Distance(parameters.position.rebornPos,wanderTargetPosition)>parameters.distance.wanderRadius || cast.Length != 0));//如果生成的目标点离出生点太远
         GameObject.Find("TestPoint").transform.position = wanderTargetPosition;
         rigidbody.velocity = (new Vector3(wanderTargetPosition.x, wanderTargetPosition.y, 0) - Enemy.transform.position).normalized * parameters.speed.wanderSpeed;//设置走向游荡点的速度(如果用moveforward可能穿墙)
     }
