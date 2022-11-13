@@ -361,6 +361,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs: 
+  damageMutiple: 1
+  amplitudeGainMutiple: 1.5
+  frequencyGainMutiple: 1.5
+  bulletScaleMutiple: 4
 --- !u!1 &8485589277168735196
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +479,7 @@ MonoBehaviour:
     m_ImpulseType: 3
     m_DissipationRate: 0.25
     m_RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
-    m_AmplitudeGain: 1.5
+    m_AmplitudeGain: 3
     m_FrequencyGain: 3
     m_RepeatMode: 0
     m_Randomize: 1
@@ -635,7 +639,7 @@ MonoBehaviour:
   jump: 2
   interval: 1.176
   hpCost: 1
-  deflectionAngle: 5
+  deflectionAngle: 0.5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
   Fortest: 1
   virtualCamera: {fileID: 0}

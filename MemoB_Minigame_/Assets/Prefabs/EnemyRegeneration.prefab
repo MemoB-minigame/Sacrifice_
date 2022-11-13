@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractRadius: 2
-  followSpeed: 1
+  followSpeed: 2
   regeneration: 1
 --- !u!50 &1640573038229508817
 Rigidbody2D:

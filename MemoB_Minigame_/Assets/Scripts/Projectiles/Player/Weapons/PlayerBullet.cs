@@ -59,9 +59,14 @@ public class PlayerBullet : MonoBehaviour
         buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();
 
         penetration = buffManager.buffs[1];
-        scaleMutiple = buffManager.bulletScaleMutiple;
+
         if (buffManager.buffs[2])
-            transform.localScale = new Vector3(scaleX * scaleMutiple, scaleY * scaleMutiple, 1);
+             scaleMutiple = buffManager.bulletScaleMutiple;
+        else scaleMutiple = 1;
+
+        transform.localScale = new Vector3(scaleX * scaleMutiple, scaleY * scaleMutiple, 1);
+
+
         //if (buffManager.buffs[3] && buffManager.ifLastBulletKills)
         //{
         //    buffManager.ifLastBulletKills = false;

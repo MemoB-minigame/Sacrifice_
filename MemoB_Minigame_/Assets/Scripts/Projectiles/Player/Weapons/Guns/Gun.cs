@@ -103,9 +103,17 @@ public class Gun : MonoBehaviour
         if (buffManager.ifLastBulletKills && buffManager.buffs[3])
         {
             buffManager.ifLastBulletKills = false;
-            finalBulletDamage = bulletDamage * 2;
-            impulse.m_ImpulseDefinition.m_AmplitudeGain = originShakeAmplitude*1.5f;
-            impulse.m_ImpulseDefinition.m_FrequencyGain = originShakeFrequency*1.5f;
+            finalBulletDamage = bulletDamage *buffManager.damageMutiple;
+
+            impulse.m_ImpulseDefinition.m_AmplitudeGain = originShakeAmplitude*buffManager.amplitudeGainMutiple;
+            impulse.m_ImpulseDefinition.m_FrequencyGain = originShakeFrequency*buffManager.frequencyGainMutiple;
+        }
+        else if (!buffManager.buffs[3])
+        {
+            buffManager.ifLastBulletKills = false;
+            finalBulletDamage = bulletDamage;
+            impulse.m_ImpulseDefinition.m_AmplitudeGain = originShakeAmplitude;
+            impulse.m_ImpulseDefinition.m_FrequencyGain = originShakeFrequency;
         }
     }
     protected virtual void RecoilForce()
