@@ -113,7 +113,7 @@ public class Enemy_Bullet_Basic : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player"))
         {
             playerController.HP -= damage;
-            playerController.HurtRecoilForce(repelPower, transform.right);
+            playerController.HurtRecoilForce(repelPower, new Vector2(transform.right.x,transform.right.y));
             if (gameObject.active)//·ÀÖ¹³öbug
                 StartCoroutine(Destroy(0f));
         }

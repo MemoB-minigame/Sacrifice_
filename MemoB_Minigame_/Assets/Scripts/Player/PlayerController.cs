@@ -215,22 +215,28 @@ public class PlayerController : MonoBehaviour
     {
         GameObject.Destroy(gameObject);
     }
-    public void HurtRecoilForce(float vol,Vector3 direction)
+    public void HurtRecoilForce(float vol,Vector2 direction)
     {
-        StartCoroutine(Recoil(vol, direction));
+        if (invincibleTimer == 0)
+            StartCoroutine(Recoil(vol, direction));
     }
-    IEnumerator Recoil(float vol,Vector3 direction)
+    public void HurtRecoilForceSpider(Vector2 direction)
+    {
+        if(invincibleTimer==0)
+            StartCoroutine(Recoil(1f, direction));
+    }
+    IEnumerator Recoil(float vol,Vector2 direction)
     {
         float hard=1;
         float smooth=1;
         for (int i = 1; i <= 2; i++)
         {
-            transform.Translate(direction / 5 * hard*vol);
+            transform.Translate(direction / 8 * hard*vol);
             yield return new WaitForFixedUpdate();
         }
         for (int i = 1; i <= 6; i++)
         {
-            transform.Translate(direction / 20 * smooth*vol);
+            transform.Translate(direction / 24 * smooth*vol);
             yield return new WaitForFixedUpdate();
         }
     }

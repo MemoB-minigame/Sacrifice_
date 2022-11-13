@@ -191,7 +191,7 @@ MonoBehaviour:
   attackBulletMode: {fileID: 5184978036639307696, guid: 2f39b0b89a6e87343b718e43ed1f631a, type: 3}
   deathBulletMode: {fileID: 0}
   Hp: 10
-  regeneration: 14
+  regeneration: 9
   regenerationPrefab: {fileID: 1640573038229508813, guid: 2d15d08663303f240a2cda815667bde7, type: 3}
   alertTrigger: 1
 --- !u!114 &-1106019923937832211
@@ -207,4 +207,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  recover: 14

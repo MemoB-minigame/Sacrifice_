@@ -18,7 +18,7 @@ public class Enemy_Gear_Idle : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (transition && Vector2.Distance(transform.position, para.Player.transform.position) < para.distance.alertDistance)
+        if (transition && Vector2.Distance(transform.position, para.Player.transform.position) < para.distance.alertDistance )
         {
             transition = false;
             animator.SetTrigger("IdleToAlert");

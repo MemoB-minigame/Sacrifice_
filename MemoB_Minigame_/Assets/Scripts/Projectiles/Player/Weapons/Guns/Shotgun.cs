@@ -11,11 +11,11 @@ public class Shotgun : Gun
     protected override void Fire()
     {
         timer+=Time.deltaTime;  
-        if (Input.GetMouseButtonDown(0) && Controller.isLife && timer >= interval&&Controller.HP-bulletNum>=0)
+        if (Input.GetMouseButtonDown(0) && Controller.isLife && timer >= interval&&Controller.HP- bulletNum * hpCost / 2 >= 0)
         {
             timer = 0;
             Controller.hurtByWeapon = true;
-            Controller.HP -= bulletNum*hpCost;
+            Controller.HP -= bulletNum*hpCost/2;
             int mid = bulletNum / 2;
             float randomFireAngle;
             randomFireAngle = Random.Range(-deflectionAngle, deflectionAngle);

@@ -7,9 +7,8 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
     BuffManager buffManager;
     GameObject player;
     Animator animator;
-    [Header("µ–»À Ù–‘")]
+    [Header("µ–»À◊¥Ã¨")]
     [SerializeField]int hp;
-    [SerializeField] int recover;
     
     public int HP
     {
@@ -39,7 +38,8 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet")){
-            HP-=collision.GetComponent<PlayerBullet>().Damage;
+            animator.SetTrigger("BeAttacked");
+            HP -=collision.GetComponent<PlayerBullet>().Damage;
         }
     }
 }

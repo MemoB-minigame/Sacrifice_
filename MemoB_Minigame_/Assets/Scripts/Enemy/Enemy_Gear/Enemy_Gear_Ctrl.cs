@@ -27,6 +27,7 @@ public class Enemy_Gear_Ctrl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            animator.SetTrigger("BeAttacked");
             Debug.Log(collision.gameObject.GetComponent<PlayerBullet>().Damage);
             Hp -= collision.gameObject.GetComponent<PlayerBullet>().Damage;
         }
