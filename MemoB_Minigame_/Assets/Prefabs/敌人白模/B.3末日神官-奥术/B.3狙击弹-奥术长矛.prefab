@@ -101,7 +101,7 @@ MonoBehaviour:
   speed: 36
   prepareDuration: 0
   lifeDuration: 5
-  damage: 1
+  damage: 3
   blockable: 1
   repelPower: 1
   trackPower: 0
