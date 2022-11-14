@@ -1208,10 +1208,10 @@
     "m_Guid": {
         "m_GuidSerialized": "3d6d23c1-e8c4-4fbb-a2a3-dd9bb10036fa"
     },
-    "m_Name": "VoronoiIntensitiy",
+    "m_Name": "VoronoiIntensity",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "VoronoiIntensitiy",
-    "m_DefaultReferenceName": "_VoronoiIntensitiy",
+    "m_RefNameGeneratedByDisplayName": "VoronoiIntensity",
+    "m_DefaultReferenceName": "_VoronoiIntensity",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -3869,7 +3869,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "cbf7868cd89741659a6f7c691e2b539e",
     "m_Id": 0,
-    "m_DisplayName": "VoronoiIntensitiy",
+    "m_DisplayName": "VoronoiIntensity",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

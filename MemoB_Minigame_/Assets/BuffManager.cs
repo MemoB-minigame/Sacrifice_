@@ -63,7 +63,7 @@ public class BuffManager : MonoBehaviour
             buffs[2] = false;
         }
 
-        if (controller.HP <= 22)
+        if (controller.HP <= 12)
         {
             buffs[3] = true;
         }
