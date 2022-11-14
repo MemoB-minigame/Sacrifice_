@@ -107,7 +107,7 @@ MonoBehaviour:
   speed:
     moveSpeed: 0.02
   distance:
-    alertDistance: 15
+    alertDistance: 12
   time:
     alertDuration: 0
     shootRound: 3

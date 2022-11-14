@@ -3225,6 +3225,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs: 
+  damageMutiple: 1
+  amplitudeGainMutiple: 1.5
+  frequencyGainMutiple: 1.5
+  bulletScaleMutiple: 2
 --- !u!1 &1283694853
 GameObject:
   m_ObjectHideFlags: 0

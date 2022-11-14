@@ -176,7 +176,7 @@ MonoBehaviour:
   wanderSpeed: 2.4
   alertMoveSpeed: 4
   shootMoveSpeed: 2.4
-  alertDistance: 20
+  alertDistance: 12
   wanderRadius: 4
   wanderDistanceLowerBound: 2
   wanderDistanceUpperBound: 3
