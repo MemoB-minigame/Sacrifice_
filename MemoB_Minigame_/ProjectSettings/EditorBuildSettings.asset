@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/L3_5\u5929\u7136\u9632\u7EBF.unity"
     guid: 34dd0c07ec2aff14a8de4a923cf4ad74
+  - enabled: 0
+    path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/L3_1\u6B7B\u8005.unity"
+    guid: 481c36f5b1f056f48a8d728ea3456fc0
   m_configObjects: {}
