@@ -42,4 +42,6 @@ public class WeaponManager : MonoBehaviour
             if(i!=weaponNum) weapons[i].SetActive(false);
         weapons[weaponNum].SetActive(true);
     }
+
+    public Gun GetActiveWeapon() { return weapons[weaponNum].GetComponent<Gun>(); }
 }

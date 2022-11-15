@@ -33,6 +33,7 @@ public class Enemy_01_Ctrl : MonoBehaviour
     }
     void Die()
     {
+        buffManager.ifLastBulletKills = true;
         animator.SetTrigger("Die");
     }
 

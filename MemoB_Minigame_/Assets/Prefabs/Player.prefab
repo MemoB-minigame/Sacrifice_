@@ -188,13 +188,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8485589276460293940}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d8f4c3e7e7a7f94f98d05d93a457fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   URPAsset: {fileID: 0}
   buffManager: {fileID: 8485589276870467163}
+  weaponManager: {fileID: 8485589278274871090}
   state: 0
   REFCOLORS:
   - {r: 4.636389, g: 20.53258, b: 126.50718, a: 1}
@@ -382,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs: 
-  damageMutiple: 1
+  damageMutiple: 2
   amplitudeGainMutiple: 1.5
   frequencyGainMutiple: 1.5
   bulletScaleMutiple: 4
@@ -541,6 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
+  finalBulletDamage: 0
   bulletSpeed: 24
   hardRecoilForce: 1
   smoothRecoilForce: 1
@@ -654,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
+  finalBulletDamage: 0
   bulletSpeed: 48
   hardRecoilForce: 1.5
   smoothRecoilForce: 1.5
@@ -805,6 +808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
+  finalBulletDamage: 0
   bulletSpeed: 48
   hardRecoilForce: 0.8
   smoothRecoilForce: 0.8
@@ -1258,6 +1262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
+  finalBulletDamage: 0
   bulletSpeed: 30
   hardRecoilForce: 1.5
   smoothRecoilForce: 1.5

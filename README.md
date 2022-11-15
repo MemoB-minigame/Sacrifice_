@@ -61,6 +61,21 @@ BattleField/Topography: 带有障碍物的地形示例
 
 
 
+### 特效
+
+全屏环绕特效：
+
+依赖BuffManager、WeaponManager和Gun，读入状态并生成3种全屏环绕特效（无BUFF则不产生特效）。
+
+由于实时渲染开销比较大，调试其它模块时请关闭全屏环绕特效：
+
+```bash	
+禁用./MemoB_Minigame_/Assets/URP/2D Renderer Data的名为'Blit'的Renderer Feature
+禁用Player预制体的Scene Effect (Script)
+```
+
+
+
 ## LOGS
 
 2022.11.12 12:05
@@ -95,3 +110,9 @@ BattleField/Topography: 带有障碍物的地形示例
 2022.11.15 01:05
 
 - 全屏环绕特效现在可根据玩家状态跟随变化（可能存在渲染性能问题）。
+
+2022.11.15 09:25
+
+- 修复在BUFF3下击杀近战敌人不触发伤害增强的Bug。
+- 全屏环绕特效现在能够正确检测枪械伤害增强BUFF。
+

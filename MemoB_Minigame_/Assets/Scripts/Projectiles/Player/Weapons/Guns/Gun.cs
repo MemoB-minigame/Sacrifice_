@@ -16,15 +16,15 @@ public class Gun : MonoBehaviour
     protected GameObject Player;
 
     [SerializeField] protected int bulletDamage=1;//原本的子弹伤害
-    protected int finalBulletDamage;//计算完buff后的子弹伤害
-    [SerializeField]protected float bulletSpeed;//子弹速度
+    [SerializeField] protected int finalBulletDamage;//计算完buff后的子弹伤害
+    [SerializeField] protected float bulletSpeed;//子弹速度
     [SerializeField] protected float hardRecoilForce=1;//前半段较为快速的后座力
     [SerializeField] protected float smoothRecoilForce=1;//后半段较为缓和的后坐力
     [SerializeField] protected float jump;//后坐力人物上移
     [SerializeField] protected float interval=0.384f;//发射间隔
     [SerializeField] protected int hpCost = 1;
     [SerializeField] protected float deflectionAngle = 5f;
-    [SerializeField]protected GameObject bullet_Prefab;
+    [SerializeField] protected GameObject bullet_Prefab;
     CinemachineImpulseSource impulse;//屏幕震动
 
     protected Vector2 mousePos;//鼠标位置
@@ -140,4 +140,6 @@ public class Gun : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+
+    public bool IsDamageBoosted() { return finalBulletDamage > bulletDamage; }
 }

@@ -10,9 +10,10 @@ public class ScreenEffect : MonoBehaviour
 {
     public UniversalRenderPipelineAsset URPAsset;
     public BuffManager buffManager;
+    public WeaponManager weaponManager;
     private bool screenEffectAvailable;
     private Material effectMaterial;
-    private PlayerController playerCrtl;
+
     public enum STATES { NOBUFF, BUFF1, BUFF2, BUFF3 };
     [SerializeField]private int state = (int)STATES.NOBUFF;
     private Blit blitFeature;
@@ -46,8 +47,6 @@ public class ScreenEffect : MonoBehaviour
             // 获取“Blit”引用的材质，以便修改特效
             effectMaterial = blitFeature.blitPass.blitMaterial;
         }
-
-        playerCrtl = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -146,7 +145,6 @@ public class ScreenEffect : MonoBehaviour
         blitFeature.SetActive(true);
         effectMaterial.SetFloat("_FullScreenIntensity", 0.2f);
         effectMaterial.SetColor("_Color", REFCOLORS[0]);
-        Debug.Log(REFCOLORS[0]);
         effectMaterial.SetFloat("_VoronoiSpeed", 2f);
         effectMaterial.SetFloat("_VoronoiScale", 30f);
         effectMaterial.SetFloat("_VoronoiIntensity", 0.8f);
@@ -161,7 +159,6 @@ public class ScreenEffect : MonoBehaviour
         blitFeature.SetActive(true);
         effectMaterial.SetFloat("_FullScreenIntensity", 0.4f);
         effectMaterial.SetColor("_Color", REFCOLORS[1]);
-        Debug.Log(REFCOLORS[1]);
         effectMaterial.SetFloat("_VoronoiSpeed", 3f);
         effectMaterial.SetFloat("_VoronoiScale", 30f);
         effectMaterial.SetFloat("_VoronoiIntensity", 0.8f);
@@ -174,12 +171,10 @@ public class ScreenEffect : MonoBehaviour
     {
         state = (int)STATES.BUFF3;
         blitFeature.SetActive(true);
-        Debug.Log(buffManager.ifLastBulletKills);
-        if (!buffManager.ifLastBulletKills)
+        if (!weaponManager.GetActiveWeapon().IsDamageBoosted())
         {
             effectMaterial.SetFloat("_FullScreenIntensity", 0.6f);
             effectMaterial.SetColor("_Color", REFCOLORS[2]);
-            Debug.Log(REFCOLORS[2]);
             effectMaterial.SetFloat("_VoronoiSpeed", 4f);
             effectMaterial.SetFloat("_VoronoiScale", 30f);
             effectMaterial.SetFloat("_VoronoiPower", 3f);
@@ -189,7 +184,6 @@ public class ScreenEffect : MonoBehaviour
         {
             effectMaterial.SetFloat("_FullScreenIntensity", 0.8f);
             effectMaterial.SetColor("_Color", REFCOLORS[3]);
-            Debug.Log(REFCOLORS[3]);
             effectMaterial.SetFloat("_VoronoiSpeed", 2f);
             effectMaterial.SetFloat("_VoronoiScale", 10f);
             effectMaterial.SetFloat("_VoronoiPower", 1f);
