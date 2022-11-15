@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Enemy_Shooter_Shoot : StateMachineBehaviour
 {
-    Enemy_Shooter_Parameters para;
-    GameObject enemy;
-    new Rigidbody2D rigidbody;
-    bool transition;
+    protected Enemy_Shooter_Parameters para;
+    protected GameObject enemy;
+    protected new Rigidbody2D rigidbody;
+    protected bool transition;
 
-    float shootTimer;
+    protected float shootTimer;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -36,6 +36,8 @@ public class Enemy_Shooter_Shoot : StateMachineBehaviour
         {
             rigidbody.velocity = Vector2.zero;
         }
+
+        
 
         if (transition && shootTimer > (para.shootRound - 1) * para.shootDuration + 0.5f)
         {

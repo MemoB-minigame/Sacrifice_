@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1037580158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1037580159}
+  m_Layer: 10
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1037580159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037580158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84, y: 1.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6199064857115638885}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6199064857115638881
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,8 +44,8 @@ GameObject:
   - component: {fileID: 6199064857115638880}
   - component: {fileID: 6199064857115638907}
   - component: {fileID: 6199064857115638905}
-  - component: {fileID: 6199064857115638906}
   - component: {fileID: 6199064857899273901}
+  - component: {fileID: 1574046424}
   m_Layer: 10
   m_Name: "B.2\u91CE\u517D\u5E7D\u9B42"
   m_TagString: Enemy
@@ -31,9 +62,10 @@ Transform:
   m_GameObject: {fileID: 6199064857115638881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 1.6, z: 1}
+  m_LocalScale: {x: 0.13, y: 0.13, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1037580159}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,8 +110,8 @@ SpriteRenderer:
   m_SortingLayerID: -1789994457
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.1639604, g: 0.6509434, b: 0.12527587, a: 1}
+  m_Sprite: {fileID: 21300000, guid: fd8d5f87a0838784f956a4a6598164a9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,7 +131,7 @@ Animator:
   m_GameObject: {fileID: 6199064857115638881}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 475d819686873c94486908b07108f379, type: 2}
+  m_Controller: {fileID: 9100000, guid: 204fb080aa21ba34e85cd3c079a7c84c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -147,7 +179,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 16.71, y: 11.14}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -156,7 +188,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6199064857115638906
+--- !u!114 &6199064857899273901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,14 +197,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 6199064857115638881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9306d9b0d772b48448dc2c7d5a7588ff, type: 3}
+  m_Script: {fileID: 11500000, guid: a7659119eed4f5c43ad11c5c02052745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 6199064857115638881}
+  hp: 2
+--- !u!114 &1574046424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6199064857115638881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53a834394242f549ae21eae701e91c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireVFX: {fileID: 0}
+  player: {fileID: 0}
   rebornPos: {x: 0, y: 0, z: 0}
   border:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   wanderSpeed: 2
   alertMoveSpeed: 4
   shootMoveSpeed: 0.5
@@ -193,17 +239,5 @@ MonoBehaviour:
   Hp: 2
   regeneration: 3
   regenerationPrefab: {fileID: 1640573038229508813, guid: 2d15d08663303f240a2cda815667bde7, type: 3}
-  alertTrigger: 1
---- !u!114 &6199064857899273901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6199064857115638881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7659119eed4f5c43ad11c5c02052745, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 2
+  fireAni: {fileID: 6615212397253338131, guid: 8fd4e0a08018d6a4b8297a098fede1bf, type: 3}
+  alertTrigger: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,11 @@ using UnityEngine;
 public class Enemy_Shooter_Parameters :MonoBehaviour
 {
     
-    public GameObject player;
 
+    [NonSerialized]public GameObject player;
+    protected Animator animator;
+    protected GameObject muzzle;
+    
     [Header("Î»ÖÃ")]
     public Vector3 rebornPos;
     public LayerMask border;
@@ -35,13 +39,21 @@ public class Enemy_Shooter_Parameters :MonoBehaviour
     public int Hp;
     public int regeneration;
     public GameObject regenerationPrefab;
+    public GameObject fireAni;
     [Header("´¥·¢Æ÷")]
     public bool alertTrigger;
 
-    private void Start()
+    protected virtual void Start()
     {
+        
+        animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
         rebornPos = transform.position;
+    }
+    private void Update()
+    {
+        if(player==null)
+            player = GameObject.Find("Player");
     }
     private void OnDrawGizmos()
     {
@@ -57,7 +69,7 @@ public class Enemy_Shooter_Parameters :MonoBehaviour
         
     }
 
-    public IEnumerator Shoot()
+    public virtual IEnumerator Shoot()
     {
         int shootCount = 0;
         while (shootCount < shootRound)
