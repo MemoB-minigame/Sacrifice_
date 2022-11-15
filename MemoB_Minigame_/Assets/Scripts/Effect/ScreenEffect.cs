@@ -151,6 +151,7 @@ public class ScreenEffect : MonoBehaviour
         effectMaterial.SetFloat("_VoronoiPower", 3f);
         effectMaterial.SetFloat("_VignetteRadiusPower", 15f);
         effectMaterial.SetFloat("_Crystallize", 1f);
+        effectMaterial.SetFloat("_PixelatedIntensity", 5f);
     }
 
     void SetEffectBUFF2()
@@ -165,6 +166,7 @@ public class ScreenEffect : MonoBehaviour
         effectMaterial.SetFloat("_VoronoiPower", 3f);
         effectMaterial.SetFloat("_VignetteRadiusPower", 15f);
         effectMaterial.SetFloat("_Crystallize", 1f);
+        effectMaterial.SetFloat("_PixelatedIntensity", 5f);
     }
 
     void SetEffectBUFF3()
@@ -176,9 +178,11 @@ public class ScreenEffect : MonoBehaviour
             effectMaterial.SetFloat("_FullScreenIntensity", 0.6f);
             effectMaterial.SetColor("_Color", REFCOLORS[2]);
             effectMaterial.SetFloat("_VoronoiSpeed", 4f);
-            effectMaterial.SetFloat("_VoronoiScale", 30f);
+            effectMaterial.SetFloat("_VoronoiScale", 10f);
+            effectMaterial.SetFloat("_VoronoiIntensity", 0.9f);
             effectMaterial.SetFloat("_VoronoiPower", 3f);
             effectMaterial.SetFloat("_VignetteRadiusPower", 15f);
+            effectMaterial.SetFloat("_PixelatedIntensity", 1f);
         }
         else
         {
@@ -186,10 +190,11 @@ public class ScreenEffect : MonoBehaviour
             effectMaterial.SetColor("_Color", REFCOLORS[3]);
             effectMaterial.SetFloat("_VoronoiSpeed", 2f);
             effectMaterial.SetFloat("_VoronoiScale", 10f);
+            effectMaterial.SetFloat("_VoronoiIntensity", 0.8f);
             effectMaterial.SetFloat("_VoronoiPower", 1f);
             effectMaterial.SetFloat("_VignetteRadiusPower", 10f);
+            effectMaterial.SetFloat("_PixelatedIntensity", 5f);
         }
-        effectMaterial.SetFloat("_VoronoiIntensity", 0.8f);
         effectMaterial.SetFloat("_Crystallize", 0f);
     }
 }
