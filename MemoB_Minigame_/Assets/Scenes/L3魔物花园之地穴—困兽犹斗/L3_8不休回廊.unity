@@ -3222,7 +3222,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ed60f48dbcd0b1244af662e007d2e4c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121286,6 +121286,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: cddbb106fd0f46b4cba37531b805fc1f, type: 2}
   - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: 6365c753334b84140aad08ddc440cd48, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 4
     m_Data: {fileID: -1301608240, guid: 23cac8705edb59545968e495a6eedab1, type: 3}
@@ -121311,6 +121313,8 @@ Tilemap:
     m_Data: {fileID: 1533999421, guid: 23cac8705edb59545968e495a6eedab1, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 168978294, guid: 23cac8705edb59545968e495a6eedab1, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
@@ -124698,6 +124702,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6199064857115638886, guid: 5c1f55d93d9913048a838cb24e89e72b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6199064857115638886, guid: 5c1f55d93d9913048a838cb24e89e72b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6199064857115638886, guid: 5c1f55d93d9913048a838cb24e89e72b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c1f55d93d9913048a838cb24e89e72b, type: 3}
 --- !u!1 &1839062304
@@ -125993,6 +126009,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8574006709992662519, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8485589276460293938, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -126041,12 +126061,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8485589277168735198, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
+      propertyPath: virtualCamerainGun
+      value: 
+      objectReference: {fileID: 516437293}
     - target: {fileID: 8485589277526296659, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
       propertyPath: post
       value: 
       objectReference: {fileID: 2017590317}
     - target: {fileID: 8485589277526296659, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
       propertyPath: virtualCamera
+      value: 
+      objectReference: {fileID: 516437293}
+    - target: {fileID: 8485589277526296659, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
+      propertyPath: virtualCamerainGun
+      value: 
+      objectReference: {fileID: 516437293}
+    - target: {fileID: 8485589277635533834, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
+      propertyPath: virtualCamerainGun
+      value: 
+      objectReference: {fileID: 516437293}
+    - target: {fileID: 8485589278211018100, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
+      propertyPath: virtualCamerainGun
       value: 
       objectReference: {fileID: 516437293}
     m_RemovedComponents: []

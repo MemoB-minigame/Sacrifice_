@@ -13,6 +13,8 @@ public class Winchester : Gun
     GameObject bigPoint;
     Animator animator,aniMuzzle;
     LayerMask layerMask;
+    // ”“∞∑≈¥Û
+    bool ifBecomeBig = false;
     protected override void Start()
     {
         base.Start();
@@ -27,6 +29,10 @@ public class Winchester : Gun
         Aim();
         
         
+    }
+    private void OnDisable()
+    {
+        ifBecomeBig = false;
     }
     protected override void Fire()
     {
@@ -56,9 +62,11 @@ public class Winchester : Gun
 
     void Aim()
     {
+        
         if (Input.GetMouseButtonDown(1))
         //if (Input.GetKeyDown(KeyCode.J))
         {
+            ifBecomeBig = true;
             //bigPoint.transform.position = post.transform.position;
             bigPoint.transform.position = new Vector3(direction.x,direction.y,0)*6.5f + Player.transform.position;
             virtualCamera.Follow = bigPoint.transform;
@@ -68,9 +76,10 @@ public class Winchester : Gun
             
             Debug.Log("Post");
         }
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1)&&ifBecomeBig)
         //if (Input.GetKeyUp(KeyCode.J))
         {
+            ifBecomeBig=false;
             virtualCamera.Follow = Player.transform;
             post.GetComponent<Sight>().sensitivity = 1;
             StartCoroutine(ReturnSmallSize(10));

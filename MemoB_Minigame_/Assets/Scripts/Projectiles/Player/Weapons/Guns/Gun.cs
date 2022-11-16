@@ -25,6 +25,8 @@ public class Gun : MonoBehaviour
     [SerializeField] protected int hpCost = 1;
     [SerializeField] protected float deflectionAngle = 5f;
     [SerializeField] protected GameObject bullet_Prefab;
+
+    [SerializeField] CinemachineVirtualCamera virtualCamerainGun;
     CinemachineImpulseSource impulse;//ÆÁÄ»Õð¶¯
 
     protected Vector2 mousePos;//Êó±êÎ»ÖÃ
@@ -40,6 +42,7 @@ public class Gun : MonoBehaviour
     [SerializeField] bool Fortest;
     protected virtual void Start()
     {
+        virtualCamerainGun = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();
         Player = GameObject.Find("Player");
         Controller=Player.GetComponent<PlayerController>();
@@ -51,6 +54,22 @@ public class Gun : MonoBehaviour
         impulse=GetComponent<CinemachineImpulseSource>();
         originShakeAmplitude = impulse.m_ImpulseDefinition.m_AmplitudeGain;
         originShakeFrequency = impulse.m_ImpulseDefinition.m_FrequencyGain;
+    }
+    private void OnEnable()
+    {
+        if (virtualCamerainGun.m_Lens.OrthographicSize > 7)
+        {
+            StartCoroutine(ReturnSmallSize(10));
+        }
+    }
+    IEnumerator ReturnSmallSize(int damping)
+    {
+        float perAdd = (7f- virtualCamerainGun.m_Lens.OrthographicSize) / damping;
+        for (int i = 1; i <= damping; i++)
+        {
+            virtualCamerainGun.m_Lens.OrthographicSize += perAdd;
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     protected virtual void Update()

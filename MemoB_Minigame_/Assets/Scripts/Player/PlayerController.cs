@@ -145,6 +145,10 @@ public class PlayerController : MonoBehaviour
         }
 
         mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Time.timeScale = 0;
+        }
     }
 
     private void CheckInput()

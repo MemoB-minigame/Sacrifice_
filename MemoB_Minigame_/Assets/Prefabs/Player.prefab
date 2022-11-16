@@ -551,6 +551,7 @@ MonoBehaviour:
   hpCost: 1
   deflectionAngle: 5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
+  virtualCamerainGun: {fileID: 0}
   Fortest: 1
   doubleDuration: 0.05
 --- !u!1 &8485589277526296663
@@ -665,6 +666,7 @@ MonoBehaviour:
   hpCost: 2
   deflectionAngle: 0.5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
+  virtualCamerainGun: {fileID: 0}
   Fortest: 1
   virtualCamera: {fileID: 0}
   post: {fileID: 0}
@@ -817,6 +819,7 @@ MonoBehaviour:
   hpCost: 1
   deflectionAngle: 5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
+  virtualCamerainGun: {fileID: 0}
   Fortest: 1
 --- !u!212 &8485589277635533833
 SpriteRenderer:
@@ -1271,6 +1274,7 @@ MonoBehaviour:
   hpCost: 1
   deflectionAngle: 5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
+  virtualCamerainGun: {fileID: 0}
   Fortest: 1
   bulletNum: 4
   bulletAngle: 5
