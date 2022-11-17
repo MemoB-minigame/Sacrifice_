@@ -11,33 +11,42 @@ public class EnemyShooterController : Enemy_Shooter_Parameters
     }
     public override IEnumerator Shoot()
     {
-        shootCount = 0;
-        while (shootCount < shootRound)
+        if (Hp > 0)
         {
-            animator.Play("Shoot");
-            yield return new WaitForSecondsRealtime(shootDuration);
+            shootCount = 0;
+            while (shootCount < shootRound)
+            {
+                animator.Play("Shoot");
+                yield return new WaitForSecondsRealtime(shootDuration);
 
+            }
+            animator.Play("Alert");
         }
-        animator.Play("Alert");
     }
     public void AniShoot()
     {
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        GameObject bullet = ObjectPool.Instance.GetObject(attackBulletMode);
-        bullet.transform.position = transform.position;
-        bullet.transform.rotation = Quaternion.identity;
-        bullet.transform.right = direction;
-        shootCount++;
-        animator.Play("Maneuver");
+        if (Hp > 0)
+        {
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            GameObject bullet = ObjectPool.Instance.GetObject(attackBulletMode);
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.identity;
+            bullet.transform.right = direction;
+            shootCount++;
+            animator.Play("Maneuver");
+        }
     }
 
     public void AniShootNoTransfer()
     {
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        GameObject bullet = ObjectPool.Instance.GetObject(attackBulletMode);
-        bullet.transform.position = transform.position;
-        bullet.transform.rotation = Quaternion.identity;
-        bullet.transform.right = direction;
-        shootCount++;
+        if (Hp > 0)
+        {
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            GameObject bullet = ObjectPool.Instance.GetObject(attackBulletMode);
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.identity;
+            bullet.transform.right = direction;
+            shootCount++;
+        }
     }
 }
