@@ -175,7 +175,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.36610937, y: 1.2433813}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -186,7 +186,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 7.9940367, y: 7.2133193}
   m_EdgeRadius: 0
 --- !u!114 &6199064857899273901
 MonoBehaviour:
@@ -213,8 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53a834394242f549ae21eae701e91c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireVFX: {fileID: 0}
-  player: {fileID: 0}
   rebornPos: {x: 0, y: 0, z: 0}
   border:
     serializedVersion: 2
