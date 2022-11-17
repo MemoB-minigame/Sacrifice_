@@ -61,6 +61,8 @@ BattleField/Topography: 带有障碍物的地形示例
 
 
 
+## 程序参考
+
 ### 特效
 
 全屏环绕特效：
@@ -72,6 +74,14 @@ BattleField/Topography: 带有障碍物的地形示例
 ```bash	
 禁用./MemoB_Minigame_/Assets/URP/2D Renderer Data的名为'Blit'的Renderer Feature
 禁用Player预制体的Scene Effect (Script)
+```
+
+### 测试场景
+
+增加了一个用于调试敌人的测试场景，路径：
+
+```bash
+./MemoB_Minigame_/Assets/Scenes/BattleField/敌人测试场景
 ```
 
 
@@ -124,3 +134,9 @@ BattleField/Topography: 带有障碍物的地形示例
 
 - 白模敌人正式更名为敌人预制体
 - 完成带动画的末日神官和暗骑士预制体制作（目前未加音效）
+
+2022.11.17 12:52
+
+- 生成末日神官-奥术的瞄准线
+- 红眼蜘蛛的生命值增加1，现在为3点
+- 增加了一个用于调试敌人的测试场景
