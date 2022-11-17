@@ -6,7 +6,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u6545\u4E8B\u521B\u4F5C\u533A-\u98D3\u98CE (1)"
+  m_Name: Tornado
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
