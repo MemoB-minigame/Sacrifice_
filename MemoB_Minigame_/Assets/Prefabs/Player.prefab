@@ -237,7 +237,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8485589276460293940}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d8f4c3e7e7a7f94f98d05d93a457fd7, type: 3}
   m_Name: 
@@ -279,12 +279,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stores: []
   state: 0
-  capacity: 40000
+  capacity: 6000
   currentCount: 0
   recordStep: 0.01
   recallStep: 0.01
-  recallBoost: 6
-  useFixedUpdate: 1
+  baseRecallBoost: 4
+  autoBoost: 1
+  recallDuration: 5
+  adaptiveRecallBoost: 0
+  recallCount: 0
+  useFixedUpdate: 0
 --- !u!1 &8485589276512511787
 GameObject:
   m_ObjectHideFlags: 0

@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isLife)
         {
+            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             if (TimeController.instance.CurrentState == TimeController.TimeState.Õý³£)
             {
                 ObjectPool.Instance.ClearDictionary();

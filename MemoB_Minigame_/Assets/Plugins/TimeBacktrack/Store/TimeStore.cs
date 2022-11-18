@@ -98,7 +98,7 @@ public class TimeStore : MonoBehaviour
         if(steps.Count==0)
             return;
         var oldStep = steps.Pop();
-        for (int i = 0; i < TimeController.instance.recallBoost; ++i)
+        for (int i = 0; i < TimeController.instance.GetRecallBoost(); ++i)
         {
             if (steps.Count == 0) { break; }
             oldStep = steps.Pop();
