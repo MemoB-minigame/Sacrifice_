@@ -10,22 +10,22 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
     BuffManager buffManager;
     GameObject player;
     Animator animator;
-    [Header("µÐÈË×´Ì¬")]
-    [SerializeField]int hp;
-    
+    Enemy_Shooter_Parameters param;
+
+
     public int HP
     {
         get
         {
-            return hp;
+            return param.Hp;
         }
         set
         {
-            if (value < hp && value != 0)
+            if (value < param.Hp && value != 0)
                 if(ifHasHurtAni)
                     SendMessage("HurtAni");
-            hp = value;
-            if (hp <= 0) Die();
+            param.Hp = value;
+            if (param.Hp <= 0) Die();
         }
         
     }
@@ -35,6 +35,7 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
         buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();
+        param = GetComponent<Enemy_Shooter_Parameters>();
     }
 
     void Die()

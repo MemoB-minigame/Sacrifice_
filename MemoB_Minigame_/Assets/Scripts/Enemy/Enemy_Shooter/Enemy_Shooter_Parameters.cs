@@ -40,8 +40,6 @@ public class Enemy_Shooter_Parameters :MonoBehaviour
     public int regeneration;
     public GameObject regenerationPrefab;
     public GameObject fireAni;
-    [Header("´¥·¢Æ÷")]
-    public bool alertTrigger;
 
     protected virtual void Start()
     {

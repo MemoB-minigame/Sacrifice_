@@ -283,7 +283,7 @@ MonoBehaviour:
   currentCount: 0
   recordStep: 0.01
   recallStep: 0.01
-  recallBoost: 3
+  recallBoost: 6
   useFixedUpdate: 1
 --- !u!1 &8485589276512511787
 GameObject:

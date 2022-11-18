@@ -47,7 +47,7 @@ public class Enemy_ShooterB2_Wander : StateMachineBehaviour
         {
             bool timeTransition = wanderTimer > para.wanderDuration; // 如果时间到了
             bool distanceTransition = Vector2.Distance(enemy.transform.position, wanderTargetPosition) <= 0.4f; // 如果距离离游荡点够近了
-            bool alertTransition = Vector3.Distance(enemy.transform.position, para.player.transform.position) < para.alertDistance && para.alertTrigger; // 如果玩家进入警戒范围了
+            bool alertTransition = Vector3.Distance(enemy.transform.position, para.player.transform.position) < para.alertDistance; // 如果玩家进入警戒范围了
             if (timeTransition || distanceTransition)
             {
                 transition = false;
