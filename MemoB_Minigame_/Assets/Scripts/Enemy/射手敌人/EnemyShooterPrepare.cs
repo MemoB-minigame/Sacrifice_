@@ -16,5 +16,6 @@ public class EnemyShooterPrepare : StateMachineBehaviour
         para.StartCoroutine(para.Shoot());
         shootTimer = 0;
     }
+   
 
 }

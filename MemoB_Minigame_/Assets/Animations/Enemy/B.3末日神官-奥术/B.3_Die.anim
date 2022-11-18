@@ -20,21 +20,29 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 457094351, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
+      value: {fileID: 21300000, guid: 82e7f343bb7f16a4081783cf5e2b6b29, type: 3}
     - time: 0.1
-      value: {fileID: 44484068, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
+      value: {fileID: 21300000, guid: f64235dccc883e64dac96ef79678ff56, type: 3}
     - time: 0.2
-      value: {fileID: -1469155967, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
+      value: {fileID: 21300000, guid: 6b97041aa2a1c564dba79a03ea29f7da, type: 3}
     - time: 0.3
-      value: {fileID: 2009113985, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
+      value: {fileID: 21300000, guid: b00dd5ce62f0cd84e8c6ebc31a07fce1, type: 3}
     - time: 0.4
-      value: {fileID: 1871633314, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
+      value: {fileID: 21300000, guid: b4094699ec1f4d341a9969b414995dac, type: 3}
     - time: 0.5
-      value: {fileID: 1266904987, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
+      value: {fileID: 21300000, guid: 85da8422c9485b74fa926f456bc8227d, type: 3}
     - time: 0.6
-      value: {fileID: -1530932361, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
+      value: {fileID: 21300000, guid: acb1b5ea22ded1f4d98e11cada80a119, type: 3}
     - time: 0.7
-      value: {fileID: -114656028, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
+      value: {fileID: 21300000, guid: f46a7f167c0a59f47a01e911aa36b8ed, type: 3}
+    - time: 0.8
+      value: {fileID: 21300000, guid: 588823c7844ce914881bd725928035b1, type: 3}
+    - time: 0.9
+      value: {fileID: 21300000, guid: d43256e7f132a744385085c93e6cb3c5, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: d3fdf0445a10e454ab62f17fcc34fe87, type: 3}
+    - time: 1.1
+      value: {fileID: 21300000, guid: 0e95f6ef1b55a07458009be3c9a0b0e0, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -54,20 +62,24 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 457094351, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
-    - {fileID: 44484068, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
-    - {fileID: -1469155967, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
-    - {fileID: 2009113985, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
-    - {fileID: 1871633314, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
-    - {fileID: 1266904987, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
-    - {fileID: -1530932361, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
-    - {fileID: -114656028, guid: 2ab403fd45e542a43a01774da981df89, type: 3}
+    - {fileID: 21300000, guid: 82e7f343bb7f16a4081783cf5e2b6b29, type: 3}
+    - {fileID: 21300000, guid: f64235dccc883e64dac96ef79678ff56, type: 3}
+    - {fileID: 21300000, guid: 6b97041aa2a1c564dba79a03ea29f7da, type: 3}
+    - {fileID: 21300000, guid: b00dd5ce62f0cd84e8c6ebc31a07fce1, type: 3}
+    - {fileID: 21300000, guid: b4094699ec1f4d341a9969b414995dac, type: 3}
+    - {fileID: 21300000, guid: 85da8422c9485b74fa926f456bc8227d, type: 3}
+    - {fileID: 21300000, guid: acb1b5ea22ded1f4d98e11cada80a119, type: 3}
+    - {fileID: 21300000, guid: f46a7f167c0a59f47a01e911aa36b8ed, type: 3}
+    - {fileID: 21300000, guid: 588823c7844ce914881bd725928035b1, type: 3}
+    - {fileID: 21300000, guid: d43256e7f132a744385085c93e6cb3c5, type: 3}
+    - {fileID: 21300000, guid: d3fdf0445a10e454ab62f17fcc34fe87, type: 3}
+    - {fileID: 21300000, guid: 0e95f6ef1b55a07458009be3c9a0b0e0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8
+    m_StopTime: 1.2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -86,4 +98,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: DeactivateAimRay
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

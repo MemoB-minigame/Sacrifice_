@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyShooterController : Enemy_Shooter_Parameters
 {
     int shootCount = 0;
+    
     protected override void Start()
     {
         base.Start();
@@ -49,4 +50,5 @@ public class EnemyShooterController : Enemy_Shooter_Parameters
             shootCount++;
         }
     }
+    
 }

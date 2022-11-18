@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy_Shooter_Ctrl : MonoBehaviour
 {
+    bool firstDie=true;
+    [Header("是否具有受击动画")]
+    [SerializeField] bool ifHasHurtAni=false;
     BuffManager buffManager;
     GameObject player;
     Animator animator;
@@ -18,6 +21,9 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
         }
         set
         {
+            if (value < hp && value != 0)
+                if(ifHasHurtAni)
+                    SendMessage("HurtAni");
             hp = value;
             if (hp <= 0) Die();
         }
@@ -25,6 +31,7 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
     }
     private void Awake()
     {
+        firstDie=true;
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
         buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();

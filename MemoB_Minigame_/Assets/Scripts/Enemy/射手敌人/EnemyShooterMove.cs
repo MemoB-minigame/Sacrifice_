@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyShooterMove : StateMachineBehaviour
 {
     public bool facePlayer;
+    [SerializeField] bool spriteReverse = false;
     protected EnemyShooterController para;
     protected GameObject enemy;
     protected new Rigidbody2D rigidbody;
@@ -36,9 +37,18 @@ public class EnemyShooterMove : StateMachineBehaviour
         // 是否固定面朝玩家方向
         if (facePlayer)
         {
-            if (para.player.transform.position.x < enemy.transform.position.x)
-                enemy.transform.right = Vector3.left;
-            else enemy.transform.right = Vector3.right;
+            if (!spriteReverse)//是否翻转图片
+            {
+                if (para.player.transform.position.x < enemy.transform.position.x)
+                    enemy.transform.right = Vector3.left;
+                else enemy.transform.right = Vector3.right;
+            }
+            else
+            {
+                if (para.player.transform.position.x < enemy.transform.position.x)
+                    enemy.transform.right = Vector3.right;
+                else enemy.transform.right = Vector3.left;
+            }
         }
         else
         {
