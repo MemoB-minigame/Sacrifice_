@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class EnemyShooterDie : StateMachineBehaviour
 {
+    Rigidbody2D rigidbody;
     EnemyShooterController para;
     Transform transform;
     bool first;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        rigidbody = animator.GetComponent<Rigidbody2D>();
         transform = animator.transform;
         para=animator.GetComponent<EnemyShooterController>();
         first=true;
@@ -18,8 +20,10 @@ public class EnemyShooterDie : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        rigidbody.velocity = Vector2.zero;
         if (stateInfo.normalizedTime >= 0.95&&first)
         {
+           
             first=false;
             if(para.deathBulletMode!=null)
                 Instantiate(para.deathBulletMode, transform.position, Quaternion.identity);
