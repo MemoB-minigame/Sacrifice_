@@ -636,7 +636,7 @@ MonoBehaviour:
   jump: 1
   interval: 0.384
   hpCost: 1
-  deflectionAngle: 5
+  deflectionAngle: 1
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
   virtualCamerainGun: {fileID: 0}
   Fortest: 1

@@ -32,7 +32,8 @@ public class EnemyShooterController : Enemy_Shooter_Parameters
             GameObject bullet = ObjectPool.Instance.GetObject(attackBulletMode);
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.identity;
-            bullet.transform.right = direction;
+            //bullet.transform.right = direction;
+            bullet.SendMessage("SetBulletD", direction);
             shootCount++;
             animator.Play("Maneuver");
         }
@@ -46,7 +47,8 @@ public class EnemyShooterController : Enemy_Shooter_Parameters
             GameObject bullet = ObjectPool.Instance.GetObject(attackBulletMode);
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.identity;
-            bullet.transform.right = direction;
+            //bullet.transform.right = direction;
+            bullet.SendMessage("SetBulletD", direction);
             shootCount++;
         }
     }

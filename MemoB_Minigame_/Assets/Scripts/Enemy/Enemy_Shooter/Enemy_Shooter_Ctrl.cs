@@ -10,22 +10,26 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
     BuffManager buffManager;
     GameObject player;
     Animator animator;
-    Enemy_Shooter_Parameters param;
-
-
+    [Header("µÐÈË×´Ì¬")]
+    [SerializeField]int hp;
+    
     public int HP
     {
         get
         {
-            return param.Hp;
+            return hp;
         }
         set
         {
-            if (value < param.Hp && value != 0)
+            if (value < hp && value != 0)
                 if(ifHasHurtAni)
                     SendMessage("HurtAni");
-            param.Hp = value;
-            if (firstDie && param.Hp <= 0) Die();
+            hp = value;
+            if (hp <= 0 && firstDie) 
+            {
+                firstDie = false;
+                Die(); 
+            }
         }
         
     }
@@ -35,12 +39,10 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
         buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();
-        param = GetComponent<Enemy_Shooter_Parameters>();
     }
 
     void Die()
     {
-        firstDie = false;
         animator.SetTrigger("Die");
         buffManager.ifLastBulletKills = true;
     }
