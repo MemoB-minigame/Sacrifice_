@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
+using Kurisu.TimeControl;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private Animator m_Animator;
     private SpriteRenderer m_SpriteRenderer;
+    private Animator animator;
 
     //Parameters
     [SerializeField] private float xMoveInputDirection;
@@ -98,7 +101,7 @@ public class PlayerController : MonoBehaviour
                 canSkill = true;
                 buff_2.color = Color.yellow;
             }
-            else if (hp < 0)
+            else if (hp < 0 && isLife)
             {
                 isLife = false;
                 Dead();
@@ -114,6 +117,7 @@ public class PlayerController : MonoBehaviour
         m_Rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         m_Animator = gameObject.GetComponent<Animator>();
         m_SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
 
         revolverBullet_Prefab = Resources.Load<GameObject>("Projectiles/Player/RevolverBullet");
 
@@ -132,11 +136,25 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
+        if (!isLife)
+        {
+            if (TimeController.instance.CurrentState == TimeController.TimeState.正常)
+            {
+                ObjectPool.Instance.ClearDictionary();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Refresh(); 
+            }
+            return;
+        }
+        if (isLife && TimeController.instance.CurrentState == TimeController.TimeState.正常)
+        {
+            TimeController.Instance.RecordAll();
+        }
         invincibleTimer-=Time.deltaTime;invincibleTimer=invincibleTimer>0?invincibleTimer:0;//更新剩余无敌时间
         if ((!dialogPanelController.isSpeaking && playableDirector.state != PlayState.Playing)||forTest)
         {
@@ -145,10 +163,7 @@ public class PlayerController : MonoBehaviour
         }
 
         mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Time.timeScale = 0;
-        }
+
     }
 
     private void CheckInput()
@@ -217,7 +232,8 @@ public class PlayerController : MonoBehaviour
 
     private void Dead()
     {
-        GameObject.Destroy(gameObject);
+        TimeController.Instance.RecallAll();
+        isLife = false;
     }
     public void HurtRecoilForce(float vol,Vector2 direction)
     {
@@ -265,5 +281,12 @@ public class PlayerController : MonoBehaviour
         m_SpriteRenderer.color = Color.white;
         invincibleTimer = 0;
         yield break;
+    }
+
+    private void Refresh()
+    {
+        hp = 24;
+        isLife = true;
+        TimeController.Instance.RecordAll();
     }
 }

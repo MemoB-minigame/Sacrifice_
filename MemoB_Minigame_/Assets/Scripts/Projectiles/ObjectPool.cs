@@ -48,4 +48,9 @@ public class ObjectPool
         objectPool[_name].Enqueue(prefab);
         prefab.SetActive(false);
     }
+
+    public void ClearDictionary()
+    {
+        objectPool.Clear();
+    }
 }

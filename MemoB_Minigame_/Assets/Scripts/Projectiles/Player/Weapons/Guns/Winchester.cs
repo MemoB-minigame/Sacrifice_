@@ -18,11 +18,14 @@ public class Winchester : Gun
     protected override void Start()
     {
         base.Start();
+        virtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        post = transform.Find("Sight").gameObject;
         transposer = virtualCamera.GetComponent<CinemachineTransposer>();
         bigPoint = transform.Find("BigPoint").gameObject;
         animator = GetComponent<Animator>();        
         aniMuzzle = transform.Find("AniMuzzle").GetComponent<Animator>();
     }
+
     protected override void Update()
     {
         base.Update();

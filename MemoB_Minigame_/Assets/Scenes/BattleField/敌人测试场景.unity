@@ -39179,29 +39179,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8485589276460293940, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8485589277168735198, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
-      propertyPath: virtualCamerainGun
-      value: 
-      objectReference: {fileID: 516437293}
-    - target: {fileID: 8485589277526296659, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
-      propertyPath: post
-      value: 
-      objectReference: {fileID: 2017590317}
-    - target: {fileID: 8485589277526296659, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
-      propertyPath: virtualCamera
-      value: 
-      objectReference: {fileID: 516437293}
-    - target: {fileID: 8485589277526296659, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
-      propertyPath: virtualCamerainGun
-      value: 
-      objectReference: {fileID: 516437293}
-    - target: {fileID: 8485589278211018100, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
-      propertyPath: virtualCamerainGun
-      value: 
-      objectReference: {fileID: 516437293}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
