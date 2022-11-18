@@ -145,3 +145,14 @@ BattleField/Topography: 带有障碍物的地形示例
 2022.11.18 01:26
 
 - 新增第3关战斗关卡地图场景`L3_1~L3_4`。
+
+2022.11.18 17:16
+
+- 新增第3关战斗关卡地图场景`L3_5~L3_8`。
+- 新增死亡回溯功能。
+- 新增死亡回溯扫描线全屏特效。
+
+2022.11.18 17:52
+
+- 类成员变量分配规范化，删除了`Enemy_Shooter_Ctrl`中的成员`hp`，现统一使用`Enemy_Shooter_Parameters`中的`Hp`。
+- 删除了`Enemy_Shooter_Parameters`中无用的`alertTrigger`，并移除所有引用。

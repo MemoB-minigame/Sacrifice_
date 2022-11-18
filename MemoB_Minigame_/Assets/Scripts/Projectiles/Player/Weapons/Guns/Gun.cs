@@ -55,8 +55,12 @@ public class Gun : MonoBehaviour
         originShakeAmplitude = impulse.m_ImpulseDefinition.m_AmplitudeGain;
         originShakeFrequency = impulse.m_ImpulseDefinition.m_FrequencyGain;
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
+        if (virtualCamerainGun is null)
+        {
+            virtualCamerainGun = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        }
         if (virtualCamerainGun.m_Lens.OrthographicSize > 7)
         {
             StartCoroutine(ReturnSmallSize(10));

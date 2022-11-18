@@ -78,6 +78,7 @@ public class Enemy_Bullet_Basic : MonoBehaviour
     }
     protected virtual void Track()
     {
+        if (trackTarget == null) { return; }
         Vector2 dirToTarget = (trackTarget.position - transform.position).normalized;
         transform.right = Vector2.Lerp(transform.right, dirToTarget, trackPower*Time.deltaTime).normalized;
     }

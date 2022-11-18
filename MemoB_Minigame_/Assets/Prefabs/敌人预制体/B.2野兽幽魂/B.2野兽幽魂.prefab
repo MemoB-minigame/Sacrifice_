@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7659119eed4f5c43ad11c5c02052745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
+  ifHasHurtAni: 0
 --- !u!114 &1574046424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
   rebornPos: {x: 0, y: 0, z: 0}
   border:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   wanderSpeed: 2
   alertMoveSpeed: 4
   shootMoveSpeed: 0.5
@@ -238,4 +238,4 @@ MonoBehaviour:
   regeneration: 3
   regenerationPrefab: {fileID: 1640573038229508813, guid: 2d15d08663303f240a2cda815667bde7, type: 3}
   fireAni: {fileID: 6615212397253338131, guid: 8fd4e0a08018d6a4b8297a098fede1bf, type: 3}
-  alertTrigger: 0
+  alertTrigger: 1
