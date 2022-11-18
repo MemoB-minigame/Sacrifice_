@@ -223,7 +223,7 @@ MonoBehaviour:
     m_Bits: 64
   wanderSpeed: 2
   alertMoveSpeed: 4
-  shootMoveSpeed: 0.5
+  shootMoveSpeed: 1
   alertDistance: 10
   wanderRadius: 10
   wanderDistanceLowerBound: 4
