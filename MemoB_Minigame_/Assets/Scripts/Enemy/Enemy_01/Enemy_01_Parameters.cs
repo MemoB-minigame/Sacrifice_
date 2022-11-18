@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy_01_Parameters : MonoBehaviour
 {
+    
     [Header("Ç½±Ú")]
     public LayerMask border;
     private void Start()
@@ -35,7 +36,7 @@ public class Enemy_01_Parameters : MonoBehaviour
         public float alertDistance;
         public float retainDistance;
         public float aggressDistance;
-        public float dashDistanceMultuplier;
+        public float dashDistanceMultiplier;
     }
     [System.Serializable]
     public struct Time
@@ -52,6 +53,7 @@ public class Enemy_01_Parameters : MonoBehaviour
         public float attackDamage;
         public int Hp;
         public float regeneration;
+        public GameObject regenerationPrefab;
     }
     [NonSerialized]public GameObject Player;
     public bool alertTrigger;

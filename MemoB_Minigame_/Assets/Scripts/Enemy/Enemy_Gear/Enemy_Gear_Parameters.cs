@@ -40,6 +40,7 @@ public class Enemy_Gear_Parameters : MonoBehaviour
         public GameObject deathBulletMode;
         public int Hp;
         public int regeneration;
+        public GameObject regenerationPrefab;
     }
     [NonSerialized] public GameObject Player;
     public bool alertTrigger;

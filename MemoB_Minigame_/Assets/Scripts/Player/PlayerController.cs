@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
+using Kurisu.TimeControl;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,11 +13,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private Animator m_Animator;
     private SpriteRenderer m_SpriteRenderer;
+    private Animator animator;
 
     //Parameters
     [SerializeField] private float xMoveInputDirection;
     [SerializeField] private float yMoveInputDirection;
     [SerializeField] private float attack;
+    
 
     //[SerializeField] private float revolverBulletSpeed; 挪动到武器里
 
@@ -39,27 +43,49 @@ public class PlayerController : MonoBehaviour
     private Image buff_1;
     private Image buff_2;
     private SmallHP smallHP;
+    
 
     public DialogPanelController dialogPanelController;
     private Vector2 mousePositionWorld;
 
     public PlayableDirector playableDirector;
+    //无敌时间
+    [SerializeField] float invincibleDuration=1.5f;
+    private float invincibleTimer;
+    public bool hurtByWeapon=false;//若是因为武器掉血则角色不闪动
+
+    [Header("测试选项")]
+    [SerializeField] bool forTest;
 
     public int HP
     {
         get { return hp; }
-        set 
-        { 
+        set
+        {
+
+            if (invincibleTimer == 0&&value<hp)//如果无敌时间已经没了
+            {
+                if (!hurtByWeapon)//若是因为武器掉血则角色不闪动
+                {
+                    invincibleTimer = invincibleDuration;
+                    StartCoroutine(Hurt());
+                }
+                else
+                    hurtByWeapon = false;
+            }
+
+
+            //更新血条
             hp = value;
             smallHP.Player_HP = value;  //更新小血条
-            //hpNum.text = string.Format("{0:D2}", hp);
+                                        //hpNum.text = string.Format("{0:D2}", hp);
             hpSlider.fillAmount = 1 / 24.0f * hp;
 
-            if (hp > 18)
+            if (hp > 20)
             {
                 buff_0.color = Color.white;
             }
-            else if (hp <= 18 && hp > 12)
+            else if (hp <= 16 && hp > 12)
             {
                 buff_0.color = Color.yellow;
                 buff_1.color = Color.white;
@@ -75,11 +101,13 @@ public class PlayerController : MonoBehaviour
                 canSkill = true;
                 buff_2.color = Color.yellow;
             }
-            else if (hp < 0)
+            else if (hp < 0 && isLife)
             {
                 isLife = false;
                 Dead();
             }
+
+
         }
     }
 
@@ -89,6 +117,7 @@ public class PlayerController : MonoBehaviour
         m_Rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         m_Animator = gameObject.GetComponent<Animator>();
         m_SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
 
         revolverBullet_Prefab = Resources.Load<GameObject>("Projectiles/Player/RevolverBullet");
 
@@ -101,22 +130,41 @@ public class PlayerController : MonoBehaviour
         dialogPanelController = GameObject.Find("DialogCanvas/DialogPanel").GetComponent<DialogPanelController>();
 
         playableDirector = GameObject.Find("TimelineManager").GetComponent<PlayableDirector>();
+
+        invincibleTimer = 0f;
     }
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        if (!dialogPanelController.isSpeaking && playableDirector.state != PlayState.Playing)
+        if (!isLife)
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            if (TimeController.instance.CurrentState == TimeController.TimeState.正常)
+            {
+                ObjectPool.Instance.ClearDictionary();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Refresh(); 
+            }
+            return;
+        }
+        if (isLife && TimeController.instance.CurrentState == TimeController.TimeState.正常)
+        {
+            TimeController.Instance.RecordAll();
+        }
+        invincibleTimer-=Time.deltaTime;invincibleTimer=invincibleTimer>0?invincibleTimer:0;//更新剩余无敌时间
+        if ((!dialogPanelController.isSpeaking && playableDirector.state != PlayState.Playing)||forTest)
         {
             CheckInput();
             CheckMovementDirection();
         }
 
         mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
     }
 
     private void CheckInput()
@@ -185,6 +233,61 @@ public class PlayerController : MonoBehaviour
 
     private void Dead()
     {
-        GameObject.Destroy(gameObject);
+        TimeController.Instance.RecallAll();
+        isLife = false;
+    }
+    public void HurtRecoilForce(float vol,Vector2 direction)
+    {
+        if (invincibleTimer == 0)
+            StartCoroutine(Recoil(vol, direction));
+    }
+    public void HurtRecoilForceSpider(Vector2 direction)
+    {
+        if(invincibleTimer==0)
+            StartCoroutine(Recoil(1f, direction));
+    }
+    IEnumerator Recoil(float vol,Vector2 direction)
+    {
+        float hard=1;
+        float smooth=1;
+        for (int i = 1; i <= 2; i++)
+        {
+            transform.Translate(direction / 8 * hard*vol);
+            yield return new WaitForFixedUpdate();
+        }
+        for (int i = 1; i <= 6; i++)
+        {
+            transform.Translate(direction / 24 * smooth*vol);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    IEnumerator Hurt()
+    {
+        int tmp = 0;
+        while (invincibleTimer > 0)
+        {
+            if (tmp == 0)
+            {
+                tmp = 1;
+                m_SpriteRenderer.color = Color.black;
+            }
+            else if (tmp == 1)
+            {
+                tmp = 0;
+                m_SpriteRenderer.color = Color.white;
+            }
+            yield return new WaitForSecondsRealtime(0.1f);
+            invincibleTimer -= Time.deltaTime;
+        }
+        m_SpriteRenderer.color = Color.white;
+        invincibleTimer = 0;
+        yield break;
+    }
+
+    private void Refresh()
+    {
+        hp = 24;
+        isLife = true;
+        TimeController.Instance.RecordAll();
     }
 }

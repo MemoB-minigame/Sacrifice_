@@ -13,14 +13,19 @@ public class Winchester : Gun
     GameObject bigPoint;
     Animator animator,aniMuzzle;
     LayerMask layerMask;
+    // ”“∞∑≈¥Û
+    bool ifBecomeBig = false;
     protected override void Start()
     {
         base.Start();
+        virtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        post = transform.Find("Sight").gameObject;
         transposer = virtualCamera.GetComponent<CinemachineTransposer>();
         bigPoint = transform.Find("BigPoint").gameObject;
         animator = GetComponent<Animator>();        
         aniMuzzle = transform.Find("AniMuzzle").GetComponent<Animator>();
     }
+
     protected override void Update()
     {
         base.Update();
@@ -28,21 +33,26 @@ public class Winchester : Gun
         
         
     }
+    private void OnDisable()
+    {
+        ifBecomeBig = false;
+    }
     protected override void Fire()
     {
         timer += Time.deltaTime;
         if (Input.GetMouseButtonDown(0) && Controller.isLife && timer >= interval && Controller.HP - hpCost >= 0)
         {
             timer = 0;
+            Controller.hurtByWeapon = true;
             Controller.HP -= hpCost;
-            float randomFireAngel;
-            randomFireAngel = Random.Range(deflectionAngel, deflectionAngel);
-            direction = Quaternion.AngleAxis(randomFireAngel, Vector3.forward) * direction;
+            float randomFireAngle;
+            randomFireAngle = Random.Range(deflectionAngle, deflectionAngle);
+            direction = Quaternion.AngleAxis(randomFireAngle, Vector3.forward) * direction;
 
             GameObject bullet=ObjectPool.Instance.GetObject(bullet_Prefab);
             bullet.transform.position = muzzle.position;
             bullet.transform.rotation = Quaternion.identity;
-            bullet.GetComponent<PlayerBullet>().SetBullet(bulletDamage, bulletSpeed, direction);
+            bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, direction);
 
             // bullet bullet = Instantiate<GameObject>(bullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<bullet>();
             StartCoroutine(PlayFireAni());
@@ -55,9 +65,11 @@ public class Winchester : Gun
 
     void Aim()
     {
+        
         if (Input.GetMouseButtonDown(1))
         //if (Input.GetKeyDown(KeyCode.J))
         {
+            ifBecomeBig = true;
             //bigPoint.transform.position = post.transform.position;
             bigPoint.transform.position = new Vector3(direction.x,direction.y,0)*6.5f + Player.transform.position;
             virtualCamera.Follow = bigPoint.transform;
@@ -67,9 +79,10 @@ public class Winchester : Gun
             
             Debug.Log("Post");
         }
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1)&&ifBecomeBig)
         //if (Input.GetKeyUp(KeyCode.J))
         {
+            ifBecomeBig=false;
             virtualCamera.Follow = Player.transform;
             post.GetComponent<Sight>().sensitivity = 1;
             StartCoroutine(ReturnSmallSize(10));

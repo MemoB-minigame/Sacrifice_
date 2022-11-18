@@ -6,6 +6,7 @@ public class Enemy_Gear_Ctrl : MonoBehaviour
 {
     [SerializeField]private int hp;
     private Animator animator;
+    private BuffManager buffManager;
     public int Hp
     {
         get { return hp; }
@@ -20,25 +21,20 @@ public class Enemy_Gear_Ctrl : MonoBehaviour
     {
         hp = GetComponent<Enemy_Gear_Parameters>().attribute.Hp;
         animator = GetComponent<Animator>();
-    }
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        animator.SetInteger("Hp", hp);
+        buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            animator.SetTrigger("BeAttacked");
+            Debug.Log(collision.gameObject.GetComponent<PlayerBullet>().Damage);
             Hp -= collision.gameObject.GetComponent<PlayerBullet>().Damage;
         }
     }
     void Die()
     {
-        Destroy(gameObject);
+        buffManager.ifLastBulletKills = true;
+        animator.SetTrigger("Die");
     }
 }

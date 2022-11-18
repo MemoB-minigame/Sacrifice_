@@ -7,6 +7,7 @@ public class Enemy_Gear_Shoot : StateMachineBehaviour
     GameObject enemy;
     Transform transform;
     Enemy_Gear_Parameters para;
+    Rigidbody2D rigidbody;
     bool transition;
 
     private float shootTimer;
@@ -14,6 +15,7 @@ public class Enemy_Gear_Shoot : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         para = animator.GetComponent<Enemy_Gear_Parameters>();
+        rigidbody=animator.GetComponent<Rigidbody2D>();
         enemy = animator.gameObject;
         transform = animator.transform;
         transition = true;
@@ -24,6 +26,14 @@ public class Enemy_Gear_Shoot : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (Vector3.Distance(transform.position, para.Player.transform.position) > 0.1f)
+        {
+            rigidbody.velocity = (para.Player.transform.position - transform.position).normalized * para.speed.moveSpeed;
+        }
+        else
+        {
+            rigidbody.velocity = Vector2.zero;
+        }
         if (shootCount < para.time.shootRound)
         {
             shootTimer+=Time.deltaTime;

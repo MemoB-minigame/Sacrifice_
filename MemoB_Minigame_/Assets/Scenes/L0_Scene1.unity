@@ -670,10 +670,11 @@ MonoBehaviour:
   jump: 1
   interval: 0.625
   hpCost: 1
-  deflectionAngel: 5
+  deflectionAngle: 5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
+  Fortest: 0
   bulletNum: 4
-  bulletAngel: 5
+  bulletAngle: 0
 --- !u!212 &338898352
 SpriteRenderer:
   m_ObjectHideFlags: 0

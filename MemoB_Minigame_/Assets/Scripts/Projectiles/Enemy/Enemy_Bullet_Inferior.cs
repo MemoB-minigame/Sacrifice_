@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Bullet_Inferior : Enemy_Bulllet_Basic
+public class Enemy_Bullet_Inferior : Enemy_Bullet_Basic
 {
     [Header("偏移角度")]
-    [SerializeField] float inferiorBulletAngel;
+    [SerializeField] float inferiorBulletAngle;
     [Header("子弹基底")]
     [SerializeField] GameObject inferiorBulletMode;
 
@@ -14,7 +14,7 @@ public class Enemy_Bullet_Inferior : Enemy_Bulllet_Basic
         Debug.Log("Collision happens");
         if (collision.gameObject.CompareTag("Border") && blockable)//FIXME: 更换为墙壁的tag
         {
-            Vector2 inferiorDirection = Quaternion.AngleAxis(inferiorBulletAngel, Vector3.forward) * transform.right;
+            Vector2 inferiorDirection = Quaternion.AngleAxis(inferiorBulletAngle, Vector3.forward) * transform.right;
             GameObject bullet = ObjectPool.Instance.GetObject(inferiorBulletMode);
             bullet.transform.position = transform.position;
             bullet.transform.right = inferiorDirection; 

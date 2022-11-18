@@ -23,7 +23,7 @@ public class Enemy_01_Attack : StateMachineBehaviour
         transition = true;
         dashTimer = 0;
         /*--------------------------------≥ı ºªØ--------------------------------------*/
-        targetPosition = Enemy.transform.position + parameters.distance.dashDistanceMultuplier * (parameters.Player.transform.position - Enemy.transform.position);
+        targetPosition = Enemy.transform.position + parameters.distance.dashDistanceMultiplier * (parameters.Player.transform.position - Enemy.transform.position);
         targetPosition.z = 0;
         direction = (targetPosition - Enemy.transform.position).normalized;
         rigidbody.velocity = direction * parameters.speed.dashSpeed;

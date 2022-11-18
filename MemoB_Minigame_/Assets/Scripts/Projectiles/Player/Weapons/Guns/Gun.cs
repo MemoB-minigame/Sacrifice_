@@ -8,39 +8,77 @@ using UnityEngine.Playables;
 
 public class Gun : MonoBehaviour
 {
+    
     protected float timer=10;//计时器
     protected Vector2 direction;//发射方向
     protected PlayerController  Controller;
     protected Transform muzzle;
     protected GameObject Player;
 
-    [SerializeField] protected int bulletDamage=1;
-    [SerializeField]protected float bulletSpeed;//子弹速度
+    [SerializeField] protected int bulletDamage=1;//原本的子弹伤害
+    [SerializeField] protected int finalBulletDamage;//计算完buff后的子弹伤害
+    [SerializeField] protected float bulletSpeed;//子弹速度
     [SerializeField] protected float hardRecoilForce=1;//前半段较为快速的后座力
     [SerializeField] protected float smoothRecoilForce=1;//后半段较为缓和的后坐力
     [SerializeField] protected float jump;//后坐力人物上移
     [SerializeField] protected float interval=0.384f;//发射间隔
     [SerializeField] protected int hpCost = 1;
-    [SerializeField] protected float deflectionAngel = 5f;
-    [SerializeField]protected GameObject bullet_Prefab;
+    [SerializeField] protected float deflectionAngle = 5f;
+    [SerializeField] protected GameObject bullet_Prefab;
+
+    [SerializeField] CinemachineVirtualCamera virtualCamerainGun;
     CinemachineImpulseSource impulse;//屏幕震动
 
     protected Vector2 mousePos;//鼠标位置
-    
+
+    //buff
+    private BuffManager buffManager;
+    private float damageMutiple=1;
+    private float originShakeAmplitude;
+    private float originShakeFrequency;
 
     float flipY,flipX;//枪支上下翻转
+    [Header("测试选项")]//FIXME:记得去除这个
+    [SerializeField] bool Fortest;
     protected virtual void Start()
     {
+        virtualCamerainGun = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();
         Player = GameObject.Find("Player");
-        flipX=transform.localScale.x;
-        flipY = transform.localScale.y;
         Controller=Player.GetComponent<PlayerController>();
         muzzle=transform.Find("Muzzle");
-        impulse=GetComponent<CinemachineImpulseSource>();   
+
+        flipX=transform.localScale.x;
+        flipY = transform.localScale.y;
+
+        impulse=GetComponent<CinemachineImpulseSource>();
+        originShakeAmplitude = impulse.m_ImpulseDefinition.m_AmplitudeGain;
+        originShakeFrequency = impulse.m_ImpulseDefinition.m_FrequencyGain;
+    }
+    protected virtual void OnEnable()
+    {
+        if (virtualCamerainGun is null)
+        {
+            virtualCamerainGun = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        }
+        if (virtualCamerainGun.m_Lens.OrthographicSize > 7)
+        {
+            StartCoroutine(ReturnSmallSize(10));
+        }
+    }
+    IEnumerator ReturnSmallSize(int damping)
+    {
+        float perAdd = (7f- virtualCamerainGun.m_Lens.OrthographicSize) / damping;
+        for (int i = 1; i <= damping; i++)
+        {
+            virtualCamerainGun.m_Lens.OrthographicSize += perAdd;
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     protected virtual void Update()
     {
+        CheckBuffs();
         Shoot();
         Fire();
     }
@@ -50,7 +88,7 @@ public class Gun : MonoBehaviour
         mousePos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = (mousePos-(new Vector2(transform.position.x, transform.position.y))).normalized;
 
-        if (!Controller.dialogPanelController.isSpeaking && Controller.playableDirector.state != PlayState.Playing)  //过场动画时枪不朝向鼠标
+        if (Fortest||(!Controller.dialogPanelController.isSpeaking && Controller.playableDirector.state != PlayState.Playing))  //过场动画时枪不朝向鼠标
         {
             transform.right = direction;
         }
@@ -70,22 +108,45 @@ public class Gun : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && Controller.isLife&&timer>=interval&&Controller.HP-hpCost>=0 && !Controller.dialogPanelController.isSpeaking && Controller.playableDirector.state != PlayState.Playing)
         {
             timer=0;
+            Controller.hurtByWeapon = true;
             Controller.HP-=hpCost;
-            float randomFireAngel;
-            randomFireAngel = Random.Range(deflectionAngel, deflectionAngel);
-            direction = Quaternion.AngleAxis(randomFireAngel, Vector3.forward) * direction;
+            float randomFireAngle;
+            randomFireAngle = Random.Range(deflectionAngle, deflectionAngle);
+            direction = Quaternion.AngleAxis(randomFireAngle, Vector3.forward) * direction;
             GameObject bullet = ObjectPool.Instance.GetObject(bullet_Prefab);
             bullet.transform.position = muzzle.position;
             bullet.transform.rotation = Quaternion.identity;
-            bullet.GetComponent<PlayerBullet>().SetBullet(bulletDamage, bulletSpeed, direction);
+            bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, direction);
 
             RecoilForce();
         }
     }
+    protected virtual void CheckBuffs()
+    {
+        if (buffManager.ifLastBulletKills && buffManager.buffs[3])
+        {
+            buffManager.ifLastBulletKills = false;
+            finalBulletDamage = bulletDamage *buffManager.damageMutiple;
+
+            impulse.m_ImpulseDefinition.m_AmplitudeGain = originShakeAmplitude*buffManager.amplitudeGainMutiple;
+            impulse.m_ImpulseDefinition.m_FrequencyGain = originShakeFrequency*buffManager.frequencyGainMutiple;
+        }
+        else if (!buffManager.buffs[3])
+        {
+            buffManager.ifLastBulletKills = false;
+            finalBulletDamage = bulletDamage;
+            impulse.m_ImpulseDefinition.m_AmplitudeGain = originShakeAmplitude;
+            impulse.m_ImpulseDefinition.m_FrequencyGain = originShakeFrequency;
+        }
+    }
     protected virtual void RecoilForce()
     {
-            impulse.GenerateImpulse();
-            StartCoroutine(Recoil(hardRecoilForce,smoothRecoilForce));
+        finalBulletDamage = bulletDamage;
+
+        impulse.GenerateImpulse();
+        impulse.m_ImpulseDefinition.m_AmplitudeGain = originShakeAmplitude;
+        impulse.m_ImpulseDefinition.m_FrequencyGain = originShakeFrequency;
+        StartCoroutine(Recoil(hardRecoilForce, smoothRecoilForce));
     }
     IEnumerator Recoil(float hard,float smooth)
     {
@@ -102,4 +163,6 @@ public class Gun : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+
+    public bool IsDamageBoosted() { return finalBulletDamage > bulletDamage; }
 }

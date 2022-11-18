@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Bullet_Queue : Enemy_Bulllet_Basic
+public class Enemy_Bullet_Queue : Enemy_Bullet_Basic
 {
     [Header("◊”µØ…Ë÷√")]
     [SerializeField] GameObject bulletMode;
