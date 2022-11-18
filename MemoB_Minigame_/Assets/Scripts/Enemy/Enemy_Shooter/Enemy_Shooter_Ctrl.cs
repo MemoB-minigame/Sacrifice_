@@ -25,7 +25,7 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
                 if(ifHasHurtAni)
                     SendMessage("HurtAni");
             param.Hp = value;
-            if (param.Hp <= 0) Die();
+            if (firstDie && param.Hp <= 0) Die();
         }
         
     }
@@ -40,6 +40,7 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
 
     void Die()
     {
+        firstDie = false;
         animator.SetTrigger("Die");
         buffManager.ifLastBulletKills = true;
     }

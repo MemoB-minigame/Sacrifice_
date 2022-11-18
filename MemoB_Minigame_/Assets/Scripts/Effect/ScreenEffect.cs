@@ -142,7 +142,7 @@ public class ScreenEffect : MonoBehaviour
         effectMaterial.SetFloat("_NoiseScale", 8f);
         effectMaterial.SetFloat("_NoiseSpeed", 0.4f);
         effectMaterial.SetFloat("_ScanLineSpeed", 0.1f);
-        effectMaterial.SetFloat("_ScanLineFreq", 560f);
+        effectMaterial.SetFloat("_ScanLineFreq", 1800f);
     }
 
     void SetEffectNOBUFF()
