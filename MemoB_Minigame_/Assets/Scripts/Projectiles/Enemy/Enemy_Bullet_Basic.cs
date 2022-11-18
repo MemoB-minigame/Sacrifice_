@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Enemy_Bullet_Basic : MonoBehaviour
 {
+    Collider2D collider;
+
     [Header("基本设置")]
     [SerializeField] protected float speed;             // 弹道速度
     [SerializeField] protected float prepareDuration;   // 弹幕准备时间，准备时间内弹幕不移动
@@ -52,6 +54,7 @@ public class Enemy_Bullet_Basic : MonoBehaviour
 
     protected virtual void Awake()
     {
+        collider = GetComponent<Collider2D>();
         trackTarget = GameObject.Find("Player").transform;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
@@ -96,6 +99,11 @@ public class Enemy_Bullet_Basic : MonoBehaviour
             speed = pack.speed;
         if(pack.inheritTrackPower)
             trackPower = pack.trackPower;
+
+    }
+    protected virtual void SetBulletD(Vector3 _direction)
+    {
+        transform.right = _direction;
     }
     protected virtual bool Prepare()
     {
