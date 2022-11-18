@@ -630,6 +630,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 618410219}
     m_Modifications:
+    - target: {fileID: 5502627208115412250, guid: 2f053e7e729da5243a818836ce15128f, type: 3}
+      propertyPath: distance.alertDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502627208115412250, guid: 2f053e7e729da5243a818836ce15128f, type: 3}
+      propertyPath: distance.wanderDistanceLowerBound
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502627208115412250, guid: 2f053e7e729da5243a818836ce15128f, type: 3}
+      propertyPath: distance.wanderDistanceUpperBound
+      value: 1.78
+      objectReference: {fileID: 0}
     - target: {fileID: 5502627208115412253, guid: 2f053e7e729da5243a818836ce15128f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -8284,6 +8296,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 618410219}
     m_Modifications:
+    - target: {fileID: 5502627208115412250, guid: 2f053e7e729da5243a818836ce15128f, type: 3}
+      propertyPath: distance.alertDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502627208115412250, guid: 2f053e7e729da5243a818836ce15128f, type: 3}
+      propertyPath: distance.wanderDistanceLowerBound
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502627208115412250, guid: 2f053e7e729da5243a818836ce15128f, type: 3}
+      propertyPath: distance.wanderDistanceUpperBound
+      value: 1.54
+      objectReference: {fileID: 0}
     - target: {fileID: 5502627208115412253, guid: 2f053e7e729da5243a818836ce15128f, type: 3}
       propertyPath: m_RootOrder
       value: 1
