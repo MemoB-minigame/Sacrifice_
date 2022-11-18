@@ -8,7 +8,8 @@ public class Winchester : Gun
     [SerializeField] CinemachineVirtualCamera virtualCamera;
     [SerializeField] GameObject post;
     [SerializeField] float bigSize=2f;
-    
+    [SerializeField] protected AudioSource reloadSoundEffect;
+
     CinemachineTransposer transposer;
     GameObject bigPoint;
     Animator animator,aniMuzzle;
@@ -18,11 +19,14 @@ public class Winchester : Gun
     protected override void Start()
     {
         base.Start();
+        virtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        post = transform.Find("Sight").gameObject;
         transposer = virtualCamera.GetComponent<CinemachineTransposer>();
         bigPoint = transform.Find("BigPoint").gameObject;
         animator = GetComponent<Animator>();        
         aniMuzzle = transform.Find("AniMuzzle").GetComponent<Animator>();
     }
+
     protected override void Update()
     {
         base.Update();
@@ -54,7 +58,7 @@ public class Winchester : Gun
             // bullet bullet = Instantiate<GameObject>(bullet_Prefab, muzzle.position, Quaternion.identity).GetComponent<bullet>();
             StartCoroutine(PlayFireAni());
             RecoilForce();
-
+            fireSoundEffect.Play();
         }
 
     }
@@ -114,7 +118,7 @@ public class Winchester : Gun
         }
         aniMuzzle.gameObject.SetActive(false);
         animator.SetTrigger("Fire");
-
+        reloadSoundEffect.Play();
     }
     
 }

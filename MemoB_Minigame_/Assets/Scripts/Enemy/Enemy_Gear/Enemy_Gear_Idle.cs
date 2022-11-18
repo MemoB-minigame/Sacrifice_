@@ -23,6 +23,9 @@ public class Enemy_Gear_Idle : StateMachineBehaviour
             transition = false;
             animator.SetTrigger("IdleToAlert");
         }
+        if (para.Player.transform.position.x < transform.position.x)
+            transform.right = Vector3.left;
+        else transform.right = Vector3.right;
     }
 
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -11,15 +11,16 @@ public class ScreenEffect : MonoBehaviour
     public UniversalRenderPipelineAsset URPAsset;
     public BuffManager buffManager;
     public WeaponManager weaponManager;
+    public PlayerController playerController;
     private bool screenEffectAvailable;
     private Material effectMaterial;
 
     public enum STATES { NOBUFF, BUFF1, BUFF2, BUFF3 };
-    [SerializeField]private int state = (int)STATES.NOBUFF;
+    [SerializeField]private STATES state = STATES.NOBUFF;
     private Blit blitFeature;
 
     [ColorUsageAttribute(true, true)]
-    public Color[] REFCOLORS = { Color.white, Color.blue, Color.yellow, Color.red };
+    public Color[] REFCOLORS = { Color.white, Color.blue, Color.yellow, Color.red, Color.gray };
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +54,10 @@ public class ScreenEffect : MonoBehaviour
     void Update()
     {
         if (!screenEffectAvailable) { return; }
+        if (!playerController.isLife) { SetEffectDeath(); return; }
         switch (state)
         {
-            case (int)STATES.NOBUFF:
+            case STATES.NOBUFF:
                 {
                     if (buffManager.buffs[3])
                     {
@@ -76,7 +78,7 @@ public class ScreenEffect : MonoBehaviour
                     break;
                 }
 
-            case (int)STATES.BUFF1:
+            case STATES.BUFF1:
                 {
                     if (buffManager.buffs[3])
                     {
@@ -93,7 +95,7 @@ public class ScreenEffect : MonoBehaviour
                     break;
                 }
 
-            case (int)STATES.BUFF2:
+            case STATES.BUFF2:
                 {
                     if (buffManager.buffs[3])
                     {
@@ -110,7 +112,7 @@ public class ScreenEffect : MonoBehaviour
                     break;
                 }
 
-            case (int)STATES.BUFF3:
+            case STATES.BUFF3:
                 {
                     if (buffManager.buffs[3])
                     {
@@ -133,15 +135,25 @@ public class ScreenEffect : MonoBehaviour
         }
     }
 
+    void SetEffectDeath()
+    {
+        blitFeature.SetActive(true);
+        effectMaterial.SetFloat("_FuseMainTex", 1f);
+        effectMaterial.SetFloat("_NoiseScale", 8f);
+        effectMaterial.SetFloat("_NoiseSpeed", 0.4f);
+        effectMaterial.SetFloat("_ScanLineSpeed", 0.1f);
+        effectMaterial.SetFloat("_ScanLineFreq", 1800f);
+    }
+
     void SetEffectNOBUFF()
     {
-        state = (int)STATES.NOBUFF;
+        state = STATES.NOBUFF;
         blitFeature.SetActive(false);
     }
 
     void SetEffectBUFF1()
     {
-        state = (int)STATES.BUFF1;
+        state = STATES.BUFF1;
         blitFeature.SetActive(true);
         effectMaterial.SetFloat("_FullScreenIntensity", 0.2f);
         effectMaterial.SetColor("_Color", REFCOLORS[0]);
@@ -152,11 +164,12 @@ public class ScreenEffect : MonoBehaviour
         effectMaterial.SetFloat("_VignetteRadiusPower", 15f);
         effectMaterial.SetFloat("_Crystallize", 1f);
         effectMaterial.SetFloat("_PixelatedIntensity", 5f);
+        effectMaterial.SetFloat("_FuseMainTex", 0f);
     }
 
     void SetEffectBUFF2()
     {
-        state = (int)STATES.BUFF2;
+        state = STATES.BUFF2;
         blitFeature.SetActive(true);
         effectMaterial.SetFloat("_FullScreenIntensity", 0.4f);
         effectMaterial.SetColor("_Color", REFCOLORS[1]);
@@ -167,11 +180,12 @@ public class ScreenEffect : MonoBehaviour
         effectMaterial.SetFloat("_VignetteRadiusPower", 15f);
         effectMaterial.SetFloat("_Crystallize", 1f);
         effectMaterial.SetFloat("_PixelatedIntensity", 5f);
+        effectMaterial.SetFloat("_FuseMainTex", 0f);
     }
 
     void SetEffectBUFF3()
     {
-        state = (int)STATES.BUFF3;
+        state = STATES.BUFF3;
         blitFeature.SetActive(true);
         if (!weaponManager.GetActiveWeapon().IsDamageBoosted())
         {
@@ -196,5 +210,6 @@ public class ScreenEffect : MonoBehaviour
             effectMaterial.SetFloat("_PixelatedIntensity", 5f);
         }
         effectMaterial.SetFloat("_Crystallize", 0f);
+        effectMaterial.SetFloat("_FuseMainTex", 0f);
     }
 }
