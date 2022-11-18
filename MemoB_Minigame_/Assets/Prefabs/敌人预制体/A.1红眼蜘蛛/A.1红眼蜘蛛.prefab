@@ -151,7 +151,7 @@ MonoBehaviour:
     interruptDuration: 0.5
   attribute:
     attackDamage: 1
-    Hp: 3
+    Hp: 2
     regeneration: 3
     regenerationPrefab: {fileID: 1640573038229508813, guid: 2d15d08663303f240a2cda815667bde7, type: 3}
 --- !u!61 &5502627208115412251
@@ -321,7 +321,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a03c710e18c570241b6d8e02163d9447, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

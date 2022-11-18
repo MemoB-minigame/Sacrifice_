@@ -43,6 +43,7 @@ public class Shotgun : Gun
                 }
             }
             RecoilForce();
+            fireSoundEffect.Play();
         }
 
     }

@@ -81,14 +81,14 @@ Material:
     - _DstBlend: 10
     - _EnableExternalAlpha: 0
     - _FullScreenIntensity: 0.6
-    - _FuseMainTex: 1
+    - _FuseMainTex: 0
     - _NoiseScale: 8
     - _NoiseSpeed: 0.4
     - _PixelatedIntensity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SampleGI: 0
-    - _ScanLineFreq: 560
+    - _ScanLineFreq: 1800
     - _ScanLineSpeed: 0.1
     - _SrcBlend: 5
     - _Surface: 1
