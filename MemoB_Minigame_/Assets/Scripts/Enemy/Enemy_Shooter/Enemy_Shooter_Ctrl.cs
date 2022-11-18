@@ -25,9 +25,9 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
                 if(ifHasHurtAni)
                     SendMessage("HurtAni");
             hp = value;
-            if (hp <= 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Die")) 
+            if (hp <= 0 && firstDie) 
             {
-                Debug.Log("DieDie");
+                firstDie = false;
                 Die(); 
             }
         }

@@ -134,7 +134,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 204fb080aa21ba34e85cd3c079a7c84c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ifHasHurtAni: 0
+  hp: 0
 --- !u!114 &1574046424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,4 +239,3 @@ MonoBehaviour:
   regeneration: 3
   regenerationPrefab: {fileID: 1640573038229508813, guid: 2d15d08663303f240a2cda815667bde7, type: 3}
   fireAni: {fileID: 6615212397253338131, guid: 8fd4e0a08018d6a4b8297a098fede1bf, type: 3}
-  alertTrigger: 1
