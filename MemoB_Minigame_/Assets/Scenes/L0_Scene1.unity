@@ -227,7 +227,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 5d03889a5adc1e74e854d047daa40cef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a4ca6b2a80af43b43b3da59e9207a3e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -664,6 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
+  finalBulletDamage: 0
   bulletSpeed: 30
   hardRecoilForce: 1.5
   smoothRecoilForce: 1.5
@@ -672,6 +673,8 @@ MonoBehaviour:
   hpCost: 1
   deflectionAngle: 5
   bullet_Prefab: {fileID: 9103236499442413924, guid: ef793d4789b77f246ab2776025961cb6, type: 3}
+  fireSoundEffect: {fileID: 0}
+  virtualCamerainGun: {fileID: 0}
   Fortest: 0
   bulletNum: 4
   bulletAngle: 0

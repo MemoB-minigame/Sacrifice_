@@ -176,7 +176,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.020603344, y: 0.006810546}
+  m_Offset: {x: -0.020603359, y: -0.2983458}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -187,7 +187,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7434186, y: 1.6664464}
+  m_Size: {x: 0.7434186, y: 1.0561337}
   m_EdgeRadius: 0
 --- !u!50 &8485589276460293942
 Rigidbody2D:
@@ -858,7 +858,7 @@ MonoBehaviour:
   virtualCamerainGun: {fileID: 0}
   Fortest: 1
   virtualCamera: {fileID: 0}
-  post: {fileID: 4225910174107031389}
+  post: {fileID: 0}
   bigSize: 0.7
   reloadSoundEffect: {fileID: 1102766075166322068}
 --- !u!114 &8485589277526296658

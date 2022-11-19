@@ -48,7 +48,9 @@ public class PlayerController : MonoBehaviour
     public DialogPanelController dialogPanelController;
     private Vector2 mousePositionWorld;
 
+    private GameManager gameManager;
     public PlayableDirector playableDirector;
+
     //无敌时间
     [SerializeField] float invincibleDuration=1.5f;
     private float invincibleTimer;
@@ -129,6 +131,7 @@ public class PlayerController : MonoBehaviour
 
         dialogPanelController = GameObject.Find("DialogCanvas/DialogPanel").GetComponent<DialogPanelController>();
 
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playableDirector = GameObject.Find("TimelineManager").GetComponent<PlayableDirector>();
 
         invincibleTimer = 0f;
@@ -141,30 +144,32 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!isLife)
+        if (!gameManager.isPause)
         {
-            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            if (TimeController.instance.CurrentState == TimeController.TimeState.正常)
+            if (!isLife)
             {
-                ObjectPool.Instance.ClearDictionary();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                Refresh(); 
+                GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                if (TimeController.instance.CurrentState == TimeController.TimeState.正常)
+                {
+                    ObjectPool.Instance.ClearDictionary();
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    Refresh();
+                }
+                return;
             }
-            return;
-        }
-        if (isLife && TimeController.instance.CurrentState == TimeController.TimeState.正常)
-        {
-            TimeController.Instance.RecordAll();
-        }
-        invincibleTimer-=Time.deltaTime;invincibleTimer=invincibleTimer>0?invincibleTimer:0;//更新剩余无敌时间
-        if ((!dialogPanelController.isSpeaking && playableDirector.state != PlayState.Playing)||forTest)
-        {
-            CheckInput();
-            CheckMovementDirection();
-        }
+            if (isLife && TimeController.instance.CurrentState == TimeController.TimeState.正常)
+            {
+                TimeController.Instance.RecordAll();
+            }
+            invincibleTimer -= Time.deltaTime; invincibleTimer = invincibleTimer > 0 ? invincibleTimer : 0;//更新剩余无敌时间
+            if (!dialogPanelController.isSpeaking || forTest)
+            {
+                CheckInput();
+                CheckMovementDirection();
+            }
 
-        mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+            mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
     }
 
     private void CheckInput()
