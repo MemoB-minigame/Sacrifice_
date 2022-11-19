@@ -212,7 +212,7 @@ namespace Kurisu.TimeControl
                     }
                 case TimeState.回溯:
                     {
-                        if (currentCount == 0)//回溯结束调用回溯结束事件
+                        if (currentCount == 0 || stores[0].steps.Count==0)//回溯结束调用回溯结束事件
                         {
                             OnRecallEndEvent?.Invoke();
                             UpdateState(TimeState.正常);
