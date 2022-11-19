@@ -81,17 +81,26 @@ public class Gun : MonoBehaviour
 
     protected virtual void Update()
     {
-        CheckBuffs();
-        Shoot();
-        Fire();
+        //CheckBuffs();
+
+        if (Fortest || (!Controller.dialogPanelController.isSpeaking))  //过场动画时枪不朝向鼠标
+        {
+            //Debug.Log(Controller.dialogPanelController.isSpeaking);
+
+            CheckBuffs();
+            Shoot();
+            Fire();
+        }
+
+        //Shoot();
+        //Fire();
     }
     protected virtual void Shoot()
     {
-        
         mousePos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = (mousePos-(new Vector2(transform.position.x, transform.position.y))).normalized;
 
-        if (Fortest||(!Controller.dialogPanelController.isSpeaking && Controller.playableDirector.state != PlayState.Playing))  //过场动画时枪不朝向鼠标
+        if (Fortest|| !Controller.dialogPanelController.isSpeaking)  //过场动画时枪不朝向鼠标
         {
             transform.right = direction;
         }
@@ -100,7 +109,7 @@ public class Gun : MonoBehaviour
         {
             transform.localScale = new Vector3(flipX, flipY, 1);
         }
-        else
+        else if(mousePos.x <= transform.position.x)
         {
             transform.localScale = new Vector3(flipX, -flipY, 1);
         }
