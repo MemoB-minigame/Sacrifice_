@@ -9,6 +9,8 @@ public class SoundEffectController : MonoBehaviour
     public enum ACTION { MOVE, ATTACK };
     public enum GUN_MOTION { REVOLVER, WINCHESTER, SHOTGUN, RELOAD };
 
+    private int lastAudioSource = -1;
+
     public void PlaySoundEffect(ACTION action)
     {
         if (0 <= (int)action && (int)action < audioSource.Length)
@@ -16,6 +18,7 @@ public class SoundEffectController : MonoBehaviour
             if (audioSource[(int)action] is not null)
             {
                 audioSource[(int)action].Play();
+                lastAudioSource = (int)action;
             }
         }
     }
@@ -27,6 +30,7 @@ public class SoundEffectController : MonoBehaviour
             if (audioSource[(int)motion] is not null)
             {
                 audioSource[(int)motion].Play();
+                lastAudioSource = (int)motion;
             }
         }
     }
@@ -41,7 +45,19 @@ public class SoundEffectController : MonoBehaviour
             if (audioSource[index] is not null)
             {
                 audioSource[index].Play();
+                lastAudioSource = index;
             }
         }
+    }
+
+    public AudioSource GetLastAudioSource()
+    {
+        if (lastAudioSource == -1) return null;
+        return audioSource[lastAudioSource];
+    }
+
+    public int GetLastAudioSourceIndex()
+    {
+        return lastAudioSource;
     }
 }

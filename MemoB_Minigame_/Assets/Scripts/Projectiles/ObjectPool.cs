@@ -52,5 +52,6 @@ public class ObjectPool
     public void ClearDictionary()
     {
         objectPool.Clear();
+        GameObject.Destroy(pool);
     }
 }
