@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 94bcde40f2f776c4584820b985806649
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
     path: Assets/Scenes/XiaScene.unity
     guid: 536d9af1548ae4544aa83e0080a3c0ba
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 94bcde40f2f776c4584820b985806649
   - enabled: 1
     path: Assets/Scenes/L0_Scene1.unity
     guid: 3073097253b1f9b48bad4bcc2dd81a46
@@ -53,4 +53,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/L2/L2_3.unity
     guid: 2e5cc0dfce8c6ea498f804410213a3a2
+  - enabled: 1
+    path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/\u5173\u5361/L3_2\u730E\u4EBA\u4E0E\u730E\u7269.unity"
+    guid: 87ea6060b305c8b4996733bb279f443b
+  - enabled: 1
+    path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/\u5173\u5361/L3_3\u6B67\u9014.unity"
+    guid: 18c6dacf163dc51499fb4b14c58ee05a
+  - enabled: 1
+    path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/\u5173\u5361/L3_4\u591A\u8568\u602A.unity"
+    guid: 0b398e496f20a4345928374a2a3b7286
+  - enabled: 1
+    path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/\u5173\u5361/L3_5\u5929\u7136\u9632\u7EBF.unity"
+    guid: e2f5c3dbd2329ef479dc8ad8f2c77583
+  - enabled: 1
+    path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/\u5173\u5361/L3_6\u4E5D\u5B54\u6CC9.unity"
+    guid: d5e4b7d7b486441428622a1b321abca7
+  - enabled: 1
+    path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/\u5173\u5361/L3_7\u201C\u57CB\u4F0F\u201D.unity"
+    guid: bcba5e1918b59ab43b6b895225c6806d
   m_configObjects: {}
