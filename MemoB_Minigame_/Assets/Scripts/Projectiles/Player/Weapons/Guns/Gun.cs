@@ -15,6 +15,9 @@ public class Gun : MonoBehaviour
     protected Vector2 direction;//发射方向
     protected PlayerController  Controller;
     protected Transform muzzle;
+    protected Animator aniMuzzle;
+    protected Animator muzzleSmoke;
+
     protected GameObject Player;
 
     [SerializeField] protected int bulletDamage=1;//原本的子弹伤害
@@ -53,8 +56,10 @@ public class Gun : MonoBehaviour
         Player = GameObject.Find("Player");
         Controller=Player.GetComponent<PlayerController>();
         muzzle=transform.Find("Muzzle");
+        aniMuzzle = transform.Find("AniMuzzle").GetComponent<Animator>();
+        muzzleSmoke = transform.Find("MuzzleSmoke").GetComponent<Animator>();
 
-        flipX=transform.localScale.x;
+        flipX =transform.localScale.x;
         flipY = transform.localScale.y;
 
         impulse=GetComponent<CinemachineImpulseSource>();
@@ -192,6 +197,18 @@ public class Gun : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+    protected virtual IEnumerator PlayFireAni()
+    {
+        aniMuzzle.gameObject.SetActive(true);
+        while (aniMuzzle.GetCurrentAnimatorStateInfo(0).normalizedTime <= 0.95f)
+        {
+            yield return new WaitForFixedUpdate();
+
+        }
+        aniMuzzle.gameObject.SetActive(false);
+        muzzleSmoke.gameObject.SetActive(true);
+    }
+    
 
     public bool IsDamageBoosted() { return finalBulletDamage > bulletDamage; }
 }

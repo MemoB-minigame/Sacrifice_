@@ -12,7 +12,7 @@ public class Winchester : Gun
 
     CinemachineTransposer transposer;
     GameObject bigPoint;
-    Animator animator,aniMuzzle;
+    Animator animator;
     LayerMask layerMask;
     // ”“∞∑≈¥Û
     bool ifBecomeBig = false;
@@ -24,7 +24,6 @@ public class Winchester : Gun
         transposer = virtualCamera.GetComponent<CinemachineTransposer>();
         bigPoint = transform.Find("BigPoint").gameObject;
         animator = GetComponent<Animator>();        
-        aniMuzzle = transform.Find("AniMuzzle").GetComponent<Animator>();
     }
 
     protected override void Update()
@@ -108,7 +107,7 @@ public class Winchester : Gun
             yield return new WaitForFixedUpdate();
         }
     }
-    IEnumerator PlayFireAni()
+    protected override IEnumerator PlayFireAni()
     {
         aniMuzzle.gameObject.SetActive(true);
         while (aniMuzzle.GetCurrentAnimatorStateInfo(0).normalizedTime <= 0.95f)
