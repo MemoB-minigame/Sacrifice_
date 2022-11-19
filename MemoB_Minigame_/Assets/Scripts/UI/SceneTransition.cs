@@ -19,6 +19,7 @@ public class SceneTransition : MonoBehaviour
 
     public void SceneChange(string toSceneName)
     {
+        ObjectPool.Instance.ClearDictionary();
         SceneManager.LoadScene(toSceneName);
     }
 }
