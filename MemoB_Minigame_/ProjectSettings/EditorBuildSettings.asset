@@ -21,9 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/L0_Scene2.unity
     guid: 53b7ef3b59712134f8f07891f84cd792
   - enabled: 0
-    path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/\u5173\u5361/L3_1\u6B7B\u8005.unity"
-    guid: b7c0dc7774a1b04488249db816256fc6
-  - enabled: 0
     path: "Assets/Scenes/BattleField/\u654C\u4EBA\u6D4B\u8BD5\u573A\u666F.unity"
     guid: 6ebe00080e291044ea2448e945469824
   - enabled: 1
@@ -53,6 +50,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/L2/L2_3.unity
     guid: 2e5cc0dfce8c6ea498f804410213a3a2
+  - enabled: 1
+    path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/\u5173\u5361/L3_1\u6B7B\u8005.unity"
+    guid: b7c0dc7774a1b04488249db816256fc6
   - enabled: 1
     path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/\u5173\u5361/L3_2\u730E\u4EBA\u4E0E\u730E\u7269.unity"
     guid: 87ea6060b305c8b4996733bb279f443b
