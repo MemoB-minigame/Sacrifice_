@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    //public string toSceneName;
+    public string toSceneName;
 
     void Start()
     {
