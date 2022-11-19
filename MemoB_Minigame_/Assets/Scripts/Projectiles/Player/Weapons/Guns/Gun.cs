@@ -45,7 +45,8 @@ public class Gun : MonoBehaviour
     [SerializeField] bool Fortest;
     protected virtual void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if(GameObject.Find("GameManager")!=null)
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         virtualCamerainGun = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();
@@ -85,7 +86,7 @@ public class Gun : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!gameManager.isPause)
+        if (gameManager == null)
         {
             if (Fortest || (!Controller.dialogPanelController.isSpeaking))  //过场动画时锁定枪支
             {
@@ -96,6 +97,19 @@ public class Gun : MonoBehaviour
                 Fire();
             }
         }
+        else if (!gameManager.isPause)
+        {
+            if (Fortest || (!Controller.dialogPanelController.isSpeaking))  //过场动画时锁定枪支
+            {
+                //Debug.Log(Controller.dialogPanelController.isSpeaking);
+
+                CheckBuffs();
+                Shoot();
+                Fire();
+            }
+        }
+
+
     }
     protected virtual void Shoot()
     {

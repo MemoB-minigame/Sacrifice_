@@ -130,8 +130,8 @@ public class PlayerController : MonoBehaviour
         smallHP = GameObject.Find("PlayerInfoCanvas/SmallHP").GetComponent<SmallHP>();
 
         dialogPanelController = GameObject.Find("DialogCanvas/DialogPanel").GetComponent<DialogPanelController>();
-
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if(GameObject.Find("GameManager")!=null)
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playableDirector = GameObject.Find("TimelineManager").GetComponent<PlayableDirector>();
 
         invincibleTimer = 0f;
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!gameManager.isPause)
+        if(gameManager == null)
         {
             if (!isLife)
             {
@@ -170,6 +170,34 @@ public class PlayerController : MonoBehaviour
 
             mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
+        else if (!gameManager.isPause)
+        {
+            if (!isLife)
+            {
+                GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                if (TimeController.instance.CurrentState == TimeController.TimeState.正常)
+                {
+                    ObjectPool.Instance.ClearDictionary();
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    Refresh();
+                }
+                return;
+            }
+            if (isLife && TimeController.instance.CurrentState == TimeController.TimeState.正常)
+            {
+                TimeController.Instance.RecordAll();
+            }
+            invincibleTimer -= Time.deltaTime; invincibleTimer = invincibleTimer > 0 ? invincibleTimer : 0;//更新剩余无敌时间
+            if (!dialogPanelController.isSpeaking || forTest)
+            {
+                CheckInput();
+                CheckMovementDirection();
+            }
+
+            mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+
     }
 
     private void CheckInput()
