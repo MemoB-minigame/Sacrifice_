@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
             TimeController.Instance.RecordAll();
         }
         invincibleTimer-=Time.deltaTime;invincibleTimer=invincibleTimer>0?invincibleTimer:0;//更新剩余无敌时间
-        if ((!dialogPanelController.isSpeaking && playableDirector.state != PlayState.Playing)||forTest)
+        if (!dialogPanelController.isSpeaking||forTest)
         {
             CheckInput();
             CheckMovementDirection();

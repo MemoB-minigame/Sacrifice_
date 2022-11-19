@@ -5,25 +5,40 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/XiaScene.unity
     guid: 536d9af1548ae4544aa83e0080a3c0ba
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 94bcde40f2f776c4584820b985806649
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/L0_Scene1.unity
     guid: 3073097253b1f9b48bad4bcc2dd81a46
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/L0_Scene2.unity
     guid: 53b7ef3b59712134f8f07891f84cd792
-  - enabled: 0
+  - enabled: 1
     path: "Assets/Scenes/L3\u9B54\u7269\u82B1\u56ED\u4E4B\u5730\u7A74\u2014\u56F0\u517D\u72B9\u6597/\u5173\u5361/L3_1\u6B7B\u8005.unity"
     guid: b7c0dc7774a1b04488249db816256fc6
   - enabled: 1
     path: "Assets/Scenes/BattleField/\u654C\u4EBA\u6D4B\u8BD5\u573A\u666F.unity"
     guid: 6ebe00080e291044ea2448e945469824
+  - enabled: 1
+    path: Assets/Scenes/L1/L1_1.unity
+    guid: cca19150e09ff084a892aa5b73756174
+  - enabled: 1
+    path: Assets/Scenes/L1/L1_2.unity
+    guid: 2ccfe6038e19ece4987873075958f283
+  - enabled: 1
+    path: Assets/Scenes/L1/L1_3.unity
+    guid: a7e2fda689918c34583a20d6956789ca
+  - enabled: 1
+    path: Assets/Scenes/L1/L1_4.unity
+    guid: e129d258614562a47b38777b965f66df
+  - enabled: 1
+    path: Assets/Scenes/L1/L1_5.unity
+    guid: 9d6f6caed40c7fb4da9704a923ad018b
   m_configObjects: {}
