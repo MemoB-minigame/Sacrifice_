@@ -35,7 +35,7 @@ public class DialogPanelController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && isSpeaking)
+        if (Input.GetMouseButtonDown(0) && isSpeaking && dialogBox.activeInHierarchy == true)
         {
             ToNextSentence();
         }
@@ -116,7 +116,8 @@ public class DialogPanelController : MonoBehaviour
         //playableDirector.Play();
         playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1);
         currentLine = -1;
-        isSpeaking = false;
+        StartCoroutine("SetIsSpeakingToFalse");
+        //isSpeaking = false;
 
         blackLine_Animator.Play("BlankLineFadeOut");
         speakerImageBG_Animator.Play("SpeakerImageBGFadeOut");
@@ -133,5 +134,11 @@ public class DialogPanelController : MonoBehaviour
     private void DialogBoxShow()
     {
         dialogBox.SetActive(true);
+    }
+
+    private IEnumerator SetIsSpeakingToFalse()
+    {
+        yield return new WaitForSeconds(0.05f);
+        isSpeaking = false;
     }
 }

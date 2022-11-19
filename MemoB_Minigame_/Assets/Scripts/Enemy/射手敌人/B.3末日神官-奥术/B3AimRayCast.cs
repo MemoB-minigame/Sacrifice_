@@ -14,6 +14,7 @@ public class B3AimRayCast : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").transform;
+        aimRay.positionCount = 2;
     }
 
     // Update is called once per frame
