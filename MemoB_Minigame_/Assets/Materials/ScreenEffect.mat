@@ -75,12 +75,12 @@ Material:
     - _Blend: 0
     - _BlendOp: 0
     - _CastShadows: 0
-    - _Crystallize: 0
+    - _Crystallize: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 10
     - _EnableExternalAlpha: 0
-    - _FullScreenIntensity: 0.8
+    - _FullScreenIntensity: 0.2
     - _FuseMainTex: 0
     - _NoiseScale: 8
     - _NoiseSpeed: 0.4
@@ -92,14 +92,14 @@ Material:
     - _ScanLineSpeed: 0.1
     - _SrcBlend: 5
     - _Surface: 1
-    - _VignetteRadiusPower: 10
+    - _VignetteRadiusPower: 15
     - _VoroniIntensitiy: 0.75
     - _VoroniScale: 5
     - _VoroniSpeed: 1
     - _VoronoiIntensitiy: 0.527
     - _VoronoiIntensity: 0.8
-    - _VoronoiPower: 1
-    - _VoronoiScale: 10
+    - _VoronoiPower: 3
+    - _VoronoiScale: 30
     - _VoronoiSpeed: 2
     - _WindowHeight: 0.8
     - _WindowWidth: 0.8
@@ -108,7 +108,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 19.603577, g: 0.38438386, b: 0, a: 1}
+    - _Color: {r: 4.636389, g: 20.53258, b: 126.50718, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
