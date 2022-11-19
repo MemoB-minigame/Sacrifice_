@@ -12,8 +12,6 @@ public class Destination : MonoBehaviour
 
     void Start()
     {
-
-
         sceneTransition = GameObject.Find("SceneManager").GetComponent<SceneTransition>();
     }
 

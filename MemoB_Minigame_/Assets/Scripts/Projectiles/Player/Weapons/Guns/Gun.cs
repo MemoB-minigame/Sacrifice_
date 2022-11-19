@@ -8,7 +8,9 @@ using UnityEngine.Playables;
 
 public class Gun : MonoBehaviour
 {
-    
+    //游戏暂停
+    private GameManager gameManager;
+
     protected float timer=10;//计时器
     protected Vector2 direction;//发射方向
     protected PlayerController  Controller;
@@ -43,6 +45,8 @@ public class Gun : MonoBehaviour
     [SerializeField] bool Fortest;
     protected virtual void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         virtualCamerainGun = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         buffManager = GameObject.Find("BuffManager").GetComponent<BuffManager>();
         Player = GameObject.Find("Player");
@@ -81,19 +85,17 @@ public class Gun : MonoBehaviour
 
     protected virtual void Update()
     {
-        //CheckBuffs();
-
-        if (Fortest || (!Controller.dialogPanelController.isSpeaking))  //过场动画时枪不朝向鼠标
+        if (!gameManager.isPause)
         {
-            //Debug.Log(Controller.dialogPanelController.isSpeaking);
+            if (Fortest || (!Controller.dialogPanelController.isSpeaking))  //过场动画时锁定枪支
+            {
+                //Debug.Log(Controller.dialogPanelController.isSpeaking);
 
-            CheckBuffs();
-            Shoot();
-            Fire();
+                CheckBuffs();
+                Shoot();
+                Fire();
+            }
         }
-
-        //Shoot();
-        //Fire();
     }
     protected virtual void Shoot()
     {
