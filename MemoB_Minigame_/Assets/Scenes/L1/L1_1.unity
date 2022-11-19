@@ -8460,6 +8460,10 @@ PrefabInstance:
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 516437293}
+    - target: {fileID: 8485589278274871090, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
+      propertyPath: weapons.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32cb933b6ead4ad4787c644a633badbc, type: 3}
 --- !u!1001 &1479267955

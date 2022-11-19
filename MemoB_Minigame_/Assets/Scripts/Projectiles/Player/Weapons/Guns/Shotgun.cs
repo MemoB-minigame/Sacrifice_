@@ -42,6 +42,7 @@ public class Shotgun : Gun
                     bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, Quaternion.AngleAxis(bulletAngle * (i - mid), Vector3.forward) * direction);
                 }
             }
+            StartCoroutine(PlayFireAni());
             RecoilForce();
             fireSoundEffect.Play();
         }
