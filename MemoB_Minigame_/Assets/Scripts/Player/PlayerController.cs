@@ -291,7 +291,7 @@ public class PlayerController : MonoBehaviour
 
     private void Refresh()
     {
-        hp = 24;
+        HP = 24;
         isLife = true;
         TimeController.Instance.RecordAll();
     }
