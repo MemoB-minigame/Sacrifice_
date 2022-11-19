@@ -4,107 +4,117 @@ using UnityEngine;
 namespace Kurisu.TimeControl
 {
 
-public class TimeStore : MonoBehaviour
-{
-    [SerializeField]
-    protected bool locked;
-    /// <summary>
-    /// 回溯栈
-    /// </summary>
-    protected Stack<TransformStep> steps;
-    
-    protected virtual void Start() {
-        if(TimeController.IsInitialized)
+    public class TimeStore : MonoBehaviour
+    {
+        private Vector3 lastPos=new Vector3(0,0,float.MaxValue);
+
+        [SerializeField]
+        protected bool locked;
+        /// <summary>
+        /// 回溯栈
+        /// </summary>
+        public Stack<TransformStep> steps;
+
+        protected virtual void Start()
         {
-            TimeController.Instance.Add(this);
+            if (TimeController.IsInitialized)
+            {
+                TimeController.Instance.Add(this);
+            }
+            steps = new Stack<TransformStep>(TimeController.Instance.Capacity);
+
         }
-        steps=new Stack<TransformStep>(TimeController.Instance.Capacity);
-        
-    }
-    protected virtual void OnDestroy() {
-        if(TimeController.IsInitialized)
+        protected virtual void OnDestroy()
         {
-            TimeController.Instance.Remove(this);
-            TimeController.Instance.OnRecallEndEvent-=TimeStoreOver;
-            TimeController.Instance.OnRecallEvent-=RecallTick;
-            TimeController.Instance.OnRecordEvent-=RecordTick;
-            
+            if (TimeController.IsInitialized)
+            {
+                TimeController.Instance.Remove(this);
+                TimeController.Instance.OnRecallEndEvent -= TimeStoreOver;
+                TimeController.Instance.OnRecallEvent -= RecallTick;
+                TimeController.Instance.OnRecordEvent -= RecordTick;
+
+            }
+            steps.Clear();
         }
-        steps.Clear();
-    }
-    /// <summary>
-    /// 锁定回溯器
-    /// </summary>
-    /// <param name="state"></param>
-    public void LockTimeStore(bool state)
-    {
-        this.locked=state;
-    }
-    /// <summary>
-    /// 开始记录
-    /// </summary>
-    public virtual void Record()
-    {
-        
-        steps.Clear();
-        if(locked)
-            return;
-        TimeController.Instance.OnRecordEvent+=RecordTick;
-    }
-    /// <summary>
-    /// 开始回溯
-    /// </summary>
-    public virtual void Recall()
-    {
-        TimeController.Instance.OnRecordEvent-=RecordTick;
-        if(locked)
-            return;
-        TimeController.Instance.OnRecallEvent+=RecallTick;
-        TimeController.Instance.OnRecallEndEvent+=TimeStoreOver;
-    }
-    /// <summary>
-    /// 终止回溯和记录
-    /// </summary>
-    public virtual void TimeStoreOver()
-    {
-        steps.Clear();
-        TimeController.Instance.OnRecallEndEvent-=TimeStoreOver;
-        TimeController.Instance.OnRecallEvent-=RecallTick;
-        TimeController.Instance.OnRecordEvent-=RecordTick;
-    }
-    /// <summary>
-    /// 强制关闭回溯器
-    /// </summary>
-    public virtual void ShutDown()
-    {
-        TimeStoreOver();
-    }
-    /// <summary>
-    /// 记录时刻
-    /// </summary>
-    public virtual void RecordTick()
-    {
-        TransformStep newStep=new TransformStep();
-        newStep.position=transform.position;
-        newStep.rotation=transform.rotation; 
-        steps.Push(newStep);
-               
-    }
-    /// <summary>
-    /// 回溯时刻
-    /// </summary>
-    public virtual void RecallTick()
-    {
-        if(steps.Count==0)
-            return;
-        var oldStep = steps.Pop();
-        for (int i = 0; i < TimeController.instance.GetRecallBoost(); ++i)
+        /// <summary>
+        /// 锁定回溯器
+        /// </summary>
+        /// <param name="state"></param>
+        public void LockTimeStore(bool state)
         {
-            if (steps.Count == 0) { break; }
-            oldStep = steps.Pop();
+            this.locked = state;
         }
-        transform.position=oldStep.position;
-        transform.rotation=oldStep.rotation;
+        /// <summary>
+        /// 开始记录
+        /// </summary>
+        public virtual void Record()
+        {
+
+            steps.Clear();
+            if (locked)
+                return;
+            TimeController.Instance.OnRecordEvent += RecordTick;
+        }
+        /// <summary>
+        /// 开始回溯
+        /// </summary>
+        public virtual void Recall()
+        {
+            TimeController.Instance.OnRecordEvent -= RecordTick;
+            if (locked)
+                return;
+            TimeController.Instance.OnRecallEvent += RecallTick;
+            TimeController.Instance.OnRecallEndEvent += TimeStoreOver;
+        }
+        /// <summary>
+        /// 终止回溯和记录
+        /// </summary>
+        public virtual void TimeStoreOver()
+        {
+            steps.Clear();
+            TimeController.Instance.OnRecallEndEvent -= TimeStoreOver;
+            TimeController.Instance.OnRecallEvent -= RecallTick;
+            TimeController.Instance.OnRecordEvent -= RecordTick;
+        }
+        /// <summary>
+        /// 强制关闭回溯器
+        /// </summary>
+        public virtual void ShutDown()
+        {
+            TimeStoreOver();
+        }
+        /// <summary>
+        /// 记录时刻
+        /// </summary>
+        public virtual void RecordTick()
+        {
+
+            if (Vector3.Distance(lastPos,transform.position)>1f)
+            {
+                TransformStep newStep = new TransformStep();
+                newStep.position = transform.position;
+                newStep.rotation = transform.rotation;
+                steps.Push(newStep);
+                lastPos=transform.position;
+                Debug.Log(steps.Count);
+            }
+
+        }
+        /// <summary>
+        /// 回溯时刻
+        /// </summary>
+        public virtual void RecallTick()
+        {
+            if (steps.Count == 0)
+                return;
+            var oldStep = steps.Pop();
+            for (int i = 0; i < TimeController.instance.GetRecallBoost(); ++i)
+            {
+                if (steps.Count == 0) { break; }
+                oldStep = steps.Pop();
+            }
+            transform.position = oldStep.position;
+            transform.rotation = oldStep.rotation;
+        }
     }
-}          
 }
