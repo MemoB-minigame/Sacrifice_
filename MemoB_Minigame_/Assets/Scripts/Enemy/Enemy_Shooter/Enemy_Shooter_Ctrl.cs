@@ -12,6 +12,7 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
     Animator animator;
     [Header("µÐÈË×´Ì¬")]
     [SerializeField]int hp;
+    Enemy_Shooter_Parameters para;
     
     public int HP
     {
@@ -35,6 +36,10 @@ public class Enemy_Shooter_Ctrl : MonoBehaviour
     }
     private void Awake()
     {
+        para = GetComponent<EnemyShooterController>();
+        if(para==null)
+            para = GetComponent<Enemy_ShooterB2_Parameters>();
+        HP = para.Hp;
         firstDie=true;
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player");

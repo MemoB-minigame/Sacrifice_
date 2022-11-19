@@ -156,3 +156,10 @@ BattleField/Topography: 带有障碍物的地形示例
 
 - 类成员变量分配规范化，删除了`Enemy_Shooter_Ctrl`中的成员`hp`，现统一使用`Enemy_Shooter_Parameters`中的`Hp`。
 - 删除了`Enemy_Shooter_Parameters`中无用的`alertTrigger`，并移除所有引用。
+
+2022.11.18 22:15
+
+- 增加红眼蜘蛛、野兽幽魂、末日神官、暗骑士的音效。
+- 增加武器音效。
+- 死亡回溯功能自适应加速。
+- 红眼蜘蛛的生命值减少1，现在为2点。

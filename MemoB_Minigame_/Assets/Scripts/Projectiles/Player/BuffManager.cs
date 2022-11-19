@@ -31,6 +31,11 @@ public class BuffManager : MonoBehaviour
         buff_0 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_0_Image").GetComponent<Image>();
         buff_1 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_1_Image").GetComponent<Image>();
         buff_2 = GameObject.Find("PlayerInfoCanvas/BuffText/Buff_2_Image").GetComponent<Image>();
+        buff_0.enabled = false;
+        buff_1.enabled = false;
+        buff_2.enabled = false;
+
+
         controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         for (int i = 1; i <= 4; i++)
@@ -47,29 +52,34 @@ public class BuffManager : MonoBehaviour
         if (controller.HP <= 20)
         {
             buffs[1] = true;
-            buff_0.color=Color.yellow;
+            buff_0.enabled = true;
         }
         else
         { 
-            buffs[1] = false; 
+            buffs[1] = false;
+            buff_0.enabled = false;
         }
 
         if (controller.HP <= 16)
         {
             buffs[2] = true;
+            buff_1.enabled = true;
         }
         else
         {
             buffs[2] = false;
+            buff_1.enabled = false;
         }
 
         if (controller.HP <= 12)
         {
             buffs[3] = true;
+            buff_2.enabled = true;
         }
         else
         { 
-            buffs[3] = false; 
+            buffs[3] = false;
+            buff_2.enabled = false;
         }
     }
     public void BulletKills()//»÷É±µÐÈËºó×Óµ¯ÉËº¦·­±¶

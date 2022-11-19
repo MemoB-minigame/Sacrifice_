@@ -32,6 +32,7 @@ public class Double_Revolver : Gun
             bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, direction);
             StartCoroutine(doubleFire());
             RecoilForce();
+            fireSoundEffect.Play();
         }
     }
     IEnumerator doubleFire()

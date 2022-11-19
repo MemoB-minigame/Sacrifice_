@@ -25,6 +25,7 @@ public class Gun : MonoBehaviour
     [SerializeField] protected int hpCost = 1;
     [SerializeField] protected float deflectionAngle = 5f;
     [SerializeField] protected GameObject bullet_Prefab;
+    [SerializeField] protected AudioSource fireSoundEffect;
 
     [SerializeField] CinemachineVirtualCamera virtualCamerainGun;
     CinemachineImpulseSource impulse;//ÆÁÄ»Õð¶¯
@@ -54,6 +55,8 @@ public class Gun : MonoBehaviour
         impulse=GetComponent<CinemachineImpulseSource>();
         originShakeAmplitude = impulse.m_ImpulseDefinition.m_AmplitudeGain;
         originShakeFrequency = impulse.m_ImpulseDefinition.m_FrequencyGain;
+
+        if (fireSoundEffect is null) fireSoundEffect = GetComponent<AudioSource>();
     }
     protected virtual void OnEnable()
     {
@@ -119,6 +122,7 @@ public class Gun : MonoBehaviour
             bullet.GetComponent<PlayerBullet>().SetBullet(finalBulletDamage, bulletSpeed, direction);
 
             RecoilForce();
+            fireSoundEffect.Play();
         }
     }
     protected virtual void CheckBuffs()

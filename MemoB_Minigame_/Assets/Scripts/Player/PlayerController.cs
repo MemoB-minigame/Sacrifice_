@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
                                         //hpNum.text = string.Format("{0:D2}", hp);
             hpSlider.fillAmount = 1 / 24.0f * hp;
 
-            if (hp > 20)
+            /*if (hp > 20)
             {
                 buff_0.color = Color.white;
             }
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
                 canSkill = true;
                 buff_2.color = Color.yellow;
             }
-            else if (hp < 0 && isLife)
+            else */if (hp < 0 && isLife)
             {
                 isLife = false;
                 Dead();
